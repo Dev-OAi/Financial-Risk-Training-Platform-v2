@@ -1,0 +1,8 @@
+{
+  "name": "Remix Financial Risk Training Platform",
+  "description": "AI visual neural core and educational training template generator for spotting check fraud and financial compliance risk.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
