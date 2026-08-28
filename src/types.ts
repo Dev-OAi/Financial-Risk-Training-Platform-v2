@@ -42,6 +42,13 @@ export interface BankStandard {
   inkCharacteristics: string;
   paperStock: string;
   checksumRule: string;
+  // Modular validation rules and check code for each requirement
+  micrCheckCode?: string;
+  borderCheckCode?: string;
+  inkCheckCode?: string;
+  paperCheckCode?: string;
+  endorsementCheckCode?: string;
+  sampleImageUrl?: string;
 }
 
 /** Real-time routing number validation result */
@@ -74,6 +81,6 @@ export type ThemeMode = 'light' | 'dark';
 export type ComparisonMode = 'single' | 'compare';
 
 /** Main navigation tabs */
-export type AppTab = 'inspector' | 'standards' | 'sargenerator';
+export type AppTab = 'inspector' | 'standards' | 'sargenerator' | 'excel' | 'watchlist';
 
 

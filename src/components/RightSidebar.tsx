@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, ShieldAlert, ShieldCheck, CheckCircle2, AlertTriangle, FileText, Lock, Sparkles, Cpu } from 'lucide-react';
+import { X, ShieldAlert, ShieldCheck, CheckCircle2, AlertTriangle, FileText, Lock, Sparkles, Cpu, Search } from 'lucide-react';
 import { DocumentTemplate, HotSpot, ThemeMode } from '../types';
 
 interface RightSidebarProps {
@@ -63,7 +63,15 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({
           }`}>
             <div className="text-[10px] font-bold text-[#bdc1c6] uppercase tracking-wider mb-1">Active Specimen</div>
             <h3 className="text-xs font-extrabold text-inherit mb-1">{template.title}</h3>
-            <p className="text-[11px] text-[#bdc1c6] leading-relaxed font-medium">{template.summary}</p>
+            <p className="text-[11px] text-[#bdc1c6] leading-relaxed font-medium mb-3">{template.summary}</p>
+            
+            <button
+              onClick={() => (window as any).dispatchEvent(new CustomEvent('open-guilloche-magnifier'))}
+              className="w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow transition"
+            >
+              <Search className="w-3.5 h-3.5" />
+              <span>Launch Guilloche & Micro-Print Magnifier</span>
+            </button>
           </div>
 
           {/* Risk Metrics */}

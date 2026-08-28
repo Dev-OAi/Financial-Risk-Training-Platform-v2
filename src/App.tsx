@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { LeftSidebar } from './components/LeftSidebar';
 import { RightSidebar } from './components/RightSidebar';
@@ -6,7 +6,12 @@ import { AugmentedCanvas } from './components/AugmentedCanvas';
 import { ExportModal } from './components/ExportModal';
 import { BankStandardsTab } from './components/BankStandardsTab';
 import { CaseNotesAndSARTab } from './components/CaseNotesAndSARTab';
+import { ExcelComparisonTable } from './components/ExcelComparisonTable';
+import { WatchlistTab } from './components/WatchlistTab';
 import { UploadScanModal } from './components/UploadScanModal';
+import { HelpGuideModal } from './components/HelpGuideModal';
+import { BatchUploadQueueModal } from './components/BatchUploadQueueModal';
+import { GuillocheMagnifierModal } from './components/GuillocheMagnifierModal';
 import { INITIAL_TEMPLATES } from './data/mockTemplates';
 import { DocumentTemplate, HotSpot, ThemeMode, ComparisonMode, AppTab } from './types';
 
@@ -19,11 +24,25 @@ export default function App() {
   const [comparisonTemplate, setComparisonTemplate] = useState<DocumentTemplate>(INITIAL_TEMPLATES.fraudulentCheck);
   const [selectedHotSpot, setSelectedHotSpot] = useState<HotSpot | null>(INITIAL_TEMPLATES.genuineCheck.hotspots[0] || null);
   
-  const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(false);
-  const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(true);
+  const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(window.innerWidth >= 1024);
+  const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(window.innerWidth >= 1024);
   const [isAiGenerating, setIsAiGenerating] = useState(false);
   const [isExportOpen, setIsExportOpen] = useState(false);
   const [isUploadScanOpen, setIsUploadScanOpen] = useState(false);
+  const [isHelpGuideOpen, setIsHelpGuideOpen] = useState(false);
+  const [isBatchOpen, setIsBatchOpen] = useState(false);
+  const [isMagnifierOpen, setIsMagnifierOpen] = useState(false);
+
+  useEffect(() => {
+    const handleOpenBatch = () => setIsBatchOpen(true);
+    const handleOpenMagnifier = () => setIsMagnifierOpen(true);
+    window.addEventListener('open-batch-queue', handleOpenBatch);
+    window.addEventListener('open-guilloche-magnifier', handleOpenMagnifier);
+    return () => {
+      window.removeEventListener('open-batch-queue', handleOpenBatch);
+      window.removeEventListener('open-guilloche-magnifier', handleOpenMagnifier);
+    };
+  }, []);
 
   const handleSelectTemplate = (template: DocumentTemplate) => {
     setCurrentTemplate(template);
@@ -33,7 +52,6 @@ export default function App() {
     } else {
       setComparisonTemplate(INITIAL_TEMPLATES.fraudulentCheck);
     }
-    setActiveTab('inspector');
   };
 
   const handleAddTemplate = (newTpl: DocumentTemplate) => {
@@ -95,55 +113,77 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onOpenUploadScan={() => setIsUploadScanOpen(true)}
+        onOpenHelpGuide={() => setIsHelpGuideOpen(true)}
       />
 
-      {/* Main Body Layout based on Active Tab */}
-      {activeTab === 'standards' && (
-        <BankStandardsTab themeMode={themeMode} />
-      )}
+      {/* Main Body Layout with Persistent Left Sidebar */}
+      <div className="flex-1 flex overflow-hidden relative">
+        {/* Left Menu Sidebar */}
+        <LeftSidebar
+          isOpen={isLeftSidebarOpen}
+          onClose={() => setIsLeftSidebarOpen(false)}
+          currentTemplate={currentTemplate}
+          onSelectTemplate={handleSelectTemplate}
+          templates={templates}
+          onAddTemplate={handleAddTemplate}
+          onRemoveTemplate={handleRemoveTemplate}
+          themeMode={themeMode}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          onOpenUploadScan={() => setIsUploadScanOpen(true)}
+          onOpenHelpGuide={() => setIsHelpGuideOpen(true)}
+        />
 
-      {activeTab === 'sargenerator' && (
-        <CaseNotesAndSARTab themeMode={themeMode} currentTemplate={currentTemplate} />
-      )}
+        {/* Central Workspace / Active Tab Content */}
+        <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+          {activeTab === 'standards' && (
+            <BankStandardsTab themeMode={themeMode} />
+          )}
 
-      {activeTab === 'inspector' && (
-        <div className="flex-1 flex overflow-hidden relative">
-          {/* Left Menu Sidebar */}
-          <LeftSidebar
-            isOpen={isLeftSidebarOpen}
-            onClose={() => setIsLeftSidebarOpen(false)}
-            currentTemplate={currentTemplate}
-            onSelectTemplate={handleSelectTemplate}
-            templates={templates}
-            onAddTemplate={handleAddTemplate}
-            onRemoveTemplate={handleRemoveTemplate}
-            themeMode={themeMode}
-          />
+          {activeTab === 'sargenerator' && (
+            <CaseNotesAndSARTab themeMode={themeMode} currentTemplate={currentTemplate} />
+          )}
 
-          {/* Central Workspace Area */}
-          <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
-            <AugmentedCanvas
-              template={currentTemplate}
-              comparisonTemplate={comparisonTemplate}
-              themeMode={themeMode}
-              comparisonMode={comparisonMode}
-              selectedHotSpot={selectedHotSpot}
-              onSelectHotSpot={setSelectedHotSpot}
-            />
-          </div>
+          {activeTab === 'excel' && (
+            <div className="flex-1 p-4 overflow-hidden">
+              <ExcelComparisonTable template={currentTemplate} themeMode={themeMode} />
+            </div>
+          )}
 
-          {/* Right Sidebar Drawer */}
-          <RightSidebar
-            isOpen={isRightSidebarOpen}
-            onClose={() => setIsRightSidebarOpen(false)}
-            template={currentTemplate}
-            selectedHotSpot={selectedHotSpot}
-            onSelectHotSpot={setSelectedHotSpot}
-            themeMode={themeMode}
-            isAiGenerating={isAiGenerating}
-          />
+          {activeTab === 'watchlist' && (
+            <div className="flex-1 p-4 overflow-hidden">
+              <WatchlistTab template={currentTemplate} themeMode={themeMode} />
+            </div>
+          )}
+
+          {activeTab === 'inspector' && (
+            <div className="flex-1 flex overflow-hidden relative w-full h-full">
+              {/* Central Canvas Area */}
+              <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+                <AugmentedCanvas
+                  template={currentTemplate}
+                  comparisonTemplate={comparisonTemplate}
+                  themeMode={themeMode}
+                  comparisonMode={comparisonMode}
+                  selectedHotSpot={selectedHotSpot}
+                  onSelectHotSpot={setSelectedHotSpot}
+                />
+              </div>
+
+              {/* Right Sidebar Drawer */}
+              <RightSidebar
+                isOpen={isRightSidebarOpen}
+                onClose={() => setIsRightSidebarOpen(false)}
+                template={currentTemplate}
+                selectedHotSpot={selectedHotSpot}
+                onSelectHotSpot={setSelectedHotSpot}
+                themeMode={themeMode}
+                isAiGenerating={isAiGenerating}
+              />
+            </div>
+          )}
         </div>
-      )}
+      </div>
 
       {/* Export Modal */}
       <ExportModal
@@ -157,6 +197,30 @@ export default function App() {
         isOpen={isUploadScanOpen}
         onClose={() => setIsUploadScanOpen(false)}
         onAddTemplate={handleAddTemplate}
+        templates={templates}
+        themeMode={themeMode}
+      />
+
+      {/* Help Guide Modal */}
+      <HelpGuideModal
+        isOpen={isHelpGuideOpen}
+        onClose={() => setIsHelpGuideOpen(false)}
+        themeMode={themeMode}
+      />
+
+      {/* Batch Ingestion & STP Queue Modal */}
+      <BatchUploadQueueModal
+        isOpen={isBatchOpen}
+        onClose={() => setIsBatchOpen(false)}
+        themeMode={themeMode}
+        onImportBatch={(_templates) => {}}
+      />
+
+      {/* Guilloche & Micro-Print Magnifier Modal */}
+      <GuillocheMagnifierModal
+        isOpen={isMagnifierOpen}
+        onClose={() => setIsMagnifierOpen(false)}
+        template={currentTemplate}
         themeMode={themeMode}
       />
     </div>

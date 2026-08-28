@@ -94,22 +94,22 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
   };
 
   return (
-    <div className="flex-1 overflow-y-auto p-6 lg:p-10 max-w-7xl mx-auto w-full space-y-8">
+    <div className="flex-1 overflow-y-auto p-4 sm:p-6 max-w-7xl mx-auto w-full space-y-6">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-inherit pb-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-inherit pb-4">
         <div>
-          <h1 className="text-2xl font-bold flex items-center gap-3">
-            <FileSpreadsheet className="w-7 h-7 text-blue-500" />
+          <h1 className="text-xl font-bold flex items-center gap-2 text-inherit">
+            <FileSpreadsheet className="w-6 h-6 text-blue-500" />
             Collaborative Case Notes & FinCEN SAR Generator
           </h1>
-          <p className="text-sm opacity-75 mt-1">
+          <p className="text-xs opacity-75 mt-0.5">
             Maintain multi-investigator audit trails, bookmark flagged inspection anomalies, and generate regulatory Suspicious Activity Reports.
           </p>
         </div>
         <button
           onClick={handleGenerateFinCENSAR}
           disabled={isGeneratingSar}
-          className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-lg transition flex items-center gap-2"
+          className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow-xs transition flex items-center gap-1.5 shrink-0"
         >
           <FileText className="w-4 h-4" />
           <span>{isGeneratingSar ? 'Formatting SAR...' : 'Generate FinCEN SAR Report'}</span>

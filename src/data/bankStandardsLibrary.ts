@@ -17,7 +17,12 @@ export const BANK_STANDARDS_DATABASE: Record<string, BankStandard> = {
     trainingTip: 'Verify E-13B magnetic signal strength (70-200%) and inspect guilloche border for continuous ribbon integrity.',
     inkCharacteristics: 'Optically Variable Magnetic Ink with chemical stain reactivity (acetone/chlorine bleach turns pink/brown)',
     paperStock: '24lb security bond with embedded multi-colored fluorescent fibers (UV reactive yellow/blue)',
-    checksumRule: 'Standard ABA Mod-10 checksum validation mandatory'
+    checksumRule: 'Standard ABA Mod-10 checksum validation mandatory',
+    micrCheckCode: 'return scan.font === "E-13B" && scan.signalStrength >= 70;',
+    borderCheckCode: 'return scan.borderHasGuilloche && !scan.isPixelatedRaster;',
+    inkCheckCode: 'return scan.reactsToChemicalSolvent && scan.hasOVMInk;',
+    paperCheckCode: 'return scan.hasUVFibers && scan.paperWeight >= 24;',
+    endorsementCheckCode: 'return amount <= 5000 || scan.hasRestrictiveEndorsement;'
   },
   chaseComm: {
     id: 'chase-comm',
@@ -29,7 +34,12 @@ export const BANK_STANDARDS_DATABASE: Record<string, BankStandard> = {
     trainingTip: 'Inspect right margin for standard void pantograph activation and verify routing prefix 021.',
     inkCharacteristics: 'Heat-sensitive thermochromic ink emblem (disappears at 88°F, returns upon cooling)',
     paperStock: 'Watermarked security cotton blend with chemical neutralization capsule coating',
-    checksumRule: 'ABA 9-digit weighted sum checksum'
+    checksumRule: 'ABA 9-digit weighted sum checksum',
+    micrCheckCode: 'return scan.font === "OCR-A" && scan.magneticMatch;',
+    borderCheckCode: 'return scan.hasIntaglioEngraving && scan.hasLatentImage;',
+    inkCheckCode: 'return scan.hasThermochromicInk && scan.tempResponseVerified;',
+    paperCheckCode: 'return scan.isCottonBlend && scan.hasWatermark;',
+    endorsementCheckCode: 'return amount <= 10000 || scan.hasCorporateResolution;'
   },
   bofaCorp: {
     id: 'bofa-corp',
@@ -41,7 +51,12 @@ export const BANK_STANDARDS_DATABASE: Record<string, BankStandard> = {
     trainingTip: 'Check rainbow color blending transition; consumer inkjet prints cannot reproduce multi-pass prismatic tinting.',
     inkCharacteristics: 'Penetrating dye-based safety ink that bleeds through paper when subjected to erasure solvents',
     paperStock: 'Chalk-surfaced chemical reactive paper with embedded security threads',
-    checksumRule: 'ABA Mod-10 weighted validation algorithm'
+    checksumRule: 'ABA Mod-10 weighted validation algorithm',
+    micrCheckCode: 'return scan.encoderTonerDensity >= 95;',
+    borderCheckCode: 'return scan.hasPrismaticTint && !scan.isInkjetReproduction;',
+    inkCheckCode: 'return scan.bleedsUnderSolvent && scan.hasSafetyInk;',
+    paperCheckCode: 'return scan.hasSecurityThread && scan.isChalkSurfaced;',
+    endorsementCheckCode: 'return amount <= 25000 || scan.hasDualSignatures;'
   },
   wellsFargo: {
     id: 'wells-fargo',
@@ -53,7 +68,12 @@ export const BANK_STANDARDS_DATABASE: Record<string, BankStandard> = {
     trainingTip: 'Hold check to ultraviolet light to inspect fluorescent security fibers embedded in pulp.',
     inkCharacteristics: 'Metallic foil hot-stamp security seal resistant to color photocopier capture',
     paperStock: 'Alkaline chemical reactive paper stock preventing acid/base wash alteration',
-    checksumRule: 'Standard ABA Mod-10 checksum validation'
+    checksumRule: 'Standard ABA Mod-10 checksum validation',
+    micrCheckCode: 'return scan.ironOxideContent >= 80;',
+    borderCheckCode: 'return scan.hasWatermark && scan.pulpIsAlkaline;',
+    inkCheckCode: 'return scan.hasMetallicFoil && !scan.isPhotocopiedSeal;',
+    paperCheckCode: 'return scan.resistsAcidWash && scan.hasAlkalineBuffer;',
+    endorsementCheckCode: 'return scan.positivePayVerified === true;'
   },
   citiGlobal: {
     id: 'citi-global',
@@ -65,7 +85,12 @@ export const BANK_STANDARDS_DATABASE: Record<string, BankStandard> = {
     trainingTip: 'Examine 4pt microprint with 10x loupe; blurry characters indicate digital photocopying.',
     inkCharacteristics: 'Fluorescent invisible UV ink seal visible only under 365nm ultraviolet inspection lamp',
     paperStock: 'Synthetic security substrate tear-resistant polymer blend',
-    checksumRule: 'ABA Mod-10 strict weighting'
+    checksumRule: 'ABA Mod-10 strict weighting',
+    micrCheckCode: 'return scan.laserEncoded === true;',
+    borderCheckCode: 'return scan.microprintReadableAt4pt === true;',
+    inkCheckCode: 'return scan.uvFluorescentVisible === true;',
+    paperCheckCode: 'return scan.isPolymerSubstrate === true;',
+    endorsementCheckCode: 'return scan.internationalWireVerified === true;'
   }
 };
 

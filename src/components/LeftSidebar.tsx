@@ -8,9 +8,9 @@
 import React, { useState, useRef } from 'react';
 import { 
   ShieldCheck, ShieldAlert, FileText, Layers, BookOpen, 
-  Search, Award, Sparkles, CheckSquare, AlertTriangle, ChevronRight, X, Building2, HelpCircle, Plus, Minus, Upload
+  Search, Award, Sparkles, CheckSquare, AlertTriangle, ChevronRight, X, Building2, HelpCircle, Plus, Minus, Upload, Eye, FileSpreadsheet
 } from 'lucide-react';
-import { DocumentTemplate, ThemeMode, BankStandard } from '../types';
+import { DocumentTemplate, ThemeMode, BankStandard, AppTab } from '../types';
 import { INITIAL_TEMPLATES, BANK_STANDARDS } from '../data/mockTemplates';
 
 interface LeftSidebarProps {
@@ -22,6 +22,10 @@ interface LeftSidebarProps {
   onAddTemplate?: (template: DocumentTemplate) => void;
   onRemoveTemplate?: (id: string) => void;
   themeMode: ThemeMode;
+  activeTab: AppTab;
+  setActiveTab: (tab: AppTab) => void;
+  onOpenUploadScan: () => void;
+  onOpenHelpGuide: () => void;
 }
 
 export const LeftSidebar: React.FC<LeftSidebarProps> = ({
@@ -33,6 +37,10 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
   onAddTemplate,
   onRemoveTemplate,
   themeMode,
+  activeTab,
+  setActiveTab,
+  onOpenUploadScan,
+  onOpenHelpGuide,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const templatesList = Object.values(templates);
@@ -142,6 +150,104 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
         {/* Navigation Content */}
         <div className="flex-1 overflow-y-auto p-3.5 space-y-5">
           
+          {/* Main App Navigation Tabs moved from Header for mobile optimization */}
+          <div className={`p-3 rounded-xl border space-y-2 ${
+            themeMode === 'dark' ? 'bg-[#323639] border-[#3c4043]' : 'bg-[#f8f9fa] border-[#dadce0]'
+          }`}>
+            <span className="text-[11px] font-bold uppercase tracking-wider opacity-75 block">Platform Modules</span>
+            <div className="space-y-1">
+              <button
+                onClick={() => setActiveTab('inspector')}
+                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition ${
+                  activeTab === 'inspector' 
+                    ? 'bg-blue-600 text-white shadow-sm' 
+                    : themeMode === 'dark' ? 'hover:bg-[#3c4043]' : 'hover:bg-slate-200'
+                }`}
+              >
+                <Eye className="w-4 h-4" />
+                <span>Document Inspector</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('standards')}
+                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition ${
+                  activeTab === 'standards' 
+                    ? 'bg-blue-600 text-white shadow-sm' 
+                    : themeMode === 'dark' ? 'hover:bg-[#3c4043]' : 'hover:bg-slate-200'
+                }`}
+              >
+                <BookOpen className="w-4 h-4" />
+                <span>Bank Standards & Routing</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('sargenerator')}
+                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition ${
+                  activeTab === 'sargenerator' 
+                    ? 'bg-blue-600 text-white shadow-sm' 
+                    : themeMode === 'dark' ? 'hover:bg-[#3c4043]' : 'hover:bg-slate-200'
+                }`}
+              >
+                <FileSpreadsheet className="w-4 h-4" />
+                <span>Case Notes & SAR Generator</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('excel')}
+                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition ${
+                  activeTab === 'excel' 
+                    ? 'bg-blue-600 text-white shadow-sm' 
+                    : themeMode === 'dark' ? 'hover:bg-[#3c4043]' : 'hover:bg-slate-200'
+                }`}
+              >
+                <FileSpreadsheet className="w-4 h-4 text-emerald-400" />
+                <span>Excel Cross-Ref Table</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('watchlist')}
+                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition ${
+                  activeTab === 'watchlist' 
+                    ? 'bg-blue-600 text-white shadow-sm' 
+                    : themeMode === 'dark' ? 'hover:bg-[#3c4043]' : 'hover:bg-slate-200'
+                }`}
+              >
+                <ShieldAlert className="w-4 h-4 text-amber-400" />
+                <span>OFAC & FinCEN Watchlist</span>
+              </button>
+            </div>
+
+            {/* Quick Actions: OCR Upload, Batch Queue & Help Guide */}
+            <div className="pt-2 border-t border-inherit space-y-2">
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={onOpenUploadScan}
+                  className="flex items-center justify-center gap-1.5 px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-medium shadow transition"
+                >
+                  <Upload className="w-3.5 h-3.5" />
+                  <span>OCR Upload</span>
+                </button>
+                <button
+                  onClick={onOpenHelpGuide}
+                  className={`flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition border ${
+                    themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] hover:bg-[#3c4043]' : 'bg-white border-slate-300 hover:bg-slate-100'
+                  }`}
+                >
+                  <HelpCircle className="w-3.5 h-3.5 text-blue-500" />
+                  <span>Help Guide</span>
+                </button>
+              </div>
+
+              {/* Batch STP Ingestion Queue Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-batch-queue'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow transition"
+              >
+                <Layers className="w-4 h-4" />
+                <span>Batch STP Queue & Ingestion</span>
+              </button>
+            </div>
+          </div>
           {/* Bank Standard Comparison Selector Section */}
           <div className={`p-3 rounded-lg border ${
             themeMode === 'dark' ? 'bg-[#323639] border-[#3c4043]' : 'bg-[#f8f9fa] border-[#dadce0]'

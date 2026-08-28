@@ -1,20 +1,19 @@
 /**
  * @file index.css
- * @description Global CSS entry point importing Tailwind and setting comfortable base typography.
+ * @description Global CSS entry point importing Tailwind and setting modern, low-contrast typography and backgrounds.
  */
 
 @import "tailwindcss";
 
 @layer base {
   :root {
-    color: #1e293b;
+    color: #334155;
   }
   
   body {
-    color: #1e293b;
-    background-color: #f8fafc;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #334155;
+    background-color: #f1f3f5;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 }
-
-

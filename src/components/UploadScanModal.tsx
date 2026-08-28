@@ -4,13 +4,14 @@
  */
 
 import React, { useState } from 'react';
-import { Upload, FileText, AlertTriangle, CheckCircle, Loader2, X, ShieldAlert } from 'lucide-react';
+import { Upload, FileText, AlertTriangle, CheckCircle, Loader2, X, ShieldAlert, Building2 } from 'lucide-react';
 import { DocumentTemplate, ThemeMode } from '../types';
 
 interface UploadScanModalProps {
   isOpen: boolean;
   onClose: () => void;
   onAddTemplate: (template: DocumentTemplate) => void;
+  templates: Record<string, DocumentTemplate>;
   themeMode: ThemeMode;
 }
 
@@ -18,11 +19,13 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
   isOpen,
   onClose,
   onAddTemplate,
+  templates,
   themeMode
 }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [documentTitle, setDocumentTitle] = useState<string>('');
+  const [selectedReferenceId, setSelectedReferenceId] = useState<string>('');
   const [isScanning, setIsScanning] = useState<boolean>(false);
   const [scanError, setScanError] = useState<string | null>(null);
 
@@ -47,18 +50,27 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
     setScanError(null);
 
     try {
+      const referenceStandard = selectedReferenceId ? templates[selectedReferenceId] : null;
       const response = await fetch('/api/ocr-scan-document', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           imageBase64: previewUrl,
           mimeType: selectedFile?.type || 'image/png',
-          documentTitle: documentTitle || 'Uploaded Specimen'
+          documentTitle: documentTitle || 'Uploaded Specimen',
+          referenceStandardTitle: referenceStandard?.title || null
         })
       });
       const data = await response.json();
       if (data.success && data.template) {
-        onAddTemplate(data.template);
+        // If reference standard was selected, incorporate its metadata/sample image
+        const finalTemplate = referenceStandard ? {
+          ...data.template,
+          summary: `[Cross-referenced against ${referenceStandard.title}]: ${data.template.summary}`,
+          sampleImageUrl: referenceStandard.sampleImageUrl || data.template.sampleImageUrl
+        } : data.template;
+
+        onAddTemplate(finalTemplate);
         onClose();
       } else {
         setScanError(data.error || 'Failed to analyze document via OCR scan');
@@ -90,20 +102,43 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
           </button>
         </div>
 
-        <div className="p-6 space-y-5">
-          <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider mb-2 opacity-80">
-              Document Title / Reference Name
-            </label>
-            <input
-              type="text"
-              value={documentTitle}
-              onChange={(e) => setDocumentTitle(e.target.value)}
-              placeholder="e.g. Vendor Invoice #4891 or Suspicious Check"
-              className={`w-full px-4 py-2.5 rounded-xl border text-sm outline-none transition ${
-                themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] focus:border-blue-400' : 'bg-slate-50 border-slate-300 focus:border-blue-600'
-              }`}
-            />
+        <div className="p-6 space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold uppercase tracking-wider mb-2 opacity-80">
+                Document Title / Reference Name
+              </label>
+              <input
+                type="text"
+                value={documentTitle}
+                onChange={(e) => setDocumentTitle(e.target.value)}
+                placeholder="e.g. Vendor Invoice #4891 or Suspicious Check"
+                className={`w-full px-4 py-2.5 rounded-xl border text-sm outline-none transition ${
+                  themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] focus:border-blue-400' : 'bg-slate-50 border-slate-300 focus:border-blue-600'
+                }`}
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold uppercase tracking-wider mb-2 opacity-80 flex items-center gap-1.5">
+                <Building2 className="w-3.5 h-3.5 text-blue-500" />
+                <span>Investigate Against Bank Standard</span>
+              </label>
+              <select
+                value={selectedReferenceId}
+                onChange={(e) => setSelectedReferenceId(e.target.value)}
+                className={`w-full px-4 py-2.5 rounded-xl border text-sm outline-none transition ${
+                  themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] focus:border-blue-400' : 'bg-slate-50 border-slate-300 focus:border-blue-600'
+                }`}
+              >
+                <option value="">-- Auto-Detect (No Preset) --</option>
+                {Object.values(templates).map((tpl) => (
+                  <option key={tpl.id} value={tpl.id}>
+                    {tpl.title} ({tpl.type.toUpperCase()})
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           {!previewUrl ? (
