@@ -5,10 +5,18 @@
  * and compliance audit checklists.
  */
 
+// -----------------------------------------------------------------------------
+// NAVIGATION & TOOLS LAYOUT: LeftSidebar.tsx
+// -----------------------------------------------------------------------------
+// Manages the main workspace navigation, document preset selection, and 
+// launches modular AI tools via CustomEvent dispatching (intercepted in App.tsx).
+// Maintains separation of concerns by keeping layout distinct from tool logic.
+// -----------------------------------------------------------------------------
+
 import React, { useState, useRef } from 'react';
 import { 
   ShieldCheck, ShieldAlert, FileText, Layers, BookOpen, 
-  Search, Award, Sparkles, CheckSquare, AlertTriangle, ChevronRight, X, Building2, HelpCircle, Plus, Minus, Upload, Eye, FileSpreadsheet
+  Search, Award, Sparkles, CheckSquare, AlertTriangle, ChevronRight, X, Building2, HelpCircle, Plus, Minus, Upload, Eye, FileSpreadsheet, UserCheck, Database, Receipt, Mic, Building, Lock, ClipboardList, Megaphone, FileCheck, UserX, Network, FileSignature, Printer, Camera, Scan, FlaskConical, Landmark, MonitorSmartphone, PenTool, BadgeCheck, FileCode, UserSearch, FileWarning, Droplet, MapPin, Calendar, Briefcase, Aperture, Timer
 } from 'lucide-react';
 import { DocumentTemplate, ThemeMode, BankStandard, AppTab } from '../types';
 import { INITIAL_TEMPLATES, BANK_STANDARDS } from '../data/mockTemplates';
@@ -215,6 +223,18 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                 <ShieldAlert className="w-4 h-4 text-amber-400" />
                 <span>OFAC & FinCEN Watchlist</span>
               </button>
+
+              <button
+                onClick={() => setActiveTab('jsonvault')}
+                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition ${
+                  activeTab === 'jsonvault' 
+                    ? 'bg-blue-600 text-white shadow-sm' 
+                    : themeMode === 'dark' ? 'hover:bg-[#3c4043]' : 'hover:bg-slate-200'
+                }`}
+              >
+                <Database className="w-4 h-4 text-blue-400" />
+                <span>JSON Match Archive & Vault</span>
+              </button>
             </div>
 
             {/* Quick Actions: OCR Upload, Batch Queue & Help Guide */}
@@ -245,6 +265,312 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               >
                 <Layers className="w-4 h-4" />
                 <span>Batch STP Queue & Ingestion</span>
+              </button>
+
+              {/* Driver's License KYC Extractor Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-kyc-extractor'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-medium text-xs shadow transition"
+              >
+                <UserCheck className="w-4 h-4" />
+                <span>Driver's License KYC Extractor</span>
+              </button>
+
+              {/* Check Fraud & Alteration Analyzer Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-check-fraud-analyzer'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-rose-700 hover:bg-rose-800 text-white font-medium text-xs shadow transition"
+              >
+                <ShieldAlert className="w-4 h-4" />
+                <span>Check Fraud & Alteration Analyzer</span>
+              </button>
+
+              {/* Thermal Receipt ATM Claim Reader Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-atm-claim-reader'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-amber-700 hover:bg-amber-800 text-white font-medium text-xs shadow transition"
+              >
+                <Receipt className="w-4 h-4" />
+                <span>Thermal Receipt ATM Claim Reader</span>
+              </button>
+
+              {/* Banker Voice Note to CRM Task Converter Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-banker-voice-crm'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-indigo-700 hover:bg-indigo-800 text-white font-medium text-xs shadow transition"
+              >
+                <Mic className="w-4 h-4" />
+                <span>Banker Voice Note to CRM Task Converter</span>
+              </button>
+
+              {/* Paper Loan Application Digitizer Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-paper-loan-digitizer'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-medium text-xs shadow transition"
+              >
+                <Building className="w-4 h-4" />
+                <span>Paper Loan Application Digitizer</span>
+              </button>
+
+              {/* Branch Physical Security & Audit Scanner Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-branch-security-audit'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-rose-700 hover:bg-rose-800 text-white font-medium text-xs shadow transition"
+              >
+                <Lock className="w-4 h-4" />
+                <span>Branch Physical Security Audit Scanner</span>
+              </button>
+
+              {/* Handwritten Dual-Custody Vault Log Inspector Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-vault-log-inspector'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-amber-800 hover:bg-amber-900 text-white font-medium text-xs shadow transition"
+              >
+                <ClipboardList className="w-4 h-4" />
+                <span>Vault Log Handwriting Inspector</span>
+              </button>
+
+              {/* Retail Branch Marketing Signage Compliance Auditor Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-marketing-signage-audit'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-purple-700 hover:bg-purple-800 text-white font-medium text-xs shadow transition"
+              >
+                <Megaphone className="w-4 h-4" />
+                <span>Marketing Signage Compliance Auditor</span>
+              </button>
+
+              {/* Mismatched Amount Verifier Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-mismatched-amount-verifier'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-indigo-700 hover:bg-indigo-800 text-white font-medium text-xs shadow transition"
+              >
+                <FileCheck className="w-4 h-4" />
+                <span>Mismatched Amount Verifier (Vision)</span>
+              </button>
+
+              {/* Payee Alteration Inspector Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-payee-alteration-inspector'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-red-700 hover:bg-red-800 text-white font-medium text-xs shadow transition"
+              >
+                <UserX className="w-4 h-4" />
+                <span>Payee Alteration Inspector (Vision)</span>
+              </button>
+
+              {/* Check Kiting Analyzer Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-check-kiting-analyzer'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-medium text-xs shadow transition"
+              >
+                <Network className="w-4 h-4" />
+                <span>Check Kiting & Float Analyzer (GNN)</span>
+              </button>
+
+              {/* Forged Counter Signature Inspector Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-forged-endorsement-inspector'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-amber-700 hover:bg-amber-800 text-white font-medium text-xs shadow transition"
+              >
+                <FileSignature className="w-4 h-4" />
+                <span>Forged Counter Signature Inspector (Vision)</span>
+              </button>
+
+              {/* Synthetic Check Stock Counterfeit Detector Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-synthetic-stock-detector'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-purple-700 hover:bg-purple-800 text-white font-medium text-xs shadow transition"
+              >
+                <Printer className="w-4 h-4" />
+                <span>Synthetic Stock Counterfeit Detector (Vision)</span>
+              </button>
+
+              {/* ATM Check Image-Quality Triage Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-atm-image-quality-triage'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-indigo-700 hover:bg-indigo-800 text-white font-medium text-xs shadow transition"
+              >
+                <Camera className="w-4 h-4" />
+                <span>ATM Check Deposit Image-Quality Triage</span>
+              </button>
+
+              {/* Unrecognized Account Routing Block Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-blocked-routing-interceptor'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-red-700 hover:bg-red-800 text-white font-medium text-xs shadow transition"
+              >
+                <Network className="w-4 h-4" />
+                <span>Unrecognized Account Routing Block</span>
+              </button>
+
+              {/* Commercial Positive Pay Triager Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-positive-pay-triager'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-amber-700 hover:bg-amber-800 text-white font-medium text-xs shadow transition"
+              >
+                <Building2 className="w-4 h-4" />
+                <span>Commercial Positive Pay Auto-Triager</span>
+              </button>
+
+              {/* MICR Font & Spacing Integrity Inspector Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-micr-integrity-inspector'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-medium text-xs shadow transition"
+              >
+                <Scan className="w-4 h-4" />
+                <span>MICR Font & Spacing Integrity</span>
+              </button>
+
+              {/* Chemical Wash Screener Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-chemical-wash-screener'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-fuchsia-700 hover:bg-fuchsia-800 text-white font-medium text-xs shadow transition"
+              >
+                <FlaskConical className="w-4 h-4" />
+                <span>Chemical Wash & Fiber Screener</span>
+              </button>
+
+              {/* Out-of-State Issuer First-Check Agent Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-out-of-state-issuer-agent'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-sky-700 hover:bg-sky-800 text-white font-medium text-xs shadow transition"
+              >
+                <Landmark className="w-4 h-4" />
+                <span>High-Risk Out-of-State Issuer Agent</span>
+              </button>
+
+              {/* RDC Digital Screen-Capture Filter Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-rdc-screen-capture-filter'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-indigo-700 hover:bg-indigo-800 text-white font-medium text-xs shadow transition"
+              >
+                <MonitorSmartphone className="w-4 h-4" />
+                <span>RDC Digital Screen-Capture Filter</span>
+              </button>
+
+              {/* Payee Endorsement Cross-Checker Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-payee-endorsement-cross-checker'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-violet-700 hover:bg-violet-800 text-white font-medium text-xs shadow transition"
+              >
+                <PenTool className="w-4 h-4" />
+                <span>Payee Endorsement Cross-Checker</span>
+              </button>
+
+              {/* Fake Cashier's Check Validator Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-fake-cashiers-check-validator'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-amber-700 hover:bg-amber-800 text-white font-medium text-xs shadow transition"
+              >
+                <BadgeCheck className="w-4 h-4" />
+                <span>Fake Cashier's Check Validator</span>
+              </button>
+
+              {/* EXIF Metadata Auditor Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-exif-metadata-auditor'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-medium text-xs shadow transition"
+              >
+                <FileCode className="w-4 h-4" />
+                <span>EXIF Metadata & Image Auditor</span>
+              </button>
+
+              {/* Payee Name Matching Agent Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-payee-name-matching-agent'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-fuchsia-700 hover:bg-fuchsia-800 text-white font-medium text-xs shadow transition"
+              >
+                <UserSearch className="w-4 h-4" />
+                <span>Payee Name Matching Agent</span>
+              </button>
+
+              {/* Stolen Blank Check Predictor Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-stolen-blank-check-predictor'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-orange-700 hover:bg-orange-800 text-white font-medium text-xs shadow transition"
+              >
+                <FileWarning className="w-4 h-4" />
+                <span>Stolen Blank Check Predictor</span>
+              </button>
+
+              {/* Check Watermark Vision Auditor Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-check-watermark-vision-auditor'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-cyan-700 hover:bg-cyan-800 text-white font-medium text-xs shadow transition"
+              >
+                <Droplet className="w-4 h-4" />
+                <span>Check Watermark Vision Auditor</span>
+              </button>
+
+              {/* RDC Geolocation Risk Engine Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-rdc-geolocation-risk-engine'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-indigo-700 hover:bg-indigo-800 text-white font-medium text-xs shadow transition"
+              >
+                <MapPin className="w-4 h-4" />
+                <span>RDC Geolocation Risk Engine</span>
+              </button>
+
+              {/* Check Date Verifier Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-check-date-verifier'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-medium text-xs shadow transition"
+              >
+                <Calendar className="w-4 h-4" />
+                <span>Post & Stale-Dated Verifier</span>
+              </button>
+
+              {/* Synthetic Payroll Batch Verifier Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-synthetic-payroll-verifier'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-medium text-xs shadow transition"
+              >
+                <Briefcase className="w-4 h-4" />
+                <span>Synthetic Payroll Batch Verifier</span>
+              </button>
+
+              {/* Cashier's Check API Inspector Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-cashiers-check-api-inspector'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs shadow transition"
+              >
+                <Landmark className="w-4 h-4" />
+                <span>Cashier's Check API Inspector</span>
+              </button>
+
+              {/* Lighting & Shadow Tamper Detector Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-lighting-tamper-detector'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-medium text-xs shadow transition"
+              >
+                <Aperture className="w-4 h-4" />
+                <span>Lighting & Shadow Tamper</span>
+              </button>
+
+              {/* Altered Payable Line Screener Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-altered-payable-line-screener'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-teal-600 hover:bg-teal-700 text-white font-medium text-xs shadow transition"
+              >
+                <PenTool className="w-4 h-4" />
+                <span>Altered Payable Line Screener</span>
+              </button>
+
+              {/* Third-Party Signature Verification Agent Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-signature-verification-agent'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xs shadow transition"
+              >
+                <FileSignature className="w-4 h-4" />
+                <span>Dual-Signature Verifier</span>
+              </button>
+
+              {/* Account Dormancy Activation Screener Button */}
+              <button
+                onClick={() => (window as any).dispatchEvent(new CustomEvent('open-dormancy-screener'))}
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-700 text-white font-medium text-xs shadow transition"
+              >
+                <Timer className="w-4 h-4" />
+                <span>Account Dormancy Screener</span>
               </button>
             </div>
           </div>

@@ -81,6 +81,6 @@ export type ThemeMode = 'light' | 'dark';
 export type ComparisonMode = 'single' | 'compare';
 
 /** Main navigation tabs */
-export type AppTab = 'inspector' | 'standards' | 'sargenerator' | 'excel' | 'watchlist';
+export type AppTab = 'inspector' | 'standards' | 'sargenerator' | 'excel' | 'watchlist' | 'jsonvault';
 
 

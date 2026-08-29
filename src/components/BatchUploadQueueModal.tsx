@@ -54,7 +54,7 @@ export const BatchUploadQueueModal: React.FC<BatchUploadQueueModalProps> = ({
   const handleFileDrop = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files.length > 0) {
-      const newItems: BatchItem[] = Array.from(files).map((file, idx) => ({
+      const newItems: BatchItem[] = Array.from(files as unknown as File[]).map((file, idx) => ({
         id: `batch-${Date.now()}-${idx}`,
         name: file.name,
         size: `${Math.round(file.size / 1024)} KB`,

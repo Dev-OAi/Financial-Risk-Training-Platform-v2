@@ -15,7 +15,10 @@ export const BANK_STANDARDS: Record<string, BankStandard> = {
     micrFontSpec: 'E-13B Iron-Oxide Magnetic Ink',
     borderSecurityType: 'Multi-tone guilloche with micro-line ABC security text',
     endorsementRule: 'Restrictive endorsement required for deposits over $5,000',
-    trainingTip: 'Verify E-13B magnetic signal strength and inspect guilloche border for continuous ribbon integrity.'
+    trainingTip: 'Verify E-13B magnetic signal strength and inspect guilloche border for continuous ribbon integrity.',
+    inkCharacteristics: 'Standard magnetic iron-oxide E-13B black ink',
+    paperStock: '24lb security bond with chemical sensitivity',
+    checksumRule: 'ABA Mod-10 routing number verification standard'
   },
   chaseComm: {
     id: 'chase-comm',
@@ -24,7 +27,10 @@ export const BANK_STANDARDS: Record<string, BankStandard> = {
     micrFontSpec: 'E-13B OCR-A Precision Magnetic',
     borderSecurityType: 'Intaglio engraved border with latent image block',
     endorsementRule: 'Corporate resolution on file required for third-party payee transfers',
-    trainingTip: 'Inspect right margin for standard void pantograph activation and verify routing prefix 021.'
+    trainingTip: 'Inspect right margin for standard void pantograph activation and verify routing prefix 021.',
+    inkCharacteristics: 'High-density magnetic black toner',
+    paperStock: 'Safety paper with embedded colored fibers',
+    checksumRule: 'ABA Mod-10 routing number verification standard'
   },
   bofaCorp: {
     id: 'bofa-corp',
@@ -33,7 +39,10 @@ export const BANK_STANDARDS: Record<string, BankStandard> = {
     micrFontSpec: 'E-13B High-Res Magnetic Encoder',
     borderSecurityType: 'Prismatic multi-color rainbow background tint',
     endorsementRule: 'Dual signature required for disbursements exceeding $25,000',
-    trainingTip: 'Check rainbow color blending transition; consumer inkjet prints cannot reproduce multi-pass prismatic tinting.'
+    trainingTip: 'Check rainbow color blending transition; consumer inkjet prints cannot reproduce multi-pass prismatic tinting.',
+    inkCharacteristics: 'Prismatic multi-pass offset ink',
+    paperStock: 'Watermarked security fiber stock',
+    checksumRule: 'ABA Mod-10 routing number verification standard'
   },
   wellsFargo: {
     id: 'wells-fargo',
@@ -42,7 +51,10 @@ export const BANK_STANDARDS: Record<string, BankStandard> = {
     micrFontSpec: 'E-13B Standard Iron-Oxide',
     borderSecurityType: 'Stagecoach security watermark and chemical stain-reactive paper',
     endorsementRule: 'Positive pay verification required before teller window cash-out',
-    trainingTip: 'Hold check to ultraviolet light to inspect fluorescent security fibers embedded in pulp.'
+    trainingTip: 'Hold check to ultraviolet light to inspect fluorescent security fibers embedded in pulp.',
+    inkCharacteristics: 'UV fluorescent reactive black ink',
+    paperStock: 'Chemical stain-reactive security bond',
+    checksumRule: 'ABA Mod-10 routing number verification standard'
   },
   citiGlobal: {
     id: 'citi-global',
@@ -51,7 +63,10 @@ export const BANK_STANDARDS: Record<string, BankStandard> = {
     micrFontSpec: 'E-13B Laser-Encoded Magnetic',
     borderSecurityType: 'Micro-printed border reading CITI GLOBAL COMPLIANCE',
     endorsementRule: 'Electronic verification match mandatory for international wire settlement checks',
-    trainingTip: 'Examine 4pt microprint with 10x loupe; blurry characters indicate digital photocopying.'
+    trainingTip: 'Examine 4pt microprint with 10x loupe; blurry characters indicate digital photocopying.',
+    inkCharacteristics: 'Micro-print anti-copy toner',
+    paperStock: 'High-opacity security ledger paper',
+    checksumRule: 'ABA Mod-10 routing number verification standard'
   }
 };
 

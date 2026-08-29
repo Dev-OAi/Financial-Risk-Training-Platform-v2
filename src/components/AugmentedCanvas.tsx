@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { DocumentTemplate, HotSpot, ThemeMode, ComparisonMode } from '../types';
-import { ShieldCheck, ShieldAlert, AlertTriangle, Sparkles } from 'lucide-react';
+import { ShieldCheck, ShieldAlert, AlertTriangle, Sparkles, Flame } from 'lucide-react';
 
 interface AugmentedCanvasProps {
   template: DocumentTemplate;
@@ -20,9 +20,11 @@ export const AugmentedCanvas: React.FC<AugmentedCanvasProps> = ({
   selectedHotSpot,
   onSelectHotSpot,
 }) => {
+  const [showHeatmap, setShowHeatmap] = useState<boolean>(true);
+
   return (
     <div className="w-full flex-1 flex flex-col items-center justify-start p-4 sm:p-6 lg:p-8 overflow-y-auto">
-      {/* Top Banner / Risk Badge for the active document */}
+      {/* Top Banner / Risk Badge & Heatmap Toggle */}
       <div className={`w-full max-w-5xl mb-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-lg border shadow-sm transition-colors ${
         themeMode === 'dark' ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-[#dadce0]'
       }`}>
@@ -43,20 +45,34 @@ export const AugmentedCanvas: React.FC<AugmentedCanvasProps> = ({
           </div>
         </div>
 
-        {/* Risk Score Meter */}
-        <div className={`flex items-center gap-4 px-3.5 py-2 rounded-lg border shrink-0 ${
-          themeMode === 'dark' ? 'bg-[#323639] border-[#3c4043]' : 'bg-[#f8f9fa] border-[#dadce0]'
-        }`}>
-          <div>
-            <div className="text-[10px] uppercase tracking-wider text-[#bdc1c6] font-bold">Risk Assessment</div>
-            <div className={`text-sm font-extrabold ${template.riskScore > 50 ? 'text-rose-400' : 'text-emerald-400'}`}>
-              Risk Score: {template.riskScore}/100
+        {/* Risk Score Meter & Heatmap Toggle */}
+        <div className="flex items-center gap-3 flex-wrap">
+          <button
+            onClick={() => setShowHeatmap(!showHeatmap)}
+            className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold transition shadow-sm border ${
+              showHeatmap 
+                ? 'bg-amber-500/20 border-amber-500/40 text-amber-400' 
+                : themeMode === 'dark' ? 'bg-[#323639] border-[#3c4043] text-slate-300' : 'bg-slate-100 border-slate-300 text-slate-700'
+            }`}
+          >
+            <Flame className="w-4 h-4 text-amber-500" />
+            <span>Risk Heatmap: {showHeatmap ? 'ON' : 'OFF'}</span>
+          </button>
+
+          <div className={`flex items-center gap-4 px-3.5 py-2 rounded-lg border shrink-0 ${
+            themeMode === 'dark' ? 'bg-[#323639] border-[#3c4043]' : 'bg-[#f8f9fa] border-[#dadce0]'
+          }`}>
+            <div>
+              <div className="text-[10px] uppercase tracking-wider text-[#bdc1c6] font-bold">Risk Assessment</div>
+              <div className={`text-sm font-extrabold ${template.riskScore > 50 ? 'text-rose-400' : 'text-emerald-400'}`}>
+                Risk Score: {template.riskScore}/100
+              </div>
             </div>
-          </div>
-          <div className="h-7 w-px bg-[#3c4043]"></div>
-          <div>
-            <div className="text-[10px] uppercase tracking-wider text-[#bdc1c6] font-bold">Neural Confidence</div>
-            <div className="text-sm font-extrabold text-[#e8eaed]">{template.confidence}%</div>
+            <div className="h-7 w-px bg-[#3c4043]"></div>
+            <div>
+              <div className="text-[10px] uppercase tracking-wider text-[#bdc1c6] font-bold">Neural Confidence</div>
+              <div className="text-sm font-extrabold text-[#e8eaed]">{template.confidence}%</div>
+            </div>
           </div>
         </div>
       </div>
@@ -68,7 +84,7 @@ export const AugmentedCanvas: React.FC<AugmentedCanvasProps> = ({
         <div className="relative flex flex-col items-center">
           <div className="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 flex items-center gap-1.5 self-start">
             <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-            <span>{comparisonMode === 'compare' ? 'Primary Document (Sample A)' : 'Augmented Training Canvas'}</span>
+            <span>{comparisonMode === 'compare' ? 'Primary Document (Sample A)' : 'Augmented Training Canvas with Heatmap Overlay'}</span>
           </div>
 
           <DocumentSvgRenderer 
@@ -76,6 +92,7 @@ export const AugmentedCanvas: React.FC<AugmentedCanvasProps> = ({
             selectedHotSpot={selectedHotSpot}
             onSelectHotSpot={onSelectHotSpot}
             themeMode={themeMode}
+            showHeatmap={showHeatmap}
           />
         </div>
 
@@ -92,6 +109,7 @@ export const AugmentedCanvas: React.FC<AugmentedCanvasProps> = ({
               selectedHotSpot={selectedHotSpot}
               onSelectHotSpot={onSelectHotSpot}
               themeMode={themeMode}
+              showHeatmap={showHeatmap}
             />
           </div>
         )}
@@ -105,6 +123,7 @@ interface DocumentSvgRendererProps {
   selectedHotSpot: HotSpot | null;
   onSelectHotSpot: (spot: HotSpot) => void;
   themeMode: ThemeMode;
+  showHeatmap: boolean;
 }
 
 const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
@@ -112,6 +131,7 @@ const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
   selectedHotSpot,
   onSelectHotSpot,
   themeMode,
+  showHeatmap,
 }) => {
   return (
     <div id={`document-canvas-${template.id}`} className={`relative w-full aspect-[1.8/1] max-w-4xl rounded-lg border shadow-md p-4 sm:p-6 overflow-hidden flex items-center justify-center select-none group transition-colors ${
@@ -121,8 +141,36 @@ const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
       {/* Background Security Guilloche Texture */}
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#475569_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
 
+      {/* Risk Heatmap Intensity Overlay */}
+      {showHeatmap && (
+        <div className="absolute inset-0 pointer-events-none z-0">
+          {/* Base Heatmap Gradient Grid based on template risk */}
+          <div className={`absolute inset-0 opacity-25 transition-opacity ${
+            template.isFraudulent 
+              ? 'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-rose-600/60 via-amber-500/20 to-transparent' 
+              : 'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-500/40 via-blue-500/10 to-transparent'
+          }`} />
+
+          {/* Hotspot Intensity Zones */}
+          {template.hotspots.map((spot) => {
+            const isCritical = spot.riskLevel === 'critical' || spot.riskLevel === 'high';
+            return (
+              <div
+                key={`heatmap-${spot.id}`}
+                className={`absolute rounded-full filter blur-xl transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
+                  isCritical 
+                    ? 'w-36 h-36 bg-rose-500/40 animate-pulse' 
+                    : 'w-28 h-28 bg-emerald-500/30'
+                }`}
+                style={{ left: `${spot.x}%`, top: `${spot.y}%` }}
+              />
+            );
+          })}
+        </div>
+      )}
+
       {template.imageUrl ? (
-        <div className="absolute inset-4 flex items-center justify-center overflow-hidden rounded bg-black/40">
+        <div className="absolute inset-4 flex items-center justify-center overflow-hidden rounded bg-black/40 z-1">
           <img 
             src={template.imageUrl} 
             alt={template.title} 
@@ -132,7 +180,7 @@ const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
         </div>
       ) : (
         /* SVG Check / Invoice Representation */
-        <svg viewBox="0 0 800 440" className="w-full h-full drop-shadow-sm">
+        <svg viewBox="0 0 800 440" className="w-full h-full drop-shadow-sm z-1">
         <defs>
           <linearGradient id={`checkBg-${template.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor={template.isFraudulent ? '#fff1f2' : '#ffffff'} />
@@ -214,7 +262,7 @@ const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
           <div
             key={spot.id}
             onClick={() => onSelectHotSpot(spot)}
-            className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group/node z-10"
+            className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group/node z-20"
             style={{ left: `${spot.x}%`, top: `${spot.y}%` }}
           >
             {/* Pulsing Outer Ring */}
@@ -234,7 +282,7 @@ const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
             </div>
 
             {/* Hover Tooltip Label */}
-            <div className="absolute left-1/2 bottom-full mb-2 transform -translate-x-1/2 px-2.5 py-1 rounded bg-slate-900 border border-slate-700 text-slate-100 text-[11px] whitespace-nowrap opacity-0 group-hover/node:opacity-100 transition-opacity pointer-events-none shadow-lg z-20">
+            <div className="absolute left-1/2 bottom-full mb-2 transform -translate-x-1/2 px-2.5 py-1 rounded bg-slate-900 border border-slate-700 text-slate-100 text-[11px] whitespace-nowrap opacity-0 group-hover/node:opacity-100 transition-opacity pointer-events-none shadow-lg z-30">
               {spot.title}
             </div>
           </div>
@@ -243,3 +291,4 @@ const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
     </div>
   );
 };
+

@@ -105,6 +105,41 @@ export const HelpGuideModal: React.FC<HelpGuideModalProps> = ({
               <li>Click <strong>Generate FinCEN SAR Report</strong> to automatically format all inspection findings into a formal FinCEN Form 111 Suspicious Activity Report ready for printing or export.</li>
             </ul>
           </div>
+
+          {/* Section 5 - Added Specialized Vision Detectors */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 font-bold text-base text-rose-500">
+              <ShieldCheck className="w-5 h-5" />
+              <span>5. Specialized AI Detectors & Interceptors</span>
+            </div>
+            <p className="opacity-90 leading-relaxed pl-7">
+              Utilize specialized Vision AI modules to analyze distinct vector attacks and automated deposit vulnerabilities.
+            </p>
+            <ul className="list-disc list-inside space-y-1.5 pl-7 opacity-85 text-xs">
+              <li><strong>Synthetic Check Stock Detector:</strong> Compares check layouts, E-13B MICR fonts, and pantograph backgrounds against known bank templates to intercept digitally printed synthetic checks.</li>
+              <li><strong>ATM Image-Quality Triage:</strong> Inspects resolution, lighting, and contrast of ATM/Mobile deposit images to ensure legibility before automated clearing.</li>
+              <li><strong>Blocked Routing Interceptor:</strong> Cross-references parsed MICR routing numbers against known master threat intelligence blocklists (e.g., FS-ISAC) to instantly hold funds from organized fraud rings.</li>
+              <li><strong>Commercial Positive Pay Auto-Triager:</strong> Automatically reconciles presented checks against commercial client issue files to flag mismatched check numbers, payees, or amounts before settlement.</li>
+              <li><strong>MICR Font & Spacing Integrity:</strong> Analyzes the E-13B MICR line at the bottom of checks against ANSI X3.2-1970 standards to flag incorrect spacing, sizing, or alignment found in desktop-printed counterfeits.</li>
+              <li><strong>Chemical Wash & Fiber Alteration Screener:</strong> Inspects high-resolution images across RGB color channels to detect localized discoloration or fiber disruption caused by acetone or bleach check-washing.</li>
+              <li><strong>High-Risk Out-of-State Issuer Agent:</strong> Triggers automated verification workflows for first-time check deposits drawn on small, out-of-state financial institutions.</li>
+              <li><strong>RDC Digital Screen-Capture Filter:</strong> Analyzes mobile deposit image uploads for moiré patterns, screen pixel grids, or glare artifacts to prevent RDC fraud via digital screen photos.</li>
+              <li><strong>Payee Endorsement & Signature Card Cross-Checker:</strong> Compares the endorsement signature on the back of a deposited check against the account holder's digital signature card on file to calculate visual similarity.</li>
+              <li><strong>Fake Cashier's Check & Official Instrument Validator:</strong> Extracted serial formats and security features are verified against known official check templates to prevent high-value synthetic check scams.</li>
+              <li><strong>EXIF Metadata & Image Manipulation Auditor:</strong> Inspects the raw image metadata and compression headers of check uploads to detect photo editing software artifacts and tampered timestamps.</li>
+              <li><strong>Payee Name vs. Account Holder Name Matching Agent:</strong> Uses fuzzy string matching to compare the "Payee" line against the receiving account's legal name(s), blocking mismatched third-party stolen checks.</li>
+              <li><strong>Stolen Blank Check Stock & Out-of-Sequence Predictor:</strong> Monitors check sequence numbers across active checking accounts to detect checks that are significantly out of sequence, indicating potentially stolen blank check stock.</li>
+              <li><strong>Check Watermark & Security Feature Vision Auditor:</strong> Evaluates high-resolution check images for microscopic security features, such as microprinting readability and pantograph erasure protection, to detect high-quality commercial counterfeits.</li>
+              <li><strong>RDC Device & Geolocation Risk Engine:</strong> Correlates device IP, GPS location, and hardware fingerprints during a mobile deposit to identify anomalies (e.g., VPNs/TOR, &gt;500 miles away, emulator software) and block account takeover or mule activity.</li>
+              <li><strong>Post-Dated & Stale-Dated Check Rule Verifier:</strong> Extracts the written date from the check image and automatically compares it against system date rules, flagging items dated more than 6 months in the past or post-dated in the future to reduce return item processing fees.</li>
+              <li><strong>Synthetic Payroll Check Batch Cross-Verifier:</strong> Validates high-volume payroll checks deposited on weekends by cross-referencing corporate issuer tax IDs, employer payout ranges, and historical deposit averages to stop weekend payroll fraud rings.</li>
+              <li><strong>Real-Time Cashier's Check API Inspector:</strong> Issues an automated verification request against clearinghouse databases using the extracted routing number, serial number, and amount to confirm the legitimacy of external official checks.</li>
+              <li><strong>Mobile Deposit Lighting & Shadow Tampering Detector:</strong> Applies physics-based computer vision to verify shadow consistency and lighting geometry across the check face, identifying digital spliced elements (such as pasted amounts).</li>
+              <li><strong>Altered Payable Line Font & Ink Inconsistency Screener:</strong> Inspects the font family, line weight, kerning, and ink density on the "Pay To The Order Of" line to detect partial alterations where an extra name or word was typed or written over the original payee.</li>
+              <li><strong>Third-Party Signature Verification Agent:</strong> Inspects multi-signature checks (such as corporate dual-signature checks) to verify that all required signature fields are populated and match authorized signers on the corporate signature card.</li>
+              <li><strong>Unused Account Dormancy Check Activation Screener:</strong> Flags check deposits or presented drawn checks on accounts that have been dormant or inactive for more than 180 days, locking immediate cash-out channels pending secondary customer verification.</li>
+            </ul>
+          </div>
         </div>
 
         {/* Footer */}
