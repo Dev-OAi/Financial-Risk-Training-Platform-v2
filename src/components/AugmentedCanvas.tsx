@@ -23,68 +23,69 @@ export const AugmentedCanvas: React.FC<AugmentedCanvasProps> = ({
   const [showHeatmap, setShowHeatmap] = useState<boolean>(true);
 
   return (
-    <div className="w-full flex-1 flex flex-col items-center justify-start p-4 sm:p-6 lg:p-8 overflow-y-auto">
+    <div className="w-full flex-1 flex flex-col items-center justify-start p-2 sm:p-3.5 overflow-y-auto">
       {/* Top Banner / Risk Badge & Heatmap Toggle */}
-      <div className={`w-full max-w-5xl mb-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-lg border shadow-sm transition-colors ${
+      <div className={`w-full max-w-5xl mb-2.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 px-3.5 py-2.5 rounded-lg border shadow-xs transition-colors ${
         themeMode === 'dark' ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-[#dadce0]'
       }`}>
-        <div className="flex items-center gap-3">
-          <div className={`p-2.5 rounded-lg shrink-0 ${template.isFraudulent ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}`}>
-            {template.isFraudulent ? <ShieldAlert className="w-5 h-5" /> : <ShieldCheck className="w-5 h-5" />}
+        <div className="flex items-center gap-2.5 min-w-0">
+          <div className={`p-2 rounded-lg shrink-0 ${template.isFraudulent ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}`}>
+            {template.isFraudulent ? <ShieldAlert className="w-4 h-4" /> : <ShieldCheck className="w-4 h-4" />}
           </div>
-          <div>
+          <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <h2 className="text-sm sm:text-base font-bold text-inherit">{template.title}</h2>
-              <span className={`text-[10px] px-2 py-0.5 rounded font-semibold ${
+              <h2 className="text-xs sm:text-sm font-bold text-inherit truncate">{template.title}</h2>
+              <span className={`text-[9px] px-1.5 py-0.5 rounded font-semibold ${
                 template.isFraudulent ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
               }`}>
                 {template.isFraudulent ? 'HIGH FRAUD PROBABILITY' : 'COMPLIANT TRAINING SAMPLE'}
               </span>
             </div>
-            <p className="text-xs text-[#bdc1c6] mt-0.5 font-mono font-medium">{template.subtitle}</p>
+            <p className="text-[11px] text-[#bdc1c6] mt-0.5 font-mono font-medium truncate">{template.subtitle}</p>
           </div>
         </div>
 
-        {/* Risk Score Meter & Heatmap Toggle */}
-        <div className="flex items-center gap-3 flex-wrap">
+        {/* Risk Score Meter & Heatmap Toggle (Cleaned - duplicate upload button removed) */}
+        <div className="flex items-center gap-2.5 shrink-0 flex-wrap">
           <button
             onClick={() => setShowHeatmap(!showHeatmap)}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold transition shadow-sm border ${
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition border ${
               showHeatmap 
                 ? 'bg-amber-500/20 border-amber-500/40 text-amber-400' 
-                : themeMode === 'dark' ? 'bg-[#323639] border-[#3c4043] text-slate-300' : 'bg-slate-100 border-slate-300 text-slate-700'
+                : themeMode === 'dark' ? 'bg-[#323639] border-[#3c4043] text-slate-300 hover:bg-[#3c4043]' : 'bg-slate-100 border-slate-300 text-slate-700 hover:bg-slate-200'
             }`}
+            title="Toggle Visual Heatmap Overlay"
           >
-            <Flame className="w-4 h-4 text-amber-500" />
-            <span>Risk Heatmap: {showHeatmap ? 'ON' : 'OFF'}</span>
+            <Flame className="w-3.5 h-3.5 text-amber-500" />
+            <span>Heatmap: {showHeatmap ? 'ON' : 'OFF'}</span>
           </button>
 
-          <div className={`flex items-center gap-4 px-3.5 py-2 rounded-lg border shrink-0 ${
+          <div className={`flex items-center gap-3 px-3 py-1.5 rounded-lg border shrink-0 ${
             themeMode === 'dark' ? 'bg-[#323639] border-[#3c4043]' : 'bg-[#f8f9fa] border-[#dadce0]'
           }`}>
             <div>
-              <div className="text-[10px] uppercase tracking-wider text-[#bdc1c6] font-bold">Risk Assessment</div>
-              <div className={`text-sm font-extrabold ${template.riskScore > 50 ? 'text-rose-400' : 'text-emerald-400'}`}>
+              <div className="text-[9px] uppercase tracking-wider text-[#bdc1c6] font-bold">Risk Assessment</div>
+              <div className={`text-xs font-extrabold ${template.riskScore > 50 ? 'text-rose-400' : 'text-emerald-400'}`}>
                 Risk Score: {template.riskScore}/100
               </div>
             </div>
-            <div className="h-7 w-px bg-[#3c4043]"></div>
+            <div className="h-6 w-px bg-[#3c4043]"></div>
             <div>
-              <div className="text-[10px] uppercase tracking-wider text-[#bdc1c6] font-bold">Neural Confidence</div>
-              <div className="text-sm font-extrabold text-[#e8eaed]">{template.confidence}%</div>
+              <div className="text-[9px] uppercase tracking-wider text-[#bdc1c6] font-bold">Confidence</div>
+              <div className="text-xs font-extrabold text-[#e8eaed]">{template.confidence}%</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Main Visual Render Area: Single or Compare Mode */}
-      <div className={`w-full max-w-6xl grid gap-6 pb-12 ${comparisonMode === 'compare' ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1'}`}>
+      <div className={`w-full max-w-5xl grid gap-3 pb-4 ${comparisonMode === 'compare' ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1'}`}>
         
         {/* Primary Document Canvas */}
-        <div className="relative flex flex-col items-center">
-          <div className="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 flex items-center gap-1.5 self-start">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-            <span>{comparisonMode === 'compare' ? 'Primary Document (Sample A)' : 'Augmented Training Canvas with Heatmap Overlay'}</span>
+        <div className="relative flex flex-col items-center w-full">
+          <div className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5 flex items-center gap-1.5 self-start">
+            <Sparkles className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+            <span>{comparisonMode === 'compare' ? 'Primary Document (Sample A)' : 'Augmented Training Canvas'}</span>
           </div>
 
           <DocumentSvgRenderer 
@@ -98,9 +99,9 @@ export const AugmentedCanvas: React.FC<AugmentedCanvasProps> = ({
 
         {/* Comparison Document Canvas (If Compare Mode Active) */}
         {comparisonMode === 'compare' && comparisonTemplate && (
-          <div className="relative flex flex-col items-center">
-            <div className="text-xs font-semibold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-2 flex items-center gap-1.5 self-start">
-              <ShieldAlert className="w-3.5 h-3.5" />
+          <div className="relative flex flex-col items-center w-full">
+            <div className="text-[11px] font-semibold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5 self-start">
+              <ShieldAlert className="w-3 h-3" />
               <span>Comparison Document (Sample B - Fraudulent Variant)</span>
             </div>
 
@@ -134,7 +135,7 @@ const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
   showHeatmap,
 }) => {
   return (
-    <div id={`document-canvas-${template.id}`} className={`relative w-full aspect-[1.8/1] max-w-4xl rounded-lg border shadow-md p-4 sm:p-6 overflow-hidden flex items-center justify-center select-none group transition-colors ${
+    <div id={`document-canvas-${template.id}`} className={`relative w-full aspect-[1.95/1] max-w-5xl rounded-lg border shadow-xs p-1 sm:p-2 overflow-hidden flex items-center justify-center select-none group transition-colors ${
       themeMode === 'dark' ? 'bg-slate-900 border-slate-700' : 'bg-slate-50 border-slate-300'
     }`}>
       
@@ -170,7 +171,7 @@ const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
       )}
 
       {template.imageUrl ? (
-        <div className="absolute inset-4 flex items-center justify-center overflow-hidden rounded bg-black/40 z-1">
+        <div className="absolute inset-2 flex items-center justify-center overflow-hidden rounded bg-black/40 z-1">
           <img 
             src={template.imageUrl} 
             alt={template.title} 
@@ -180,7 +181,7 @@ const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
         </div>
       ) : (
         /* SVG Check / Invoice Representation */
-        <svg viewBox="0 0 800 440" className="w-full h-full drop-shadow-sm z-1">
+        <svg viewBox="0 0 800 440" className="w-full h-full drop-shadow-xs z-1">
         <defs>
           <linearGradient id={`checkBg-${template.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor={template.isFraudulent ? '#fff1f2' : '#ffffff'} />
@@ -189,36 +190,36 @@ const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
         </defs>
 
         {/* Outer Check Border */}
-        <rect x="40" y="30" width="720" height="380" rx="10" fill={`url(#checkBg-${template.id})`} stroke={template.isFraudulent ? '#e11d48' : '#94a3b8'} strokeWidth="1.5" />
+        <rect x="12" y="12" width="776" height="416" rx="8" fill={`url(#checkBg-${template.id})`} stroke={template.isFraudulent ? '#e11d48' : '#94a3b8'} strokeWidth="1.5" />
 
         {/* Micro-printing Border Lines */}
-        <rect x="52" y="42" width="696" height="356" rx="6" fill="none" stroke="#64748b" strokeWidth="0.75" strokeDasharray="4 2" opacity="0.6" />
+        <rect x="22" y="22" width="756" height="396" rx="6" fill="none" stroke="#64748b" strokeWidth="0.75" strokeDasharray="4 2" opacity="0.6" />
 
         {/* Bank Logo / Header */}
-        <g transform="translate(60, 60)">
+        <g transform="translate(36, 40)">
           <rect x="0" y="0" width="65" height="28" rx="4" fill="#334155" fillOpacity="0.1" stroke="#334155" strokeWidth="1" />
           <text x="32" y="18" fill="#334155" fontSize="10" fontWeight="bold" textAnchor="middle" fontFamily="monospace">LOGO</text>
           <text x="78" y="18" fill="#334155" fontSize="11" fontWeight="bold" fontFamily="sans-serif">ABC BANK — RISK TRAINING CORE</text>
         </g>
 
         {/* Check Number / Date */}
-        <g transform="translate(600, 60)">
+        <g transform="translate(610, 40)">
           <text x="0" y="12" fill="#64748b" fontSize="10" fontFamily="monospace">No. 10492</text>
           <text x="0" y="28" fill="#334155" fontSize="11" fontFamily="sans-serif">DATE: 10 / 24 / 2026</text>
         </g>
 
         {/* Payee Line */}
-        <g transform="translate(60, 140)">
+        <g transform="translate(36, 126)">
           <text x="0" y="0" fill="#475569" fontSize="11" fontWeight="600" fontFamily="sans-serif">PAY TO THE</text>
           <text x="0" y="14" fill="#475569" fontSize="11" fontWeight="600" fontFamily="sans-serif">ORDER OF:</text>
-          <line x1="110" y1="12" x2="480" y2="12" stroke="#94a3b8" strokeWidth="1.5" />
+          <line x1="110" y1="12" x2="520" y2="12" stroke="#94a3b8" strokeWidth="1.5" />
           <text x="125" y="4" fill={template.isFraudulent ? '#e11d48' : '#0f172a'} fontSize="15" fontWeight="bold" fontFamily="monospace">
             {template.isFraudulent ? 'ACME LOGISTICS (Altered Payee)' : 'ACME ENTERPRISES (Payee Verified)'}
           </text>
         </g>
 
         {/* Numerical Amount Box */}
-        <g transform="translate(560, 125)">
+        <g transform="translate(580, 110)">
           <rect x="0" y="0" width="180" height="42" rx="6" fill="#ffffff" stroke={template.isFraudulent ? '#e11d48' : '#475569'} strokeWidth="1.5" />
           <text x="15" y="27" fill={template.isFraudulent ? '#e11d48' : '#047857'} fontSize="18" fontWeight="bold" fontFamily="monospace">
             {template.isFraudulent ? '$12,500.00' : '$1,250.00'}
@@ -226,28 +227,28 @@ const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
         </g>
 
         {/* Written Amount Line */}
-        <g transform="translate(60, 205)">
-          <line x1="0" y1="0" x2="680" y2="0" stroke="#94a3b8" strokeWidth="1" />
+        <g transform="translate(36, 196)">
+          <line x1="0" y1="0" x2="724" y2="0" stroke="#94a3b8" strokeWidth="1" />
           <text x="10" y="-8" fill="#1e293b" fontSize="13" fontStyle="italic" fontFamily="serif">
             {template.isFraudulent ? 'One Hundred Fifty and 00/100 Dollars (Discrepancy)' : 'One Thousand Two Hundred Fifty and 00/100 Dollars'}
           </text>
         </g>
 
         {/* Memo & Signature */}
-        <g transform="translate(60, 275)">
+        <g transform="translate(36, 276)">
           <text x="0" y="0" fill="#64748b" fontSize="10" fontFamily="monospace">MEMO: Consulting & Professional Training Services</text>
           
-          <g transform="translate(430, -10)">
-            <line x1="0" y1="0" x2="250" y2="0" stroke="#94a3b8" strokeWidth="1.5" />
-            <text x="50" y="16" fill="#475569" fontSize="10" fontWeight="bold" fontFamily="sans-serif">AUTHORIZED SIGNATURE</text>
-            <text x="20" y="-12" fill={template.isFraudulent ? '#e11d48' : '#334155'} fontSize="14" fontStyle="italic" fontFamily="cursive">
+          <g transform="translate(460, -10)">
+            <line x1="0" y1="0" x2="264" y2="0" stroke="#94a3b8" strokeWidth="1.5" />
+            <text x="60" y="16" fill="#475569" fontSize="10" fontWeight="bold" fontFamily="sans-serif">AUTHORIZED SIGNATURE</text>
+            <text x="30" y="-12" fill={template.isFraudulent ? '#e11d48' : '#334155'} fontSize="14" fontStyle="italic" fontFamily="cursive">
               {template.isFraudulent ? 'J. D. Sterling (Forged)' : 'J. D. Sterling (Verified)'}
             </text>
           </g>
         </g>
 
         {/* MICR Clearing Line */}
-        <g transform="translate(60, 355)">
+        <g transform="translate(36, 370)">
           <text x="0" y="0" fill="#334155" fontSize="16" fontWeight="bold" fontFamily="monospace" letterSpacing="3">
             ⑈012345⑈ ∷098765432∷ 1234⑆
           </text>

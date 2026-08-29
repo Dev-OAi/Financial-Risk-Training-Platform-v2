@@ -70,7 +70,7 @@ export default function App() {
   const [selectedHotSpot, setSelectedHotSpot] = useState<HotSpot | null>(INITIAL_TEMPLATES.genuineCheck.hotspots[0] || null);
   
   const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(window.innerWidth >= 1024);
-  const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(window.innerWidth >= 1024);
+  const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
   const [isAiGenerating, setIsAiGenerating] = useState(false);
   // --- Modals State Management ---
   // Booleans tracking the visibility of all specialized analysis tools and guides.
@@ -154,7 +154,10 @@ export default function App() {
     const handleOpenAlteredPayable = () => setIsAlteredPayableOpen(true);
     const handleOpenSignatureVerification = () => setIsSignatureVerificationOpen(true);
     const handleOpenDormancyScreener = () => setIsDormancyScreenerOpen(true);
+    const handleOpenUploadModal = () => setIsUploadScanOpen(true);
+
     window.addEventListener('open-batch-queue', handleOpenBatch);
+    window.addEventListener('open-upload-modal', handleOpenUploadModal);
     window.addEventListener('open-guilloche-magnifier', handleOpenMagnifier);
     window.addEventListener('open-kyc-extractor', handleOpenKyc);
     window.addEventListener('open-check-fraud-analyzer', handleOpenCheckFraud);
@@ -192,6 +195,7 @@ export default function App() {
     window.addEventListener('open-dormancy-screener', handleOpenDormancyScreener);
     return () => {
       window.removeEventListener('open-batch-queue', handleOpenBatch);
+      window.removeEventListener('open-upload-modal', handleOpenUploadModal);
       window.removeEventListener('open-guilloche-magnifier', handleOpenMagnifier);
       window.removeEventListener('open-kyc-extractor', handleOpenKyc);
       window.removeEventListener('open-check-fraud-analyzer', handleOpenCheckFraud);
@@ -295,6 +299,7 @@ export default function App() {
         onOpenExport={() => setIsExportOpen(true)}
         onToggleLeftSidebar={() => setIsLeftSidebarOpen(!isLeftSidebarOpen)}
         onToggleRightSidebar={() => setIsRightSidebarOpen(!isRightSidebarOpen)}
+        isRightSidebarOpen={isRightSidebarOpen}
         onSearch={handleSearchPrompt}
         isAiGenerating={isAiGenerating}
         activeTab={activeTab}

@@ -28,6 +28,12 @@ export interface DocumentTemplate {
   confidence: number;
   summary: string;
   hotspots: HotSpot[];
+  extractedFields?: {
+    field: string;
+    ocrValue: string;
+    referenceValue: string;
+    status: 'match' | 'mismatch' | 'flagged';
+  }[];
 }
 
 /** Represents a specific bank's check formatting and compliance standard */

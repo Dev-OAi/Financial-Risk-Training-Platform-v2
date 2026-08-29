@@ -23,7 +23,13 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({
 }) => {
   return (
     <>
-
+      {/* Mobile / Tablet Backdrop */}
+      {isOpen && (
+        <div
+          onClick={onClose}
+          className="fixed inset-0 bg-black/40 z-35 lg:hidden backdrop-blur-xs transition-opacity"
+        />
+      )}
 
       {/* Right Sidebar Container */}
       <aside className={`fixed right-0 top-0 bottom-0 z-40 w-80 sm:w-96 xl:w-88 flex flex-col shrink-0 border-l transition-transform duration-300 ease-in-out shadow-2xl ${

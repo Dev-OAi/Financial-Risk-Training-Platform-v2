@@ -85,8 +85,8 @@ export const INITIAL_TEMPLATES: Record<string, DocumentTemplate> = {
       {
         id: 'h1',
         title: 'Payee Line',
-        x: 34,
-        y: 44,
+        x: 35,
+        y: 35,
         riskLevel: 'low',
         titleDescription: 'Payee Endorsement & Latent Fiber Check',
         detail: 'Clear latent paper fibers under UV light. Name typed with thermal imprint ribbon matching account register.'
@@ -94,8 +94,8 @@ export const INITIAL_TEMPLATES: Record<string, DocumentTemplate> = {
       {
         id: 'h2',
         title: 'Numerical Amount Box',
-        x: 76,
-        y: 42,
+        x: 78,
+        y: 30,
         riskLevel: 'low',
         titleDescription: 'Numeric & Written Amount Match',
         detail: 'Numerical amount ($1,250.00) precisely matches written legal text line ("One Thousand Two Hundred Fifty and 00/100 Dollars").'
@@ -104,7 +104,7 @@ export const INITIAL_TEMPLATES: Record<string, DocumentTemplate> = {
         id: 'h3',
         title: 'MICR Clearing Line',
         x: 22,
-        y: 82,
+        y: 86,
         riskLevel: 'low',
         titleDescription: 'E-13B Magnetic Ink Character Verification',
         detail: 'Valid transit routing number and checking account sequence printed with iron oxide magnetic ink conforming to ISO 1004.'
@@ -112,8 +112,8 @@ export const INITIAL_TEMPLATES: Record<string, DocumentTemplate> = {
       {
         id: 'h4',
         title: 'Authorized Signature',
-        x: 65,
-        y: 68,
+        x: 68,
+        y: 66,
         riskLevel: 'low',
         titleDescription: 'Wet-Ink Signature Analysis',
         detail: 'Dynamic pen pressure variance confirms natural human stroke rhythm matching authorized corporate officer specimen #409.'
@@ -121,8 +121,8 @@ export const INITIAL_TEMPLATES: Record<string, DocumentTemplate> = {
       {
         id: 'h5',
         title: 'Logo & Security Border',
-        x: 18,
-        y: 20,
+        x: 16,
+        y: 12,
         riskLevel: 'low',
         titleDescription: 'Microprinting & Watermark Check',
         detail: 'Micro-line security border reads "ABC BANK RISK TRAINING" repeatedly at 4pt magnification.'
@@ -144,7 +144,7 @@ export const INITIAL_TEMPLATES: Record<string, DocumentTemplate> = {
         id: 'h1',
         title: 'Payee Line (Altered)',
         x: 35,
-        y: 44,
+        y: 35,
         riskLevel: 'critical',
         titleDescription: 'Chemical Washing & Substitution Evidence',
         detail: 'CRITICAL ANOMALY: Acetone / chlorine wash residue detected. Original payee name bleached and re-printed with consumer bubble-jet printer.'
@@ -152,8 +152,8 @@ export const INITIAL_TEMPLATES: Record<string, DocumentTemplate> = {
       {
         id: 'h2',
         title: 'Numerical Amount Box',
-        x: 76,
-        y: 42,
+        x: 78,
+        y: 30,
         riskLevel: 'critical',
         titleDescription: 'Amount Discrepancy & Patching',
         detail: 'CRITICAL: Numerical amount box ($12,500.00) shows physical paper patch overlay. Written legal line reads "$250.00" creating a $12,250 discrepancy.'
@@ -162,7 +162,7 @@ export const INITIAL_TEMPLATES: Record<string, DocumentTemplate> = {
         id: 'h3',
         title: 'MICR Clearing Line',
         x: 22,
-        y: 82,
+        y: 86,
         riskLevel: 'high',
         titleDescription: 'Counterfeit MICR Toner Transfer',
         detail: 'HIGH RISK: MICR line reflects normal carbon toner rather than iron-oxide E-13B magnetic ink. High-speed check sorter optical reader rejection likely.'
@@ -170,8 +170,8 @@ export const INITIAL_TEMPLATES: Record<string, DocumentTemplate> = {
       {
         id: 'h4',
         title: 'Authorized Signature',
-        x: 65,
-        y: 68,
+        x: 68,
+        y: 66,
         riskLevel: 'high',
         titleDescription: 'Signature Forgery / Stamping',
         detail: 'Uniform pixelation under 10x magnification indicates digital scan-and-paste forgery rather than authentic wet-ink signature.'
@@ -179,8 +179,8 @@ export const INITIAL_TEMPLATES: Record<string, DocumentTemplate> = {
       {
         id: 'h5',
         title: 'Background Security Void',
-        x: 18,
-        y: 20,
+        x: 16,
+        y: 12,
         riskLevel: 'medium',
         titleDescription: 'Pantograph Security Test',
         detail: 'Warning: Hidden "VOID" pantograph pattern fails to activate upon color photocopy replication, indicating low-grade stock.'

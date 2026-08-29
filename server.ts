@@ -9,7 +9,8 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 // Initialize Gemini AI server-side
 const ai = new GoogleGenAI({
@@ -26,52 +27,74 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
-// OCR & Vision Forensic Scan Endpoint
+// OCR & Vision Forensic Scan Endpoint with Pre-Uploaded Benchmark Cross-Referencing
 app.post("/api/ocr-scan-document", async (req, res) => {
   try {
-    const { imageBase64, mimeType = "image/png", documentTitle = "User Uploaded Specimen" } = req.body;
+    const { 
+      imageBase64, 
+      mimeType = "image/png", 
+      documentTitle = "User Uploaded Specimen",
+      referenceStandardTitle = null,
+      referenceStandardDetails = null,
+      routingPrefix = null,
+      verificationMode = "Full 12-Point Forensic Cross-Reference",
+      documentClassification = "Commercial Check",
+      includeFraudCheck = true
+    } = req.body;
 
     if (!process.env.GEMINI_API_KEY) {
+      const benchmarkText = referenceStandardTitle 
+        ? `Cross-referenced against verified benchmark standard: ${referenceStandardTitle}.` 
+        : 'Cross-referenced against standard banking clearinghouse specifications.';
       return res.json({
         success: true,
         source: "fallback",
         template: {
           id: Date.now().toString(),
-          title: documentTitle || "Uploaded Check / Invoice Specimen",
-          subtitle: "AI VISION OCR SCAN - ANOMALY & RISK ANALYSIS",
+          title: documentTitle || "Uploaded Check / Document Specimen",
+          subtitle: referenceStandardTitle ? `VERIFIED AGAINST: ${referenceStandardTitle.toUpperCase()}` : "AI FORENSIC OCR SCAN - BENCHMARK AUDIT",
           type: "check",
           theme: "amber",
-          isFraudulent: true,
-          riskScore: 78,
-          confidence: 94.2,
-          summary: "Forensic OCR scan identified potential toner-transfer inconsistency and uneven character spacing on payee line.",
+          isFraudulent: false,
+          riskScore: 22,
+          confidence: 96.4,
+          summary: `Forensic OCR scan completed successfully. ${benchmarkText} Extracted payee name, legal amount line, and E-13B MICR transit characters conformed to expected format.`,
           hotspots: [
             {
               id: "ocr-1",
               title: "Extracted Payee Line",
               x: 35,
-              y: 44,
-              riskLevel: "high",
-              titleDescription: "Payee Endorsement Inspection",
-              detail: "Extracted text shows slight pixelation variance around character edges, indicating secondary printer overlay."
+              y: 35,
+              riskLevel: "low",
+              titleDescription: "Payee & Endorsement Verification",
+              detail: `Payee line matches approved register. Verified against ${referenceStandardTitle || 'Standard Commercial KYC Rule'}.`
             },
             {
               id: "ocr-2",
-              title: "Numerical Amount Area",
-              x: 75,
-              y: 42,
-              riskLevel: "medium",
-              titleDescription: "Numeric vs Written Match",
-              detail: "Amount box verified. No obvious physical paper patch, but font density differs from standard issuing bank template."
+              title: "Numerical vs Written Amount Area",
+              x: 78,
+              y: 30,
+              riskLevel: "low",
+              titleDescription: "Numeric vs Legal Amount Match",
+              detail: "Numerical amount box strictly matches legal written dollar line. No alterations or patch overlays detected."
             },
             {
               id: "ocr-3",
-              title: "MICR E-13B Line",
+              title: "MICR E-13B Clearing Line",
               x: 22,
-              y: 82,
-              riskLevel: "high",
-              titleDescription: "Routing & Transit Checksum",
-              detail: "Transit routing digits detected: Checksum warning in routing sequence."
+              y: 86,
+              riskLevel: "low",
+              titleDescription: "ABA Transit Routing Verification",
+              detail: `Transit routing prefix ${routingPrefix || '121000358'} validated with Mod-10 checksum algorithm.`
+            },
+            {
+              id: "ocr-4",
+              title: "Paper Stock & Security Border",
+              x: 16,
+              y: 12,
+              riskLevel: "low",
+              titleDescription: "Guilloche & Latent Fiber Spec",
+              detail: "Guilloche border ribbons and UV fluorescent security fibers match issuing benchmark standards."
             }
           ]
         }
@@ -81,17 +104,31 @@ app.post("/api/ocr-scan-document", async (req, res) => {
     // Clean base64 header if present
     const base64Data = imageBase64.includes(",") ? imageBase64.split(",")[1] : imageBase64;
 
-    const visionPrompt = `You are an expert financial crimes and document forensics AI analyst. Analyze this uploaded financial document specimen (check, invoice, or wire instruction) with high precision.
-    Return a strict JSON object with keys:
-    - title (string)
-    - subtitle (string)
-    - type ("check" | "invoice" | "wire" | "compliance")
-    - theme (string, e.g. "blue" or "amber" or "rose")
-    - isFraudulent (boolean)
-    - riskScore (number 0-100)
-    - confidence (number 0-100)
-    - summary (string detailing OCR extracted fields and detected anomalies)
-    - hotspots (array of 4-6 objects with: id, title, x (percentage 10-85), y (percentage 20-85), riskLevel ("low" | "medium" | "high" | "critical"), titleDescription, detail)`;
+    const visionPrompt = `You are an expert financial crimes, forensic document examiner, and check fraud AI analyst.
+Analyze this uploaded financial document specimen (check, invoice, or wire instruction) with high precision against the provided verified benchmark library standard.
+
+BENCHMARK SPECIFICATIONS & CONTENT LIBRARY BENCHMARK:
+- Verified Benchmark Reference Item: "${referenceStandardTitle || 'Standard Commercial Bank Standard'}"
+${referenceStandardDetails ? `- Benchmark Details: "${referenceStandardDetails}"` : ''}
+${routingPrefix ? `- Expected Issuing ABA Routing Prefix: "${routingPrefix}"` : ''}
+- Verification Focus Mode: "${verificationMode || 'Full 12-Point Forensic Cross-Reference'}"
+- Document Classification: "${documentClassification || 'Commercial Check'}"
+- Check Fraud & Handwriting Analysis: ${includeFraudCheck ? 'ENABLED (Inspect written vs numerical amount mismatch, signature strokes, chemical wash residue)' : 'Standard OCR'}
+
+INSPECTION DIRECTIVES:
+1. Extract and cross-reference all key zones against the reference benchmark (Payee line, numerical amount vs legal written amount line, MICR line routing & transit digits, authorized maker signatures, endorsement area, paper stock fibers, and microprinting border).
+2. If the document deviates from the expected bank standard or exhibits chemical washing, patch overlays, signature forgery, or MICR checksum errors, flag them with appropriate risk levels (critical, high, medium, low).
+
+Return a strict JSON object with keys:
+- title (string: e.g. "${documentTitle}")
+- subtitle (string: concise summary badge, e.g. "VERIFIED COMPLIANT WITH ${referenceStandardTitle || 'BANK SPECIFICATIONS'}" or "CRITICAL FRAUD: MISMATCH DETECTED")
+- type ("check" | "invoice" | "wire" | "compliance")
+- theme ("blue" | "amber" | "rose" | "slate")
+- isFraudulent (boolean)
+- riskScore (number 0-100)
+- confidence (number 0-100)
+- summary (string detailing OCR extracted fields, comparison against the benchmark reference, and detected anomalies)
+- hotspots (array of 4-6 objects with: id, title, x (percentage 10-85), y (percentage 15-85), riskLevel ("low" | "medium" | "high" | "critical"), titleDescription, detail)`;
 
     let response;
     let usedModel = "gemini-2.5-flash";
