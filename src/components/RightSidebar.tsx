@@ -116,6 +116,50 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({
             </div>
           )}
 
+          {/* 12-Point Forensic Audit Results (If present) */}
+          {template.auditStages && template.auditStages.length > 0 && (
+            <div>
+              <h4 className="text-[11px] font-bold uppercase tracking-wider text-[#bdc1c6] mb-2 px-1 flex items-center justify-between">
+                <span>12-Point Forensic Audit</span>
+                <span className="text-[10px] text-blue-400 font-mono">
+                  {template.auditStages.filter(s => s.status === 'flagged').length > 0
+                    ? `${template.auditStages.filter(s => s.status === 'flagged').length} Flagged`
+                    : '12 Cleared'}
+                </span>
+              </h4>
+              <div className="space-y-1.5 max-h-60 overflow-y-auto pr-1">
+                {template.auditStages.map((stage) => {
+                  const isFlagged = stage.status === 'flagged';
+                  const isWarning = stage.status === 'warning';
+                  return (
+                    <div
+                      key={stage.id}
+                      className={`p-2 rounded-lg border text-xs ${
+                        isFlagged 
+                          ? 'bg-rose-500/10 border-rose-500/30 text-rose-300' 
+                          : isWarning 
+                            ? 'bg-amber-500/10 border-amber-500/30 text-amber-300' 
+                            : themeMode === 'dark' 
+                              ? 'bg-[#292a2d] border-[#3c4043] text-slate-300' 
+                              : 'bg-white border-[#dadce0] text-slate-700'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-1">
+                        <span className="font-bold text-[11px] truncate">{stage.name}</span>
+                        <span className={`text-[9px] px-1.5 py-0.2 rounded font-bold uppercase ${
+                          isFlagged ? 'bg-rose-600 text-white' : isWarning ? 'bg-amber-600 text-white' : 'bg-emerald-600 text-white'
+                        }`}>
+                          {stage.status}
+                        </span>
+                      </div>
+                      <div className="text-[10px] opacity-75 mt-0.5 font-mono truncate">{stage.metric}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           {/* Hot-Spot Inspection List */}
           <div>
             <h4 className="text-[11px] font-bold uppercase tracking-wider text-[#bdc1c6] mb-2.5 px-1">

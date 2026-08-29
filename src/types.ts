@@ -34,6 +34,14 @@ export interface DocumentTemplate {
     referenceValue: string;
     status: 'match' | 'mismatch' | 'flagged';
   }[];
+  auditStages?: {
+    id: string;
+    name: string;
+    field: string;
+    metric: string;
+    status: 'verified' | 'flagged' | 'warning';
+    riskLevel?: 'low' | 'medium' | 'high' | 'critical';
+  }[];
 }
 
 /** Represents a specific bank's check formatting and compliance standard */
