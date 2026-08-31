@@ -2,10 +2,14 @@
  * @file CaseNotesAndSARTab.tsx
  * @description Collaborative multi-investigator case notes, flagged hotspot bookmarking, risk severity tagging,
  * and one-click FinCEN-compliant Suspicious Activity Report (SAR) Generator.
+ * Provides per-row manual entry, addition, editing, duplication, and deletion of notes.
  */
 
 import React, { useState } from 'react';
-import { FileSpreadsheet, ShieldAlert, Plus, Trash2, Printer, CheckCircle, AlertTriangle, User, Calendar, FileText } from 'lucide-react';
+import { 
+  FileSpreadsheet, ShieldAlert, Plus, Trash2, Printer, CheckCircle, 
+  AlertTriangle, User, Calendar, FileText, Edit3, Copy, Check, X 
+} from 'lucide-react';
 import { CaseNote, DocumentTemplate, ThemeMode } from '../types';
 
 interface CaseNotesAndSARTabProps {
@@ -38,6 +42,18 @@ export const CaseNotesAndSARTab: React.FC<CaseNotesAndSARTabProps> = ({
   const [isGeneratingSar, setIsGeneratingSar] = useState(false);
   const [sarReport, setSarReport] = useState<string | null>(null);
 
+  // Editing state for notes
+  const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
+  const [editNoteForm, setEditNoteForm] = useState<CaseNote>({
+    id: '',
+    timestamp: '',
+    author: '',
+    investigatorRole: '',
+    riskSeverity: 'info',
+    documentTitle: '',
+    noteText: ''
+  });
+
   const handleAddNote = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newNoteText.trim()) return;
@@ -58,6 +74,27 @@ export const CaseNotesAndSARTab: React.FC<CaseNotesAndSARTabProps> = ({
 
   const handleDeleteNote = (id: string) => {
     setNotes(notes.filter(n => n.id !== id));
+    if (editingNoteId === id) setEditingNoteId(null);
+  };
+
+  const handleDuplicateNote = (note: CaseNote) => {
+    const dup: CaseNote = {
+      ...note,
+      id: Date.now().toString(),
+      timestamp: new Date().toLocaleString(),
+      noteText: `[Follow-up to ${note.author}] ${note.noteText}`
+    };
+    setNotes([dup, ...notes]);
+  };
+
+  const handleStartEditNote = (note: CaseNote) => {
+    setEditingNoteId(note.id);
+    setEditNoteForm({ ...note });
+  };
+
+  const handleSaveEditNote = (id: string) => {
+    setNotes(notes.map(n => n.id === id ? { ...editNoteForm, id } : n));
+    setEditingNoteId(null);
   };
 
   const handleGenerateFinCENSAR = () => {
@@ -149,44 +186,44 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
       )}
 
       {/* Add Case Note Form */}
-      <div className={`p-6 rounded-2xl border shadow-sm ${
+      <div className={`p-5 rounded-2xl border shadow-sm ${
         themeMode === 'dark' ? 'bg-[#2d2e31] border-[#3c4043]' : 'bg-white border-slate-200'
       }`}>
-        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-          <Plus className="w-5 h-5 text-blue-500" />
+        <h3 className="text-base font-semibold mb-3 flex items-center gap-2">
+          <Plus className="w-4 h-4 text-blue-500" />
           Add Investigator Case Note for "{currentTemplate.title}"
         </h3>
 
-        <form onSubmit={handleAddNote} className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <form onSubmit={handleAddNote} className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider mb-1.5 opacity-75">Investigator Name</label>
+              <label className="block text-xs font-semibold uppercase tracking-wider mb-1 opacity-75">Investigator Name</label>
               <input
                 type="text"
                 value={newAuthor}
                 onChange={(e) => setNewAuthor(e.target.value)}
-                className={`w-full px-3.5 py-2 rounded-xl border text-sm outline-none ${
+                className={`w-full px-3 py-1.5 rounded-lg border text-xs outline-none ${
                   themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                 }`}
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider mb-1.5 opacity-75">Role / Department</label>
+              <label className="block text-xs font-semibold uppercase tracking-wider mb-1 opacity-75">Role / Department</label>
               <input
                 type="text"
                 value={newRole}
                 onChange={(e) => setNewRole(e.target.value)}
-                className={`w-full px-3.5 py-2 rounded-xl border text-sm outline-none ${
+                className={`w-full px-3 py-1.5 rounded-lg border text-xs outline-none ${
                   themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                 }`}
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider mb-1.5 opacity-75">Risk Severity Tag</label>
+              <label className="block text-xs font-semibold uppercase tracking-wider mb-1 opacity-75">Risk Severity Tag</label>
               <select
                 value={newSeverity}
                 onChange={(e) => setNewSeverity(e.target.value as any)}
-                className={`w-full px-3.5 py-2 rounded-xl border text-sm outline-none ${
+                className={`w-full px-3 py-1.5 rounded-lg border text-xs outline-none ${
                   themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                 }`}
               >
@@ -198,13 +235,13 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider mb-1.5 opacity-75">Forensic Observation & Case Findings</label>
+            <label className="block text-xs font-semibold uppercase tracking-wider mb-1 opacity-75">Forensic Observation & Case Findings</label>
             <textarea
-              rows={3}
+              rows={2}
               value={newNoteText}
               onChange={(e) => setNewNoteText(e.target.value)}
               placeholder="Enter detailed notes regarding magnification inspection, UV fiber reaction, or clearinghouse responses..."
-              className={`w-full px-4 py-3 rounded-xl border text-sm outline-none resize-none ${
+              className={`w-full px-3 py-2 rounded-lg border text-xs outline-none resize-none ${
                 themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
               }`}
             />
@@ -213,64 +250,147 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
           <div className="flex justify-end">
             <button
               type="submit"
-              className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm shadow transition"
+              className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow-xs transition flex items-center gap-1.5"
             >
-              Save Investigator Note
+              <Plus className="w-3.5 h-3.5" />
+              <span>Save Investigator Note</span>
             </button>
           </div>
         </form>
       </div>
 
       {/* Case Notes History Feed */}
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold">Investigation Audit Trail & Notes ({notes.length})</h3>
+      <div className="space-y-3">
+        <h3 className="text-sm font-bold uppercase tracking-wider opacity-90">
+          Investigation Audit Trail & Notes ({notes.length})
+        </h3>
 
-        <div className="space-y-4">
-          {notes.map((note) => (
-            <div
-              key={note.id}
-              className={`p-5 rounded-2xl border shadow-sm transition ${
-                themeMode === 'dark' ? 'bg-[#2d2e31] border-[#3c4043]' : 'bg-white border-slate-200'
-              }`}
-            >
-              <div className="flex items-start justify-between gap-4 mb-3">
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-xl ${
-                    note.riskSeverity === 'critical' ? 'bg-rose-500/10 text-rose-500' :
-                    note.riskSeverity === 'warning' ? 'bg-amber-500/10 text-amber-500' : 'bg-blue-500/10 text-blue-500'
-                  }`}>
-                    {note.riskSeverity === 'critical' ? <ShieldAlert className="w-5 h-5" /> : <User className="w-5 h-5" />}
+        <div className="space-y-3">
+          {notes.map((note) => {
+            const isEditing = editingNoteId === note.id;
+
+            if (isEditing) {
+              return (
+                <div 
+                  key={note.id}
+                  className={`p-4 rounded-xl border space-y-3 ${
+                    themeMode === 'dark' ? 'bg-blue-950/30 border-blue-500/50' : 'bg-blue-50 border-blue-300'
+                  }`}
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <input
+                      type="text"
+                      value={editNoteForm.author}
+                      onChange={(e) => setEditNoteForm({ ...editNoteForm, author: e.target.value })}
+                      placeholder="Author name"
+                      className="px-2.5 py-1.5 rounded border text-xs outline-none bg-white dark:bg-[#202124]"
+                    />
+                    <input
+                      type="text"
+                      value={editNoteForm.investigatorRole}
+                      onChange={(e) => setEditNoteForm({ ...editNoteForm, investigatorRole: e.target.value })}
+                      placeholder="Role / Title"
+                      className="px-2.5 py-1.5 rounded border text-xs outline-none bg-white dark:bg-[#202124]"
+                    />
+                    <select
+                      value={editNoteForm.riskSeverity}
+                      onChange={(e) => setEditNoteForm({ ...editNoteForm, riskSeverity: e.target.value as any })}
+                      className="px-2.5 py-1.5 rounded border text-xs outline-none bg-white dark:bg-[#202124]"
+                    >
+                      <option value="info">Info / Routine</option>
+                      <option value="warning">Warning / Elevated Risk</option>
+                      <option value="critical">Critical / Fraud Confirmed</option>
+                    </select>
                   </div>
-                  <div>
-                    <div className="font-bold text-sm">{note.author} <span className="text-xs opacity-60 font-normal">({note.investigatorRole})</span></div>
-                    <div className="text-xs opacity-60 flex items-center gap-2 mt-0.5">
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>{note.timestamp}</span>
-                      <span>•</span>
-                      <span className="font-medium">Document: {note.documentTitle}</span>
+                  <textarea
+                    rows={3}
+                    value={editNoteForm.noteText}
+                    onChange={(e) => setEditNoteForm({ ...editNoteForm, noteText: e.target.value })}
+                    className="w-full px-3 py-2 rounded border text-xs outline-none resize-none bg-white dark:bg-[#202124]"
+                  />
+                  <div className="flex justify-end gap-2">
+                    <button
+                      onClick={() => setEditingNoteId(null)}
+                      className="px-3 py-1 rounded text-xs border"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={() => handleSaveEditNote(note.id)}
+                      className="px-4 py-1 rounded text-xs bg-emerald-600 text-white font-semibold"
+                    >
+                      Save Changes
+                    </button>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <div
+                key={note.id}
+                className={`p-4 rounded-xl border shadow-xs transition group ${
+                  themeMode === 'dark' ? 'bg-[#2d2e31] border-[#3c4043]' : 'bg-white border-slate-200'
+                }`}
+              >
+                <div className="flex items-start justify-between gap-4 mb-2">
+                  <div className="flex items-center gap-2.5">
+                    <div className={`p-1.5 rounded-lg ${
+                      note.riskSeverity === 'critical' ? 'bg-rose-500/10 text-rose-500' :
+                      note.riskSeverity === 'warning' ? 'bg-amber-500/10 text-amber-500' : 'bg-blue-500/10 text-blue-500'
+                    }`}>
+                      {note.riskSeverity === 'critical' ? <ShieldAlert className="w-4 h-4" /> : <User className="w-4 h-4" />}
+                    </div>
+                    <div>
+                      <div className="font-bold text-xs">{note.author} <span className="text-[10px] opacity-60 font-normal">({note.investigatorRole})</span></div>
+                      <div className="text-[10px] opacity-60 flex items-center gap-1.5 mt-0.5">
+                        <Calendar className="w-3 h-3" />
+                        <span>{note.timestamp}</span>
+                        <span>•</span>
+                        <span className="font-medium">Document: {note.documentTitle}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider ${
+                      note.riskSeverity === 'critical' ? 'bg-rose-500/20 text-rose-400' :
+                      note.riskSeverity === 'warning' ? 'bg-amber-500/20 text-amber-400' : 'bg-blue-500/20 text-blue-400'
+                    }`}>
+                      {note.riskSeverity}
+                    </span>
+
+                    {/* Per-Row Action Buttons */}
+                    <div className="flex items-center gap-1">
+                      <button
+                        onClick={() => handleStartEditNote(note)}
+                        className="p-1 rounded hover:bg-black/10 dark:hover:bg-white/10 text-blue-400"
+                        title="Edit Case Note"
+                      >
+                        <Edit3 className="w-3.5 h-3.5" />
+                      </button>
+                      <button
+                        onClick={() => handleDuplicateNote(note)}
+                        className="p-1 rounded hover:bg-black/10 dark:hover:bg-white/10 text-emerald-400"
+                        title="Duplicate / Add Follow-up Note"
+                      >
+                        <Copy className="w-3.5 h-3.5" />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteNote(note.id)}
+                        className="p-1 rounded hover:bg-black/10 dark:hover:bg-white/10 text-rose-400"
+                        title="Delete Case Note"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <span className={`text-xs px-3 py-1 rounded-full font-semibold uppercase tracking-wider ${
-                    note.riskSeverity === 'critical' ? 'bg-rose-500/20 text-rose-400' :
-                    note.riskSeverity === 'warning' ? 'bg-amber-500/20 text-amber-400' : 'bg-blue-500/20 text-blue-400'
-                  }`}>
-                    {note.riskSeverity}
-                  </span>
-                  <button
-                    onClick={() => handleDeleteNote(note.id)}
-                    className="p-2 rounded-lg opacity-60 hover:opacity-100 hover:bg-rose-500/10 hover:text-rose-500 transition"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                </div>
+                <p className="text-xs opacity-90 pl-8 leading-relaxed">{note.noteText}</p>
               </div>
-
-              <p className="text-sm opacity-90 pl-11 leading-relaxed">{note.noteText}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

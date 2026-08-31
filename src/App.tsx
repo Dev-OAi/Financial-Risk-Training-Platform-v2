@@ -47,6 +47,7 @@ import { CheckAlteredPayableLineScreenerModal } from './components/CheckAlteredP
 import { CheckSignatureVerificationModal } from './components/CheckSignatureVerificationModal';
 import { CheckDormancyActivationScreenerModal } from './components/CheckDormancyActivationScreenerModal';
 import { JsonVaultTab } from './components/JsonVaultTab';
+import { BuildathonSuiteTab } from './components/BuildathonSuiteTab';
 import { INITIAL_TEMPLATES } from './data/mockTemplates';
 import { DocumentTemplate, HotSpot, ThemeMode, ComparisonMode, AppTab } from './types';
 
@@ -252,6 +253,16 @@ export default function App() {
     handleSelectTemplate(newTpl);
   };
 
+  const handleUpdateTemplate = (updatedTpl: DocumentTemplate) => {
+    setTemplates(prev => ({
+      ...prev,
+      [updatedTpl.id]: updatedTpl
+    }));
+    if (currentTemplate.id === updatedTpl.id) {
+      setCurrentTemplate(updatedTpl);
+    }
+  };
+
   const handleRemoveTemplate = (templateId: string) => {
     const keys = Object.keys(templates);
     if (keys.length <= 1) return; // Keep at least one
@@ -320,6 +331,7 @@ export default function App() {
           templates={templates}
           onAddTemplate={handleAddTemplate}
           onRemoveTemplate={handleRemoveTemplate}
+          onUpdateTemplate={handleUpdateTemplate}
           themeMode={themeMode}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
@@ -330,6 +342,10 @@ export default function App() {
         {/* --- Central Workspace / Active Tab Content --- */}
         {/* Renders the specific tool based on the `activeTab` state */}
         <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+          {activeTab === 'buildathon' && (
+            <BuildathonSuiteTab currentTemplate={currentTemplate} themeMode={themeMode} />
+          )}
+
           {activeTab === 'standards' && (
             <BankStandardsTab themeMode={themeMode} />
           )}
@@ -340,13 +356,21 @@ export default function App() {
 
           {activeTab === 'excel' && (
             <div className="flex-1 p-4 overflow-hidden">
-              <ExcelComparisonTable template={currentTemplate} themeMode={themeMode} />
+              <ExcelComparisonTable 
+                template={currentTemplate} 
+                themeMode={themeMode} 
+                onUpdateTemplate={handleUpdateTemplate}
+              />
             </div>
           )}
 
           {activeTab === 'watchlist' && (
             <div className="flex-1 p-4 overflow-hidden">
-              <WatchlistTab template={currentTemplate} themeMode={themeMode} />
+              <WatchlistTab 
+                template={currentTemplate} 
+                themeMode={themeMode} 
+                onUpdateTemplate={handleUpdateTemplate}
+              />
             </div>
           )}
 
@@ -384,6 +408,7 @@ export default function App() {
                 onSelectHotSpot={setSelectedHotSpot}
                 themeMode={themeMode}
                 isAiGenerating={isAiGenerating}
+                onUpdateTemplate={handleUpdateTemplate}
               />
             </div>
           )}

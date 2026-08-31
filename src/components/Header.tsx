@@ -32,6 +32,7 @@ export const Header: React.FC<HeaderProps> = ({
   onSearch,
   isAiGenerating,
   activeTab,
+  setActiveTab,
   onOpenUploadScan,
   onOpenHelpGuide,
 }) => {
@@ -78,6 +79,22 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Actions & Controls */}
       <div className="flex items-center gap-2 shrink-0">
+        {/* Build-a-Thon 2026 Suite Button */}
+        <button
+          onClick={() => setActiveTab('buildathon')}
+          className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold transition-all border ${
+            activeTab === 'buildathon'
+              ? 'bg-gradient-to-r from-amber-500 to-blue-600 text-white shadow-md border-amber-400'
+              : themeMode === 'dark'
+                ? 'bg-amber-500/10 border-amber-500/30 text-amber-300 hover:bg-amber-500/20'
+                : 'bg-amber-50 border-amber-200 text-amber-900 hover:bg-amber-100'
+          }`}
+          title="Bank Build-a-Thon 2026 Innovation Suite"
+        >
+          <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+          <span>Build-a-Thon 2026</span>
+        </button>
+
         {/* Upload / Run Scan Button (Primary CTA) */}
         <button
           onClick={onOpenUploadScan}
@@ -85,7 +102,7 @@ export const Header: React.FC<HeaderProps> = ({
           title="Upload Check & Run Forensic Scan"
         >
           <Search className="w-4 h-4" />
-          <span>Run Unified Forensic Scan</span>
+          <span>Run Forensic Scan</span>
         </button>
         {/* Help Guide Button */}
         <button

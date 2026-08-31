@@ -16,7 +16,8 @@
 import React, { useState, useRef } from 'react';
 import { 
   ShieldCheck, ShieldAlert, FileText, Layers, BookOpen, 
-  Search, Award, Sparkles, CheckSquare, AlertTriangle, ChevronRight, X, Building2, HelpCircle, Plus, Minus, Upload, Eye, FileSpreadsheet, UserCheck, Database, Receipt, Mic, Building, Lock, ClipboardList, Megaphone, FileCheck, UserX, Network, FileSignature, Printer, Camera, Scan, FlaskConical, Landmark, MonitorSmartphone, PenTool, BadgeCheck, FileCode, UserSearch, FileWarning, Droplet, MapPin, Calendar, Briefcase, Aperture, Timer
+  Search, Award, Sparkles, CheckSquare, AlertTriangle, ChevronRight, X, Building2, HelpCircle, Plus, Minus, Upload, Eye, FileSpreadsheet, UserCheck, Database, Receipt, Mic, Building, Lock, ClipboardList, Megaphone, FileCheck, UserX, Network, FileSignature, Printer, Camera, Scan, FlaskConical, Landmark, MonitorSmartphone, PenTool, BadgeCheck, FileCode, UserSearch, FileWarning, Droplet, MapPin, Calendar, Briefcase, Aperture, Timer,
+  Edit3, Trash2, Copy, Check
 } from 'lucide-react';
 import { DocumentTemplate, ThemeMode, BankStandard, AppTab } from '../types';
 import { INITIAL_TEMPLATES, BANK_STANDARDS } from '../data/mockTemplates';
@@ -28,6 +29,7 @@ interface LeftSidebarProps {
   onSelectTemplate: (template: DocumentTemplate) => void;
   templates?: Record<string, DocumentTemplate>;
   onAddTemplate?: (template: DocumentTemplate) => void;
+  onUpdateTemplate?: (template: DocumentTemplate) => void;
   onRemoveTemplate?: (id: string) => void;
   themeMode: ThemeMode;
   activeTab: AppTab;
@@ -43,6 +45,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
   onSelectTemplate,
   templates = INITIAL_TEMPLATES,
   onAddTemplate,
+  onUpdateTemplate,
   onRemoveTemplate,
   themeMode,
   activeTab,
@@ -59,6 +62,67 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
 
   // Find active bank standard object
   const currentBankStandard: BankStandard = BANK_STANDARDS[selectedBankId] || bankStandardsList[0];
+
+  const [editingPreset, setEditingPreset] = useState<DocumentTemplate | null>(null);
+  const [editPresetForm, setEditPresetForm] = useState<{
+    title: string;
+    subtitle: string;
+    riskScore: number;
+    isFraudulent: boolean;
+    summary: string;
+  }>({
+    title: '',
+    subtitle: '',
+    riskScore: 0,
+    isFraudulent: false,
+    summary: ''
+  });
+
+  const handleStartEditPreset = (tpl: DocumentTemplate, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setEditingPreset(tpl);
+    setEditPresetForm({
+      title: tpl.title,
+      subtitle: tpl.subtitle,
+      riskScore: tpl.riskScore,
+      isFraudulent: tpl.isFraudulent,
+      summary: tpl.summary
+    });
+  };
+
+  const handleSaveEditPreset = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingPreset || !onUpdateTemplate) return;
+    const updated: DocumentTemplate = {
+      ...editingPreset,
+      title: editPresetForm.title.trim() || editingPreset.title,
+      subtitle: editPresetForm.subtitle.trim() || editingPreset.subtitle,
+      riskScore: editPresetForm.riskScore,
+      isFraudulent: editPresetForm.isFraudulent,
+      summary: editPresetForm.summary.trim() || editingPreset.summary
+    };
+    onUpdateTemplate(updated);
+    setEditingPreset(null);
+  };
+
+  const handleDuplicatePreset = (tpl: DocumentTemplate, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!onAddTemplate) return;
+    const newId = `dup-${Date.now()}`;
+    const duplicated: DocumentTemplate = {
+      ...tpl,
+      id: newId,
+      title: `${tpl.title} (Copy)`,
+      subtitle: `Cloned from ${tpl.title}`
+    };
+    onAddTemplate(duplicated);
+  };
+
+  const handleDeletePreset = (tplId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!onRemoveTemplate || templatesList.length <= 1) return;
+    onRemoveTemplate(tplId);
+  };
 
   const handleAddNewPreset = () => {
     if (!onAddTemplate) return;
@@ -164,6 +228,25 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
           }`}>
             <span className="text-[11px] font-bold uppercase tracking-wider opacity-75 block">Platform Modules</span>
             <div className="space-y-1">
+              <button
+                onClick={() => setActiveTab('buildathon')}
+                className={`w-full text-left px-3 py-2.5 rounded-lg text-xs font-bold flex items-center justify-between gap-2 transition border ${
+                  activeTab === 'buildathon'
+                    ? 'bg-gradient-to-r from-amber-500 to-blue-600 text-white shadow-md border-amber-400' 
+                    : themeMode === 'dark' 
+                      ? 'bg-amber-500/10 text-amber-300 border-amber-500/30 hover:bg-amber-500/20' 
+                      : 'bg-amber-50 text-amber-900 border-amber-200 hover:bg-amber-100'
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <Award className="w-4 h-4 text-amber-400" />
+                  <span>Build-a-Thon 2026 Suite</span>
+                </div>
+                <span className="text-[10px] font-black uppercase px-1.5 py-0.5 rounded bg-amber-500 text-slate-900">
+                  HOT
+                </span>
+              </button>
+
               <button
                 onClick={() => setActiveTab('inspector')}
                 className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition ${
@@ -675,13 +758,9 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {templatesList.map((tpl) => {
                 const isActive = currentTemplate.id === tpl.id;
                 return (
-                  <button
+                  <div
                     key={tpl.id}
-                    onClick={() => {
-                      onSelectTemplate(tpl);
-                      if (window.innerWidth < 1024) onClose();
-                    }}
-                    className={`w-full text-left p-2.5 rounded-lg transition-all flex items-start gap-2.5 border ${
+                    className={`w-full text-left p-2.5 rounded-lg transition-all flex items-start gap-2.5 border group relative ${
                       isActive 
                         ? themeMode === 'dark'
                           ? 'bg-[#3c4043] border-[#5f6368] text-[#e8eaed] shadow-xs'
@@ -691,26 +770,66 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                           : 'bg-white border-[#dadce0] hover:bg-[#f1f3f4] text-[#202124]'
                     }`}
                   >
-                    <div className={`p-1.5 rounded mt-0.5 shrink-0 ${
-                      tpl.isFraudulent 
-                        ? 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20' 
-                        : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
-                    }`}>
-                      {tpl.isFraudulent ? <ShieldAlert className="w-3.5 h-3.5" /> : <ShieldCheck className="w-3.5 h-3.5" />}
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-xs font-bold text-inherit truncate">{tpl.title}</div>
-                      <div className="text-[10px] text-[#bdc1c6] mt-0.5 truncate font-medium">{tpl.subtitle}</div>
-                      <div className="mt-1.5 flex items-center justify-between">
-                        <span className={`text-[9px] px-1.5 py-0.5 rounded font-mono ${
-                          tpl.riskScore > 50 ? 'bg-rose-500/10 text-rose-400 font-semibold' : 'bg-emerald-500/10 text-emerald-400 font-semibold'
-                        }`}>
-                          Risk: {tpl.riskScore}/100
-                        </span>
-                        <ChevronRight className="w-3 h-3 text-[#bdc1c6]" />
+                    <button
+                      onClick={() => {
+                        onSelectTemplate(tpl);
+                        if (window.innerWidth < 1024) onClose();
+                      }}
+                      className="flex-1 flex items-start gap-2.5 min-w-0 text-left"
+                    >
+                      <div className={`p-1.5 rounded mt-0.5 shrink-0 ${
+                        tpl.isFraudulent 
+                          ? 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20' 
+                          : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
+                      }`}>
+                        {tpl.isFraudulent ? <ShieldAlert className="w-3.5 h-3.5" /> : <ShieldCheck className="w-3.5 h-3.5" />}
                       </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="text-xs font-bold text-inherit truncate">{tpl.title}</div>
+                        <div className="text-[10px] text-[#bdc1c6] mt-0.5 truncate font-medium">{tpl.subtitle}</div>
+                        <div className="mt-1.5 flex items-center justify-between">
+                          <span className={`text-[9px] px-1.5 py-0.5 rounded font-mono ${
+                            tpl.riskScore > 50 ? 'bg-rose-500/10 text-rose-400 font-semibold' : 'bg-emerald-500/10 text-emerald-400 font-semibold'
+                          }`}>
+                            Risk: {tpl.riskScore}/100
+                          </span>
+                        </div>
+                      </div>
+                    </button>
+
+                    {/* Per-Row Action Buttons */}
+                    <div className="flex items-center gap-1 shrink-0 pt-0.5">
+                      <button
+                        onClick={(e) => handleStartEditPreset(tpl, e)}
+                        className={`p-1 rounded transition ${
+                          themeMode === 'dark' ? 'hover:bg-[#5f6368] text-blue-400' : 'hover:bg-slate-200 text-blue-600'
+                        }`}
+                        title="Edit Specimen Details"
+                      >
+                        <Edit3 className="w-3 h-3" />
+                      </button>
+                      <button
+                        onClick={(e) => handleDuplicatePreset(tpl, e)}
+                        className={`p-1 rounded transition ${
+                          themeMode === 'dark' ? 'hover:bg-[#5f6368] text-emerald-400' : 'hover:bg-slate-200 text-emerald-600'
+                        }`}
+                        title="Duplicate Specimen"
+                      >
+                        <Copy className="w-3 h-3" />
+                      </button>
+                      {templatesList.length > 1 && (
+                        <button
+                          onClick={(e) => handleDeletePreset(tpl.id, e)}
+                          className={`p-1 rounded transition ${
+                            themeMode === 'dark' ? 'hover:bg-[#5f6368] text-rose-400' : 'hover:bg-slate-200 text-rose-600'
+                          }`}
+                          title="Delete Specimen"
+                        >
+                          <Trash2 className="w-3 h-3" />
+                        </button>
+                      )}
                     </div>
-                  </button>
+                  </div>
                 );
               })}
             </div>
@@ -746,6 +865,125 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
           </div>
         </div>
       </aside>
+
+      {/* Edit Specimen Details Modal */}
+      {editingPreset && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-xs">
+          <div className={`w-full max-w-md rounded-2xl border p-5 shadow-2xl space-y-4 ${
+            themeMode === 'dark' ? 'bg-[#292a2d] border-[#3c4043] text-white' : 'bg-white border-slate-200 text-slate-800'
+          }`}>
+            <div className="flex items-center justify-between border-b border-inherit pb-3">
+              <div className="flex items-center gap-2">
+                <Edit3 className="w-5 h-5 text-blue-500" />
+                <h3 className="font-bold text-sm">Edit Specimen Details</h3>
+              </div>
+              <button 
+                onClick={() => setEditingPreset(null)}
+                className="p-1 rounded hover:bg-black/10 dark:hover:bg-white/10"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveEditPreset} className="space-y-3">
+              <div>
+                <label className="block text-[11px] font-semibold uppercase tracking-wider opacity-80 mb-1">
+                  Specimen Title *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={editPresetForm.title}
+                  onChange={(e) => setEditPresetForm({ ...editPresetForm, title: e.target.value })}
+                  className={`w-full px-3 py-2 rounded-lg border text-xs outline-none ${
+                    themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
+                  }`}
+                />
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-semibold uppercase tracking-wider opacity-80 mb-1">
+                  Subtitle / Category
+                </label>
+                <input
+                  type="text"
+                  value={editPresetForm.subtitle}
+                  onChange={(e) => setEditPresetForm({ ...editPresetForm, subtitle: e.target.value })}
+                  className={`w-full px-3 py-2 rounded-lg border text-xs outline-none ${
+                    themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
+                  }`}
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[11px] font-semibold uppercase tracking-wider opacity-80 mb-1">
+                    Risk Score (0-100)
+                  </label>
+                  <input
+                    type="number"
+                    min={0}
+                    max={100}
+                    value={editPresetForm.riskScore}
+                    onChange={(e) => setEditPresetForm({ ...editPresetForm, riskScore: Number(e.target.value) })}
+                    className={`w-full px-3 py-2 rounded-lg border text-xs outline-none font-mono ${
+                      themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
+                    }`}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-semibold uppercase tracking-wider opacity-80 mb-1">
+                    Classification
+                  </label>
+                  <select
+                    value={editPresetForm.isFraudulent ? 'fraud' : 'genuine'}
+                    onChange={(e) => setEditPresetForm({ ...editPresetForm, isFraudulent: e.target.value === 'fraud' })}
+                    className={`w-full px-3 py-2 rounded-lg border text-xs outline-none font-bold ${
+                      themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
+                    }`}
+                  >
+                    <option value="genuine">Genuine Compliant</option>
+                    <option value="fraud">Fraudulent / Altered</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-semibold uppercase tracking-wider opacity-80 mb-1">
+                  Summary Findings
+                </label>
+                <textarea
+                  rows={2}
+                  value={editPresetForm.summary}
+                  onChange={(e) => setEditPresetForm({ ...editPresetForm, summary: e.target.value })}
+                  className={`w-full px-3 py-2 rounded-lg border text-xs outline-none resize-none ${
+                    themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
+                  }`}
+                />
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-inherit">
+                <button
+                  type="button"
+                  onClick={() => setEditingPreset(null)}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-medium border ${
+                    themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] text-slate-300' : 'bg-white border-slate-300 text-slate-700'
+                  }`}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs transition"
+                >
+                  Save Specimen
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 };

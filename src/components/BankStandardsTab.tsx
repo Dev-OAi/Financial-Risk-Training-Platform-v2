@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Search, ShieldCheck, CheckCircle2, XCircle, BookOpen, AlertCircle, Building2, Cpu, FileCheck, Plus, Trash2, Code } from 'lucide-react';
+import { Search, ShieldCheck, CheckCircle2, XCircle, BookOpen, AlertCircle, Building2, Cpu, FileCheck, Plus, Trash2, Code, Copy, Edit3 } from 'lucide-react';
 import { BANK_STANDARDS_DATABASE, verifyRoutingNumber } from '../data/bankStandardsLibrary';
 import { ThemeMode, RoutingVerificationResult, BankStandard } from '../types';
 import { AddBankStandardModal } from './AddBankStandardModal';
@@ -51,6 +51,15 @@ export const BankStandardsTab: React.FC<BankStandardsTabProps> = ({ themeMode })
     } catch (e) {
       console.error('Failed to save custom bank standard', e);
     }
+  };
+
+  const handleDuplicateStandard = (std: BankStandard) => {
+    const newStd: BankStandard = {
+      ...std,
+      id: `custom-${Date.now()}`,
+      bankName: `${std.bankName} (Custom Variant)`
+    };
+    handleSaveCustomStandard(newStd);
   };
 
   const handleRemoveCustomStandard = (id: string) => {
@@ -231,13 +240,28 @@ export const BankStandardsTab: React.FC<BankStandardsTabProps> = ({ themeMode })
                       <span className="text-[11px] font-mono opacity-70">Routing Prefix: {std.routingPrefix}</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <div className="p-2 rounded-lg bg-blue-500/10 text-blue-500">
-                        <FileCheck className="w-4 h-4" />
-                      </div>
+                      <button
+                        onClick={() => setEditingStandard(std)}
+                        className={`p-1.5 rounded-lg transition ${
+                          themeMode === 'dark' ? 'hover:bg-[#3c4043] text-blue-400' : 'hover:bg-slate-100 text-blue-600'
+                        }`}
+                        title="Edit Standard & Rules"
+                      >
+                        <Edit3 className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => handleDuplicateStandard(std)}
+                        className={`p-1.5 rounded-lg transition ${
+                          themeMode === 'dark' ? 'hover:bg-[#3c4043] text-emerald-400' : 'hover:bg-slate-100 text-emerald-600'
+                        }`}
+                        title="Duplicate Standard to Custom Variant"
+                      >
+                        <Copy className="w-4 h-4" />
+                      </button>
                       {isCustom && (
                         <button
                           onClick={() => handleRemoveCustomStandard(std.id)}
-                          className="p-2 rounded-lg bg-rose-500/10 text-rose-500 hover:bg-rose-500/20 transition"
+                          className="p-1.5 rounded-lg bg-rose-500/10 text-rose-500 hover:bg-rose-500/20 transition"
                           title="Remove Custom Standard"
                         >
                           <Trash2 className="w-4 h-4" />
