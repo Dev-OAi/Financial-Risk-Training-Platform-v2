@@ -146,7 +146,7 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
         <button
           onClick={handleGenerateFinCENSAR}
           disabled={isGeneratingSar}
-          className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow-xs transition flex items-center gap-1.5 shrink-0"
+          className="px-4 py-2  bg-slate-700 hover:bg-slate-600 text-white font-medium text-xs shadow-xs transition flex items-center gap-1.5 shrink-0"
         >
           <FileText className="w-4 h-4" />
           <span>{isGeneratingSar ? 'Formatting SAR...' : 'Generate FinCEN SAR Report'}</span>
@@ -155,7 +155,7 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
 
       {/* Generated SAR Report Output */}
       {sarReport && (
-        <div className={`p-6 rounded-2xl border shadow-lg space-y-4 ${
+        <div className={`p-6  border shadow-lg space-y-4 ${
           themeMode === 'dark' ? 'bg-[#202124] border-blue-500/50' : 'bg-slate-900 text-slate-100 border-blue-600'
         }`}>
           <div className="flex items-center justify-between border-b border-slate-700 pb-3">
@@ -166,27 +166,27 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
             <div className="flex items-center gap-2">
               <button
                 onClick={() => window.print()}
-                className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-medium flex items-center gap-1.5"
+                className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-white  text-xs font-medium flex items-center gap-1.5"
               >
                 <Printer className="w-3.5 h-3.5" />
                 <span>Print / Export PDF</span>
               </button>
               <button
                 onClick={() => setSarReport(null)}
-                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-medium"
+                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300  text-xs font-medium"
               >
                 Close Draft
               </button>
             </div>
           </div>
-          <pre className="font-mono text-xs whitespace-pre-wrap overflow-x-auto text-emerald-300 p-4 bg-black/40 rounded-xl leading-relaxed">
+          <pre className="font-mono text-xs whitespace-pre-wrap overflow-x-auto text-emerald-300 p-4 bg-black/40  leading-relaxed">
             {sarReport}
           </pre>
         </div>
       )}
 
       {/* Add Case Note Form */}
-      <div className={`p-5 rounded-2xl border shadow-sm ${
+      <div className={`p-5  border shadow-sm ${
         themeMode === 'dark' ? 'bg-[#2d2e31] border-[#3c4043]' : 'bg-white border-slate-200'
       }`}>
         <h3 className="text-base font-semibold mb-3 flex items-center gap-2">
@@ -202,7 +202,7 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
                 type="text"
                 value={newAuthor}
                 onChange={(e) => setNewAuthor(e.target.value)}
-                className={`w-full px-3 py-1.5 rounded-lg border text-xs outline-none ${
+                className={`w-full px-3 py-1.5  border text-xs outline-none ${
                   themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                 }`}
               />
@@ -213,7 +213,7 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
                 type="text"
                 value={newRole}
                 onChange={(e) => setNewRole(e.target.value)}
-                className={`w-full px-3 py-1.5 rounded-lg border text-xs outline-none ${
+                className={`w-full px-3 py-1.5  border text-xs outline-none ${
                   themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                 }`}
               />
@@ -223,7 +223,7 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
               <select
                 value={newSeverity}
                 onChange={(e) => setNewSeverity(e.target.value as any)}
-                className={`w-full px-3 py-1.5 rounded-lg border text-xs outline-none ${
+                className={`w-full px-3 py-1.5  border text-xs outline-none ${
                   themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                 }`}
               >
@@ -241,7 +241,7 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
               value={newNoteText}
               onChange={(e) => setNewNoteText(e.target.value)}
               placeholder="Enter detailed notes regarding magnification inspection, UV fiber reaction, or clearinghouse responses..."
-              className={`w-full px-3 py-2 rounded-lg border text-xs outline-none resize-none ${
+              className={`w-full px-3 py-2  border text-xs outline-none resize-none ${
                 themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
               }`}
             />
@@ -250,7 +250,7 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
           <div className="flex justify-end">
             <button
               type="submit"
-              className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow-xs transition flex items-center gap-1.5"
+              className="px-4 py-2  bg-slate-700 hover:bg-slate-600 text-white font-medium text-xs shadow-xs transition flex items-center gap-1.5"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Save Investigator Note</span>
@@ -273,7 +273,7 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
               return (
                 <div 
                   key={note.id}
-                  className={`p-4 rounded-xl border space-y-3 ${
+                  className={`p-4  border space-y-3 ${
                     themeMode === 'dark' ? 'bg-blue-950/30 border-blue-500/50' : 'bg-blue-50 border-blue-300'
                   }`}
                 >
@@ -283,19 +283,19 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
                       value={editNoteForm.author}
                       onChange={(e) => setEditNoteForm({ ...editNoteForm, author: e.target.value })}
                       placeholder="Author name"
-                      className="px-2.5 py-1.5 rounded border text-xs outline-none bg-white dark:bg-[#202124]"
+                      className="px-2.5 py-1.5  border text-xs outline-none bg-white dark:bg-[#202124]"
                     />
                     <input
                       type="text"
                       value={editNoteForm.investigatorRole}
                       onChange={(e) => setEditNoteForm({ ...editNoteForm, investigatorRole: e.target.value })}
                       placeholder="Role / Title"
-                      className="px-2.5 py-1.5 rounded border text-xs outline-none bg-white dark:bg-[#202124]"
+                      className="px-2.5 py-1.5  border text-xs outline-none bg-white dark:bg-[#202124]"
                     />
                     <select
                       value={editNoteForm.riskSeverity}
                       onChange={(e) => setEditNoteForm({ ...editNoteForm, riskSeverity: e.target.value as any })}
-                      className="px-2.5 py-1.5 rounded border text-xs outline-none bg-white dark:bg-[#202124]"
+                      className="px-2.5 py-1.5  border text-xs outline-none bg-white dark:bg-[#202124]"
                     >
                       <option value="info">Info / Routine</option>
                       <option value="warning">Warning / Elevated Risk</option>
@@ -306,18 +306,18 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
                     rows={3}
                     value={editNoteForm.noteText}
                     onChange={(e) => setEditNoteForm({ ...editNoteForm, noteText: e.target.value })}
-                    className="w-full px-3 py-2 rounded border text-xs outline-none resize-none bg-white dark:bg-[#202124]"
+                    className="w-full px-3 py-2  border text-xs outline-none resize-none bg-white dark:bg-[#202124]"
                   />
                   <div className="flex justify-end gap-2">
                     <button
                       onClick={() => setEditingNoteId(null)}
-                      className="px-3 py-1 rounded text-xs border"
+                      className="px-3 py-1  text-xs border"
                     >
                       Cancel
                     </button>
                     <button
                       onClick={() => handleSaveEditNote(note.id)}
-                      className="px-4 py-1 rounded text-xs bg-emerald-600 text-white font-semibold"
+                      className="px-4 py-1  text-xs bg-emerald-800 text-white font-semibold"
                     >
                       Save Changes
                     </button>
@@ -329,13 +329,13 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
             return (
               <div
                 key={note.id}
-                className={`p-4 rounded-xl border shadow-xs transition group ${
+                className={`p-4  border shadow-xs transition group ${
                   themeMode === 'dark' ? 'bg-[#2d2e31] border-[#3c4043]' : 'bg-white border-slate-200'
                 }`}
               >
                 <div className="flex items-start justify-between gap-4 mb-2">
                   <div className="flex items-center gap-2.5">
-                    <div className={`p-1.5 rounded-lg ${
+                    <div className={`p-1.5  ${
                       note.riskSeverity === 'critical' ? 'bg-rose-500/10 text-rose-500' :
                       note.riskSeverity === 'warning' ? 'bg-amber-500/10 text-amber-500' : 'bg-blue-500/10 text-blue-500'
                     }`}>
@@ -353,7 +353,7 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider ${
+                    <span className={`text-[10px] px-2 py-0.5 font-semibold uppercase tracking-wider ${
                       note.riskSeverity === 'critical' ? 'bg-rose-500/20 text-rose-400' :
                       note.riskSeverity === 'warning' ? 'bg-amber-500/20 text-amber-400' : 'bg-blue-500/20 text-blue-400'
                     }`}>
@@ -364,21 +364,21 @@ Authorized Compliance Officer Signature: [Digital Cryptographic Seal Verified]
                     <div className="flex items-center gap-1">
                       <button
                         onClick={() => handleStartEditNote(note)}
-                        className="p-1 rounded hover:bg-black/10 dark:hover:bg-white/10 text-blue-400"
+                        className="p-1  hover:bg-black/10 dark:hover:bg-white/10 text-blue-400"
                         title="Edit Case Note"
                       >
                         <Edit3 className="w-3.5 h-3.5" />
                       </button>
                       <button
                         onClick={() => handleDuplicateNote(note)}
-                        className="p-1 rounded hover:bg-black/10 dark:hover:bg-white/10 text-emerald-400"
+                        className="p-1  hover:bg-black/10 dark:hover:bg-white/10 text-emerald-400"
                         title="Duplicate / Add Follow-up Note"
                       >
                         <Copy className="w-3.5 h-3.5" />
                       </button>
                       <button
                         onClick={() => handleDeleteNote(note.id)}
-                        className="p-1 rounded hover:bg-black/10 dark:hover:bg-white/10 text-rose-400"
+                        className="p-1  hover:bg-black/10 dark:hover:bg-white/10 text-rose-400"
                         title="Delete Case Note"
                       >
                         <Trash2 className="w-3.5 h-3.5" />

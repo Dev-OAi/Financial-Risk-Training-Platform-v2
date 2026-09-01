@@ -213,7 +213,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
           </div>
           <button 
             onClick={onClose}
-            className={`p-1 rounded transition-colors lg:hidden ${themeMode === 'dark' ? 'hover:bg-[#3c4043] text-[#bdc1c6]' : 'hover:bg-[#f1f3f4] text-[#5f6368]'}`}
+            className={`p-1  transition-colors lg:hidden ${themeMode === 'dark' ? 'hover:bg-[#3c4043] text-[#bdc1c6]' : 'hover:bg-[#f1f3f4] text-[#5f6368]'}`}
           >
             <X className="w-4 h-4" />
           </button>
@@ -223,16 +223,16 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
         <div className="flex-1 overflow-y-auto p-3.5 space-y-5">
           
           {/* Main App Navigation Tabs moved from Header for mobile optimization */}
-          <div className={`p-3 rounded-xl border space-y-2 ${
+          <div className={`p-3  border space-y-2 ${
             themeMode === 'dark' ? 'bg-[#323639] border-[#3c4043]' : 'bg-[#f8f9fa] border-[#dadce0]'
           }`}>
             <span className="text-[11px] font-bold uppercase tracking-wider opacity-75 block">Platform Modules</span>
             <div className="space-y-1">
               <button
                 onClick={() => setActiveTab('buildathon')}
-                className={`w-full text-left px-3 py-2.5 rounded-lg text-xs font-bold flex items-center justify-between gap-2 transition border ${
+                className={`w-full text-left px-3 py-2.5  text-xs font-bold flex items-center justify-between gap-2 transition border ${
                   activeTab === 'buildathon'
-                    ? 'bg-gradient-to-r from-amber-500 to-blue-600 text-white shadow-md border-amber-400' 
+                    ? 'bg-slate-700 text-white shadow-md border-amber-400' 
                     : themeMode === 'dark' 
                       ? 'bg-amber-500/10 text-amber-300 border-amber-500/30 hover:bg-amber-500/20' 
                       : 'bg-amber-50 text-amber-900 border-amber-200 hover:bg-amber-100'
@@ -242,16 +242,16 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                   <Award className="w-4 h-4 text-amber-400" />
                   <span>Build-a-Thon 2026 Suite</span>
                 </div>
-                <span className="text-[10px] font-black uppercase px-1.5 py-0.5 rounded bg-amber-500 text-slate-900">
+                <span className="text-[10px] font-black uppercase px-1.5 py-0.5  bg-amber-500 text-slate-900">
                   HOT
                 </span>
               </button>
 
               <button
                 onClick={() => setActiveTab('inspector')}
-                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition ${
+                className={`w-full text-left px-3 py-2  text-xs font-medium flex items-center gap-2 transition ${
                   activeTab === 'inspector' 
-                    ? 'bg-blue-600 text-white shadow-sm' 
+                    ? 'bg-slate-700 text-white shadow-sm' 
                     : themeMode === 'dark' ? 'hover:bg-[#3c4043]' : 'hover:bg-slate-200'
                 }`}
               >
@@ -261,9 +261,9 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
 
               <button
                 onClick={() => setActiveTab('standards')}
-                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition ${
+                className={`w-full text-left px-3 py-2  text-xs font-medium flex items-center gap-2 transition ${
                   activeTab === 'standards' 
-                    ? 'bg-blue-600 text-white shadow-sm' 
+                    ? 'bg-slate-700 text-white shadow-sm' 
                     : themeMode === 'dark' ? 'hover:bg-[#3c4043]' : 'hover:bg-slate-200'
                 }`}
               >
@@ -273,9 +273,9 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
 
               <button
                 onClick={() => setActiveTab('sargenerator')}
-                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition ${
+                className={`w-full text-left px-3 py-2  text-xs font-medium flex items-center gap-2 transition ${
                   activeTab === 'sargenerator' 
-                    ? 'bg-blue-600 text-white shadow-sm' 
+                    ? 'bg-slate-700 text-white shadow-sm' 
                     : themeMode === 'dark' ? 'hover:bg-[#3c4043]' : 'hover:bg-slate-200'
                 }`}
               >
@@ -285,9 +285,9 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
 
               <button
                 onClick={() => setActiveTab('excel')}
-                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition ${
+                className={`w-full text-left px-3 py-2  text-xs font-medium flex items-center gap-2 transition ${
                   activeTab === 'excel' 
-                    ? 'bg-blue-600 text-white shadow-sm' 
+                    ? 'bg-slate-700 text-white shadow-sm' 
                     : themeMode === 'dark' ? 'hover:bg-[#3c4043]' : 'hover:bg-slate-200'
                 }`}
               >
@@ -297,9 +297,9 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
 
               <button
                 onClick={() => setActiveTab('watchlist')}
-                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition ${
+                className={`w-full text-left px-3 py-2  text-xs font-medium flex items-center gap-2 transition ${
                   activeTab === 'watchlist' 
-                    ? 'bg-blue-600 text-white shadow-sm' 
+                    ? 'bg-slate-700 text-white shadow-sm' 
                     : themeMode === 'dark' ? 'hover:bg-[#3c4043]' : 'hover:bg-slate-200'
                 }`}
               >
@@ -309,9 +309,9 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
 
               <button
                 onClick={() => setActiveTab('jsonvault')}
-                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition ${
+                className={`w-full text-left px-3 py-2  text-xs font-medium flex items-center gap-2 transition ${
                   activeTab === 'jsonvault' 
-                    ? 'bg-blue-600 text-white shadow-sm' 
+                    ? 'bg-slate-700 text-white shadow-sm' 
                     : themeMode === 'dark' ? 'hover:bg-[#3c4043]' : 'hover:bg-slate-200'
                 }`}
               >
@@ -325,14 +325,14 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               <div className="grid grid-cols-2 gap-2">
                 <button
                   onClick={onOpenUploadScan}
-                  className="flex items-center justify-center gap-1.5 px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-medium shadow transition"
+                  className="flex items-center justify-center gap-1.5 px-3 py-2 bg-emerald-800 hover:bg-emerald-700 text-white  text-xs font-medium shadow transition"
                 >
                   <Upload className="w-3.5 h-3.5" />
                   <span>OCR Upload</span>
                 </button>
                 <button
                   onClick={onOpenHelpGuide}
-                  className={`flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition border ${
+                  className={`flex items-center justify-center gap-1.5 px-3 py-2  text-xs font-medium transition border ${
                     themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] hover:bg-[#3c4043]' : 'bg-white border-slate-300 hover:bg-slate-100'
                   }`}
                 >
@@ -344,7 +344,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Batch STP Ingestion Queue Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-batch-queue'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-slate-700 hover:bg-slate-600 text-white font-medium text-xs shadow transition"
               >
                 <Layers className="w-4 h-4" />
                 <span>Batch STP Queue & Ingestion</span>
@@ -353,7 +353,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Driver's License KYC Extractor Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-kyc-extractor'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-emerald-700 hover:bg-emerald-800 text-white font-medium text-xs shadow transition"
               >
                 <UserCheck className="w-4 h-4" />
                 <span>Driver's License KYC Extractor</span>
@@ -362,7 +362,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Check Fraud & Alteration Analyzer Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-check-fraud-analyzer'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-rose-700 hover:bg-rose-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-rose-700 hover:bg-rose-800 text-white font-medium text-xs shadow transition"
               >
                 <ShieldAlert className="w-4 h-4" />
                 <span>Check Fraud & Alteration Analyzer</span>
@@ -371,7 +371,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Thermal Receipt ATM Claim Reader Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-atm-claim-reader'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-amber-700 hover:bg-amber-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-amber-700 hover:bg-amber-800 text-white font-medium text-xs shadow transition"
               >
                 <Receipt className="w-4 h-4" />
                 <span>Thermal Receipt ATM Claim Reader</span>
@@ -380,7 +380,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Banker Voice Note to CRM Task Converter Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-banker-voice-crm'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-indigo-700 hover:bg-indigo-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-indigo-700 hover:bg-indigo-800 text-white font-medium text-xs shadow transition"
               >
                 <Mic className="w-4 h-4" />
                 <span>Banker Voice Note to CRM Task Converter</span>
@@ -389,7 +389,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Paper Loan Application Digitizer Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-paper-loan-digitizer'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-emerald-700 hover:bg-emerald-800 text-white font-medium text-xs shadow transition"
               >
                 <Building className="w-4 h-4" />
                 <span>Paper Loan Application Digitizer</span>
@@ -398,7 +398,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Branch Physical Security & Audit Scanner Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-branch-security-audit'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-rose-700 hover:bg-rose-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-rose-700 hover:bg-rose-800 text-white font-medium text-xs shadow transition"
               >
                 <Lock className="w-4 h-4" />
                 <span>Branch Physical Security Audit Scanner</span>
@@ -407,7 +407,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Handwritten Dual-Custody Vault Log Inspector Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-vault-log-inspector'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-amber-800 hover:bg-amber-900 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-amber-800 hover:bg-amber-900 text-white font-medium text-xs shadow transition"
               >
                 <ClipboardList className="w-4 h-4" />
                 <span>Vault Log Handwriting Inspector</span>
@@ -416,7 +416,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Retail Branch Marketing Signage Compliance Auditor Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-marketing-signage-audit'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-purple-700 hover:bg-purple-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-purple-700 hover:bg-purple-800 text-white font-medium text-xs shadow transition"
               >
                 <Megaphone className="w-4 h-4" />
                 <span>Marketing Signage Compliance Auditor</span>
@@ -425,7 +425,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Mismatched Amount Verifier Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-mismatched-amount-verifier'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-indigo-700 hover:bg-indigo-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-indigo-700 hover:bg-indigo-800 text-white font-medium text-xs shadow transition"
               >
                 <FileCheck className="w-4 h-4" />
                 <span>Mismatched Amount Verifier (Vision)</span>
@@ -434,7 +434,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Payee Alteration Inspector Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-payee-alteration-inspector'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-red-700 hover:bg-red-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-red-700 hover:bg-red-800 text-white font-medium text-xs shadow transition"
               >
                 <UserX className="w-4 h-4" />
                 <span>Payee Alteration Inspector (Vision)</span>
@@ -443,7 +443,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Check Kiting Analyzer Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-check-kiting-analyzer'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-teal-700 hover:bg-teal-800 text-white font-medium text-xs shadow transition"
               >
                 <Network className="w-4 h-4" />
                 <span>Check Kiting & Float Analyzer (GNN)</span>
@@ -452,7 +452,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Forged Counter Signature Inspector Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-forged-endorsement-inspector'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-amber-700 hover:bg-amber-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-amber-700 hover:bg-amber-800 text-white font-medium text-xs shadow transition"
               >
                 <FileSignature className="w-4 h-4" />
                 <span>Forged Counter Signature Inspector (Vision)</span>
@@ -461,7 +461,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Synthetic Check Stock Counterfeit Detector Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-synthetic-stock-detector'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-purple-700 hover:bg-purple-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-purple-700 hover:bg-purple-800 text-white font-medium text-xs shadow transition"
               >
                 <Printer className="w-4 h-4" />
                 <span>Synthetic Stock Counterfeit Detector (Vision)</span>
@@ -470,7 +470,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* ATM Check Image-Quality Triage Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-atm-image-quality-triage'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-indigo-700 hover:bg-indigo-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-indigo-700 hover:bg-indigo-800 text-white font-medium text-xs shadow transition"
               >
                 <Camera className="w-4 h-4" />
                 <span>ATM Check Deposit Image-Quality Triage</span>
@@ -479,7 +479,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Unrecognized Account Routing Block Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-blocked-routing-interceptor'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-red-700 hover:bg-red-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-red-700 hover:bg-red-800 text-white font-medium text-xs shadow transition"
               >
                 <Network className="w-4 h-4" />
                 <span>Unrecognized Account Routing Block</span>
@@ -488,7 +488,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Commercial Positive Pay Triager Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-positive-pay-triager'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-amber-700 hover:bg-amber-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-amber-700 hover:bg-amber-800 text-white font-medium text-xs shadow transition"
               >
                 <Building2 className="w-4 h-4" />
                 <span>Commercial Positive Pay Auto-Triager</span>
@@ -497,7 +497,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* MICR Font & Spacing Integrity Inspector Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-micr-integrity-inspector'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-teal-700 hover:bg-teal-800 text-white font-medium text-xs shadow transition"
               >
                 <Scan className="w-4 h-4" />
                 <span>MICR Font & Spacing Integrity</span>
@@ -506,7 +506,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Chemical Wash Screener Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-chemical-wash-screener'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-fuchsia-700 hover:bg-fuchsia-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-fuchsia-700 hover:bg-fuchsia-800 text-white font-medium text-xs shadow transition"
               >
                 <FlaskConical className="w-4 h-4" />
                 <span>Chemical Wash & Fiber Screener</span>
@@ -515,7 +515,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Out-of-State Issuer First-Check Agent Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-out-of-state-issuer-agent'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-sky-700 hover:bg-sky-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-sky-700 hover:bg-sky-800 text-white font-medium text-xs shadow transition"
               >
                 <Landmark className="w-4 h-4" />
                 <span>High-Risk Out-of-State Issuer Agent</span>
@@ -524,7 +524,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* RDC Digital Screen-Capture Filter Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-rdc-screen-capture-filter'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-indigo-700 hover:bg-indigo-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-indigo-700 hover:bg-indigo-800 text-white font-medium text-xs shadow transition"
               >
                 <MonitorSmartphone className="w-4 h-4" />
                 <span>RDC Digital Screen-Capture Filter</span>
@@ -533,7 +533,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Payee Endorsement Cross-Checker Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-payee-endorsement-cross-checker'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-violet-700 hover:bg-violet-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-violet-700 hover:bg-violet-800 text-white font-medium text-xs shadow transition"
               >
                 <PenTool className="w-4 h-4" />
                 <span>Payee Endorsement Cross-Checker</span>
@@ -542,7 +542,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Fake Cashier's Check Validator Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-fake-cashiers-check-validator'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-amber-700 hover:bg-amber-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-amber-700 hover:bg-amber-800 text-white font-medium text-xs shadow transition"
               >
                 <BadgeCheck className="w-4 h-4" />
                 <span>Fake Cashier's Check Validator</span>
@@ -551,7 +551,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* EXIF Metadata Auditor Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-exif-metadata-auditor'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-teal-700 hover:bg-teal-800 text-white font-medium text-xs shadow transition"
               >
                 <FileCode className="w-4 h-4" />
                 <span>EXIF Metadata & Image Auditor</span>
@@ -560,7 +560,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Payee Name Matching Agent Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-payee-name-matching-agent'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-fuchsia-700 hover:bg-fuchsia-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-fuchsia-700 hover:bg-fuchsia-800 text-white font-medium text-xs shadow transition"
               >
                 <UserSearch className="w-4 h-4" />
                 <span>Payee Name Matching Agent</span>
@@ -569,7 +569,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Stolen Blank Check Predictor Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-stolen-blank-check-predictor'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-orange-700 hover:bg-orange-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-orange-700 hover:bg-orange-800 text-white font-medium text-xs shadow transition"
               >
                 <FileWarning className="w-4 h-4" />
                 <span>Stolen Blank Check Predictor</span>
@@ -578,7 +578,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Check Watermark Vision Auditor Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-check-watermark-vision-auditor'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-cyan-700 hover:bg-cyan-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-cyan-700 hover:bg-cyan-800 text-white font-medium text-xs shadow transition"
               >
                 <Droplet className="w-4 h-4" />
                 <span>Check Watermark Vision Auditor</span>
@@ -587,7 +587,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* RDC Geolocation Risk Engine Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-rdc-geolocation-risk-engine'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-indigo-700 hover:bg-indigo-800 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-indigo-700 hover:bg-indigo-800 text-white font-medium text-xs shadow transition"
               >
                 <MapPin className="w-4 h-4" />
                 <span>RDC Geolocation Risk Engine</span>
@@ -596,7 +596,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Check Date Verifier Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-check-date-verifier'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-amber-800 hover:bg-amber-700 text-white font-medium text-xs shadow transition"
               >
                 <Calendar className="w-4 h-4" />
                 <span>Post & Stale-Dated Verifier</span>
@@ -605,7 +605,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Synthetic Payroll Batch Verifier Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-synthetic-payroll-verifier'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-violet-600 hover:bg-violet-700 text-white font-medium text-xs shadow transition"
               >
                 <Briefcase className="w-4 h-4" />
                 <span>Synthetic Payroll Batch Verifier</span>
@@ -614,7 +614,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Cashier's Check API Inspector Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-cashiers-check-api-inspector'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-emerald-800 hover:bg-emerald-700 text-white font-medium text-xs shadow transition"
               >
                 <Landmark className="w-4 h-4" />
                 <span>Cashier's Check API Inspector</span>
@@ -623,7 +623,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Lighting & Shadow Tamper Detector Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-lighting-tamper-detector'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-medium text-xs shadow transition"
               >
                 <Aperture className="w-4 h-4" />
                 <span>Lighting & Shadow Tamper</span>
@@ -632,7 +632,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Altered Payable Line Screener Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-altered-payable-line-screener'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-teal-600 hover:bg-teal-700 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-teal-600 hover:bg-teal-700 text-white font-medium text-xs shadow transition"
               >
                 <PenTool className="w-4 h-4" />
                 <span>Altered Payable Line Screener</span>
@@ -641,7 +641,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Third-Party Signature Verification Agent Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-signature-verification-agent'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-indigo-800 hover:bg-indigo-700 text-white font-medium text-xs shadow transition"
               >
                 <FileSignature className="w-4 h-4" />
                 <span>Dual-Signature Verifier</span>
@@ -650,7 +650,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               {/* Account Dormancy Activation Screener Button */}
               <button
                 onClick={() => (window as any).dispatchEvent(new CustomEvent('open-dormancy-screener'))}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-700 text-white font-medium text-xs shadow transition"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2  bg-cyan-600 hover:bg-cyan-700 text-white font-medium text-xs shadow transition"
               >
                 <Timer className="w-4 h-4" />
                 <span>Account Dormancy Screener</span>
@@ -658,7 +658,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
             </div>
           </div>
           {/* Bank Standard Comparison Selector Section */}
-          <div className={`p-3 rounded-lg border ${
+          <div className={`p-3  border ${
             themeMode === 'dark' ? 'bg-[#323639] border-[#3c4043]' : 'bg-[#f8f9fa] border-[#dadce0]'
           }`}>
             <div className="flex items-center gap-1.5 mb-2">
@@ -671,7 +671,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               id="bank-standard-select"
               value={selectedBankId}
               onChange={(e) => setSelectedBankId(e.target.value)}
-              className={`w-full text-xs p-2 rounded border focus:outline-none focus:ring-1 focus:ring-[#5f6368] font-medium ${
+              className={`w-full text-xs p-2  border focus:outline-none focus:ring-1 focus:ring-[#5f6368] font-medium ${
                 themeMode === 'dark'
                   ? 'bg-[#202124] border-[#3c4043] text-[#e8eaed]'
                   : 'bg-white border-[#dadce0] text-[#202124]'
@@ -694,7 +694,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                 <span className="font-semibold">MICR Spec:</span>
                 <span className="truncate max-w-[150px] font-medium" title={currentBankStandard.micrFontSpec}>{currentBankStandard.micrFontSpec}</span>
               </div>
-              <div className={`mt-1 text-[10px] p-2 rounded border leading-snug ${
+              <div className={`mt-1 text-[10px] p-2  border leading-snug ${
                 themeMode === 'dark' ? 'bg-[#202124] border-[#3c4043] text-[#e8eaed]' : 'bg-white border-[#dadce0] text-[#202124]'
               }`}>
                 <span className="font-bold text-inherit block mb-0.5">Trainer Guidance:</span>
@@ -712,7 +712,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               <div className="flex items-center gap-1">
                 <button
                   onClick={handleAddNewPreset}
-                  className={`p-1 rounded border transition-colors ${
+                  className={`p-1  border transition-colors ${
                     themeMode === 'dark' ? 'bg-[#323639] border-[#3c4043] text-[#e8eaed] hover:bg-[#3c4043]' : 'bg-[#f1f3f4] border-[#dadce0] text-[#202124] hover:bg-[#e8eaed]'
                   }`}
                   title="Add new preset"
@@ -722,7 +722,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                 <button
                   onClick={handleRemoveCurrent}
                   disabled={templatesList.length <= 1}
-                  className={`p-1 rounded border transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
+                  className={`p-1  border transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
                     themeMode === 'dark' ? 'bg-[#323639] border-[#3c4043] text-[#e8eaed] hover:bg-[#3c4043]' : 'bg-[#f1f3f4] border-[#dadce0] text-[#202124] hover:bg-[#e8eaed]'
                   }`}
                   title="Remove selected preset"
@@ -743,9 +743,9 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               />
               <button
                 onClick={() => fileInputRef.current?.click()}
-                className={`w-full py-1.5 px-2.5 rounded-lg border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all shadow-xs ${
+                className={`w-full py-1.5 px-2.5  border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all shadow-xs ${
                   themeMode === 'dark'
-                    ? 'bg-emerald-600/20 border-emerald-500/40 text-emerald-300 hover:bg-emerald-600/30'
+                    ? 'bg-emerald-800/20 border-emerald-500/40 text-emerald-300 hover:bg-emerald-800/30'
                     : 'bg-emerald-50 border-emerald-200 text-emerald-700 hover:bg-emerald-100'
                 }`}
               >
@@ -760,7 +760,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                 return (
                   <div
                     key={tpl.id}
-                    className={`w-full text-left p-2.5 rounded-lg transition-all flex items-start gap-2.5 border group relative ${
+                    className={`w-full text-left p-2.5  transition-all flex items-start gap-2.5 border group relative ${
                       isActive 
                         ? themeMode === 'dark'
                           ? 'bg-[#3c4043] border-[#5f6368] text-[#e8eaed] shadow-xs'
@@ -777,7 +777,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                       }}
                       className="flex-1 flex items-start gap-2.5 min-w-0 text-left"
                     >
-                      <div className={`p-1.5 rounded mt-0.5 shrink-0 ${
+                      <div className={`p-1.5  mt-0.5 shrink-0 ${
                         tpl.isFraudulent 
                           ? 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20' 
                           : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
@@ -788,7 +788,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                         <div className="text-xs font-bold text-inherit truncate">{tpl.title}</div>
                         <div className="text-[10px] text-[#bdc1c6] mt-0.5 truncate font-medium">{tpl.subtitle}</div>
                         <div className="mt-1.5 flex items-center justify-between">
-                          <span className={`text-[9px] px-1.5 py-0.5 rounded font-mono ${
+                          <span className={`text-[9px] px-1.5 py-0.5  font-mono ${
                             tpl.riskScore > 50 ? 'bg-rose-500/10 text-rose-400 font-semibold' : 'bg-emerald-500/10 text-emerald-400 font-semibold'
                           }`}>
                             Risk: {tpl.riskScore}/100
@@ -801,7 +801,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                     <div className="flex items-center gap-1 shrink-0 pt-0.5">
                       <button
                         onClick={(e) => handleStartEditPreset(tpl, e)}
-                        className={`p-1 rounded transition ${
+                        className={`p-1  transition ${
                           themeMode === 'dark' ? 'hover:bg-[#5f6368] text-blue-400' : 'hover:bg-slate-200 text-blue-600'
                         }`}
                         title="Edit Specimen Details"
@@ -810,7 +810,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                       </button>
                       <button
                         onClick={(e) => handleDuplicatePreset(tpl, e)}
-                        className={`p-1 rounded transition ${
+                        className={`p-1  transition ${
                           themeMode === 'dark' ? 'hover:bg-[#5f6368] text-emerald-400' : 'hover:bg-slate-200 text-emerald-600'
                         }`}
                         title="Duplicate Specimen"
@@ -820,7 +820,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                       {templatesList.length > 1 && (
                         <button
                           onClick={(e) => handleDeletePreset(tpl.id, e)}
-                          className={`p-1 rounded transition ${
+                          className={`p-1  transition ${
                             themeMode === 'dark' ? 'hover:bg-[#5f6368] text-rose-400' : 'hover:bg-slate-200 text-rose-600'
                           }`}
                           title="Delete Specimen"
@@ -869,7 +869,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
       {/* Edit Specimen Details Modal */}
       {editingPreset && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-xs">
-          <div className={`w-full max-w-md rounded-2xl border p-5 shadow-2xl space-y-4 ${
+          <div className={`w-full max-w-md  border p-5 shadow-2xl space-y-4 ${
             themeMode === 'dark' ? 'bg-[#292a2d] border-[#3c4043] text-white' : 'bg-white border-slate-200 text-slate-800'
           }`}>
             <div className="flex items-center justify-between border-b border-inherit pb-3">
@@ -879,7 +879,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               </div>
               <button 
                 onClick={() => setEditingPreset(null)}
-                className="p-1 rounded hover:bg-black/10 dark:hover:bg-white/10"
+                className="p-1  hover:bg-black/10 dark:hover:bg-white/10"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -895,7 +895,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                   required
                   value={editPresetForm.title}
                   onChange={(e) => setEditPresetForm({ ...editPresetForm, title: e.target.value })}
-                  className={`w-full px-3 py-2 rounded-lg border text-xs outline-none ${
+                  className={`w-full px-3 py-2  border text-xs outline-none ${
                     themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                   }`}
                 />
@@ -909,7 +909,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                   type="text"
                   value={editPresetForm.subtitle}
                   onChange={(e) => setEditPresetForm({ ...editPresetForm, subtitle: e.target.value })}
-                  className={`w-full px-3 py-2 rounded-lg border text-xs outline-none ${
+                  className={`w-full px-3 py-2  border text-xs outline-none ${
                     themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                   }`}
                 />
@@ -926,7 +926,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                     max={100}
                     value={editPresetForm.riskScore}
                     onChange={(e) => setEditPresetForm({ ...editPresetForm, riskScore: Number(e.target.value) })}
-                    className={`w-full px-3 py-2 rounded-lg border text-xs outline-none font-mono ${
+                    className={`w-full px-3 py-2  border text-xs outline-none font-mono ${
                       themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                     }`}
                   />
@@ -939,7 +939,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                   <select
                     value={editPresetForm.isFraudulent ? 'fraud' : 'genuine'}
                     onChange={(e) => setEditPresetForm({ ...editPresetForm, isFraudulent: e.target.value === 'fraud' })}
-                    className={`w-full px-3 py-2 rounded-lg border text-xs outline-none font-bold ${
+                    className={`w-full px-3 py-2  border text-xs outline-none font-bold ${
                       themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                     }`}
                   >
@@ -957,7 +957,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                   rows={2}
                   value={editPresetForm.summary}
                   onChange={(e) => setEditPresetForm({ ...editPresetForm, summary: e.target.value })}
-                  className={`w-full px-3 py-2 rounded-lg border text-xs outline-none resize-none ${
+                  className={`w-full px-3 py-2  border text-xs outline-none resize-none ${
                     themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                   }`}
                 />
@@ -967,7 +967,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                 <button
                   type="button"
                   onClick={() => setEditingPreset(null)}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-medium border ${
+                  className={`px-3.5 py-1.5  text-xs font-medium border ${
                     themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] text-slate-300' : 'bg-white border-slate-300 text-slate-700'
                   }`}
                 >
@@ -975,7 +975,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs transition"
+                  className="px-4 py-1.5  bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold shadow-xs transition"
                 >
                   Save Specimen
                 </button>

@@ -73,7 +73,7 @@ export const PaperLoanDigitizerModal: React.FC<PaperLoanDigitizerModalProps> = (
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-xs p-4">
-      <div className={`w-full max-w-3xl rounded-2xl border shadow-2xl overflow-hidden flex flex-col max-h-[90vh] ${
+      <div className={`w-full max-w-3xl  border shadow-2xl overflow-hidden flex flex-col max-h-[90vh] ${
         themeMode === 'dark' ? 'bg-[#202124] border-[#3c4043] text-[#e8eaed]' : 'bg-white border-slate-200 text-slate-900'
       }`}>
         {/* Header */}
@@ -87,7 +87,7 @@ export const PaperLoanDigitizerModal: React.FC<PaperLoanDigitizerModalProps> = (
               <p className="text-xs opacity-75">Enforce Strict JSON Schema Output Matching Loan Origination Systems (LOS)</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-lg opacity-75 hover:opacity-100 hover:bg-black/10 transition">
+          <button onClick={onClose} className="p-1.5  opacity-75 hover:opacity-100 hover:bg-black/10 transition">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -102,7 +102,7 @@ export const PaperLoanDigitizerModal: React.FC<PaperLoanDigitizerModalProps> = (
               </label>
 
               {!fileName ? (
-                <label className={`border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer transition ${
+                <label className={`border-2 border-dashed  p-8 flex flex-col items-center justify-center cursor-pointer transition ${
                   themeMode === 'dark' ? 'border-[#5f6368] hover:border-emerald-400 bg-[#292a2d]' : 'border-slate-300 hover:border-emerald-600 bg-slate-50'
                 }`}>
                   <Upload className="w-8 h-8 text-emerald-500 mb-2" />
@@ -111,14 +111,14 @@ export const PaperLoanDigitizerModal: React.FC<PaperLoanDigitizerModalProps> = (
                   <input type="file" accept="application/pdf,image/*" onChange={handleFileChange} className="hidden" />
                 </label>
               ) : (
-                <div className="relative rounded-xl border border-inherit bg-black/20 p-4 flex flex-col items-center space-y-3">
+                <div className="relative  border border-inherit bg-black/20 p-4 flex flex-col items-center space-y-3">
                   <div className="flex items-center gap-2 text-xs font-medium">
                     <FileText className="w-4 h-4 text-emerald-400" />
                     <span className="truncate max-w-[220px]">{fileName}</span>
                   </div>
                   <button
                     onClick={() => { setFileName(null); setSelectedFile(null); setLosResult(null); }}
-                    className="px-3 py-1 rounded bg-rose-600/80 hover:bg-rose-600 text-white text-xs font-medium transition"
+                    className="px-3 py-1  bg-rose-800/80 hover:bg-rose-800 text-white text-xs font-medium transition"
                   >
                     Remove / Change Application File
                   </button>
@@ -129,11 +129,11 @@ export const PaperLoanDigitizerModal: React.FC<PaperLoanDigitizerModalProps> = (
                 <button
                   onClick={handleRunDigitizer}
                   disabled={isProcessing}
-                  className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow flex items-center justify-center gap-2 transition disabled:opacity-50"
+                  className="w-full py-2.5  bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-xs shadow flex items-center justify-center gap-2 transition disabled:opacity-50"
                 >
                   {isProcessing ? (
                     <>
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent animate-spin" />
                       <span>Enforcing Strict LOS Schema...</span>
                     </>
                   ) : (
@@ -152,7 +152,7 @@ export const PaperLoanDigitizerModal: React.FC<PaperLoanDigitizerModalProps> = (
                 Strict LOS Schema JSON Output
               </label>
 
-              <div className={`flex-1 rounded-xl p-4 font-mono text-xs border overflow-y-auto ${
+              <div className={`flex-1  p-4 font-mono text-xs border overflow-y-auto ${
                 themeMode === 'dark' ? 'bg-[#18191c] border-[#3c4043]' : 'bg-slate-900 text-slate-100 border-slate-800'
               }`}>
                 {losResult ? (
@@ -170,7 +170,7 @@ export const PaperLoanDigitizerModal: React.FC<PaperLoanDigitizerModalProps> = (
           </div>
 
           {losResult && (
-            <div className="p-4 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-emerald-400 flex items-center justify-between">
+            <div className="p-4  border bg-emerald-500/10 border-emerald-500/30 text-emerald-400 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <CheckCircle2 className="w-5 h-5 shrink-0" />
                 <div>
@@ -182,7 +182,7 @@ export const PaperLoanDigitizerModal: React.FC<PaperLoanDigitizerModalProps> = (
                   </div>
                 </div>
               </div>
-              <span className="text-xs font-bold px-2.5 py-1 rounded bg-black/20">
+              <span className="text-xs font-bold px-2.5 py-1  bg-black/20">
                 LOS Ready
               </span>
             </div>
@@ -195,7 +195,7 @@ export const PaperLoanDigitizerModal: React.FC<PaperLoanDigitizerModalProps> = (
         }`}>
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow transition"
+            className="px-4 py-2  bg-slate-700 hover:bg-slate-600 text-white font-medium text-xs shadow transition"
           >
             Close Digitizer
           </button>

@@ -29,7 +29,7 @@ export const GuillocheMagnifierModal: React.FC<GuillocheMagnifierModalProps> = (
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-xs p-4">
-      <div className={`w-full max-w-4xl rounded-2xl border shadow-2xl overflow-hidden flex flex-col max-h-[90vh] ${
+      <div className={`w-full max-w-4xl  border shadow-2xl overflow-hidden flex flex-col max-h-[90vh] ${
         themeMode === 'dark' ? 'bg-[#202124] border-[#3c4043] text-[#e8eaed]' : 'bg-white border-slate-200 text-slate-900'
       }`}>
         {/* Header */}
@@ -43,7 +43,7 @@ export const GuillocheMagnifierModal: React.FC<GuillocheMagnifierModalProps> = (
               <p className="text-xs opacity-75">Specimen: <span className="font-mono font-semibold">{template.title}</span> • High-Magnification Edge & Raster Diagnostics</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-lg opacity-75 hover:opacity-100 hover:bg-black/10 transition">
+          <button onClick={onClose} className="p-1.5  opacity-75 hover:opacity-100 hover:bg-black/10 transition">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -56,19 +56,19 @@ export const GuillocheMagnifierModal: React.FC<GuillocheMagnifierModalProps> = (
             <span className="font-medium opacity-75">Analysis Mode:</span>
             <button
               onClick={() => setActiveFilter('edge')}
-              className={`px-3 py-1.5 rounded font-medium transition ${activeFilter === 'edge' ? 'bg-blue-600 text-white' : 'opacity-75 hover:opacity-100'}`}
+              className={`px-3 py-1.5  font-medium transition ${activeFilter === 'edge' ? 'bg-slate-700 text-white' : 'opacity-75 hover:opacity-100'}`}
             >
               Edge Sharpness (Laplacian)
             </button>
             <button
               onClick={() => setActiveFilter('raster')}
-              className={`px-3 py-1.5 rounded font-medium transition ${activeFilter === 'raster' ? 'bg-blue-600 text-white' : 'opacity-75 hover:opacity-100'}`}
+              className={`px-3 py-1.5  font-medium transition ${activeFilter === 'raster' ? 'bg-slate-700 text-white' : 'opacity-75 hover:opacity-100'}`}
             >
               Pixel Raster Density
             </button>
             <button
               onClick={() => setActiveFilter('fft')}
-              className={`px-3 py-1.5 rounded font-medium transition ${activeFilter === 'fft' ? 'bg-blue-600 text-white' : 'opacity-75 hover:opacity-100'}`}
+              className={`px-3 py-1.5  font-medium transition ${activeFilter === 'fft' ? 'bg-slate-700 text-white' : 'opacity-75 hover:opacity-100'}`}
             >
               Guilloche FFT Spectrum
             </button>
@@ -76,12 +76,12 @@ export const GuillocheMagnifierModal: React.FC<GuillocheMagnifierModalProps> = (
 
           <div className="flex items-center gap-3">
             <span className="font-medium opacity-75">Magnification:</span>
-            <div className="flex items-center gap-1 bg-black/10 dark:bg-white/10 rounded-lg p-1">
-              <button onClick={() => setZoomLevel(Math.max(2, zoomLevel - 1))} className="p-1 rounded hover:bg-white/20">
+            <div className="flex items-center gap-1 bg-black/10 dark:bg-white/10  p-1">
+              <button onClick={() => setZoomLevel(Math.max(2, zoomLevel - 1))} className="p-1  hover:bg-white/20">
                 <ZoomOut className="w-3.5 h-3.5" />
               </button>
               <span className="font-mono px-2 font-bold">{zoomLevel}x</span>
-              <button onClick={() => setZoomLevel(Math.min(10, zoomLevel + 1))} className="p-1 rounded hover:bg-white/20">
+              <button onClick={() => setZoomLevel(Math.min(10, zoomLevel + 1))} className="p-1  hover:bg-white/20">
                 <ZoomIn className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -93,22 +93,22 @@ export const GuillocheMagnifierModal: React.FC<GuillocheMagnifierModalProps> = (
           {/* Main Magnifier View */}
           <div className="md:col-span-2 relative bg-black/90 flex items-center justify-center overflow-hidden p-6">
             <div 
-              className="relative rounded-xl overflow-hidden shadow-2xl border border-white/20 transition-transform duration-200"
+              className="relative  overflow-hidden shadow-2xl border border-white/20 transition-transform duration-200"
               style={{ transform: `scale(${zoomLevel / 3 + 0.8})` }}
             >
               <img src={template.imageUrl} alt="Magnified Specimen" className="max-h-[350px] object-contain filter contrast-125" />
               
               {/* Simulated Scanner Reticle / Crosshair */}
               <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-                <div className="w-24 h-24 border-2 border-emerald-400/80 rounded-full flex items-center justify-center relative animate-pulse">
-                  <div className="absolute w-2 h-2 bg-emerald-400 rounded-full" />
+                <div className="w-24 h-24 border-2 border-emerald-400/80 flex items-center justify-center relative animate-pulse">
+                  <div className="absolute w-2 h-2 bg-emerald-400" />
                   <div className="absolute w-full h-px bg-emerald-400/50" />
                   <div className="absolute h-full w-px bg-emerald-400/50" />
                 </div>
               </div>
             </div>
             
-            <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded-lg bg-black/75 backdrop-blur-xs text-white font-mono text-[10px] border border-white/10">
+            <div className="absolute bottom-4 left-4 px-3 py-1.5  bg-black/75 backdrop-blur-xs text-white font-mono text-[10px] border border-white/10">
               MAGNIFICATION: {zoomLevel}x • FILTER: {activeFilter.toUpperCase()} • DPI: 2400
             </div>
           </div>
@@ -124,7 +124,7 @@ export const GuillocheMagnifierModal: React.FC<GuillocheMagnifierModalProps> = (
               </div>
 
               <div className="space-y-3 text-xs">
-                <div className={`p-3 rounded-lg border ${
+                <div className={`p-3  border ${
                   isSuspicious 
                     ? 'bg-rose-500/10 border-rose-500/30 text-rose-500' 
                     : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-500'
@@ -160,7 +160,7 @@ export const GuillocheMagnifierModal: React.FC<GuillocheMagnifierModalProps> = (
             <div className="pt-4 border-t border-inherit">
               <button
                 onClick={onClose}
-                className="w-full py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow transition"
+                className="w-full py-2  bg-slate-700 hover:bg-slate-600 text-white font-medium text-xs shadow transition"
               >
                 Done Inspecting
               </button>

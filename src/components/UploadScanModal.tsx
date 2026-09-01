@@ -452,19 +452,19 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-3 sm:p-4 overflow-y-auto">
-      <div className={`w-full ${scanState === 'idle' ? 'max-w-4xl' : 'max-w-6xl h-[90vh]'} rounded-2xl shadow-2xl overflow-hidden border transition-all duration-500 flex flex-col my-auto ${
+      <div className={`w-full ${scanState === 'idle' ? 'max-w-4xl' : 'max-w-6xl h-[90vh]'}  shadow-2xl overflow-hidden border transition-all duration-500 flex flex-col my-auto ${
         themeMode === 'dark' ? 'bg-[#292a2d] border-[#3c4043] text-[#e8eaed]' : 'bg-white border-slate-200 text-slate-900'
       }`}>
         {/* Modal Header */}
         <div className="flex items-center justify-between px-5 py-3.5 border-b border-inherit shrink-0">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-blue-500/10 text-blue-500">
+            <div className="p-2  bg-blue-500/10 text-blue-500">
               <Upload className="w-5 h-5" />
             </div>
             <div>
               <h2 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2">
                 <span>Forensic Ingestion & Content Library Verification</span>
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold border border-emerald-500/20 flex items-center gap-1">
+                <span className="text-[10px] px-2 py-0.5 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold border border-emerald-500/20 flex items-center gap-1">
                   <CheckCheck className="w-3 h-3" />
                   Verified Library Connected
                 </span>
@@ -474,7 +474,7 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
           </div>
           <button 
             onClick={onClose} 
-            className={`p-1.5 rounded-lg transition ${themeMode === 'dark' ? 'hover:bg-[#3c4043] text-[#bdc1c6]' : 'hover:bg-slate-100 text-slate-600'}`}
+            className={`p-1.5  transition ${themeMode === 'dark' ? 'hover:bg-[#3c4043] text-[#bdc1c6]' : 'hover:bg-slate-100 text-slate-600'}`}
           >
             <X className="w-5 h-5" />
           </button>
@@ -486,13 +486,13 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
             <div className="p-5 space-y-4 flex-1 overflow-y-auto max-h-[75vh]">
               
               {/* Intent / Purpose Mode Selector */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-1 bg-black/10 rounded-xl">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-1 bg-black/10 ">
                 <button
                   type="button"
                   onClick={() => setUploadPurpose('verify_unrecognized')}
-                  className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg text-xs font-bold transition ${
+                  className={`flex items-center justify-center gap-2 px-3 py-2.5  text-xs font-bold transition ${
                     uploadPurpose === 'verify_unrecognized'
-                      ? 'bg-blue-600 text-white shadow-md'
+                      ? 'bg-slate-700 text-white shadow-md'
                       : 'opacity-70 hover:opacity-100'
                   }`}
                 >
@@ -503,9 +503,9 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setUploadPurpose('register_master')}
-                  className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg text-xs font-bold transition ${
+                  className={`flex items-center justify-center gap-2 px-3 py-2.5  text-xs font-bold transition ${
                     uploadPurpose === 'register_master'
-                      ? 'bg-emerald-600 text-white shadow-md'
+                      ? 'bg-emerald-800 text-white shadow-md'
                       : 'opacity-70 hover:opacity-100'
                   }`}
                 >
@@ -516,7 +516,7 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
 
               {/* Step Guide Workflow Explanation */}
               {uploadPurpose === 'verify_unrecognized' ? (
-                <div className={`p-3 rounded-xl border text-xs flex items-start gap-3 ${
+                <div className={`p-3  border text-xs flex items-start gap-3 ${
                   themeMode === 'dark' ? 'bg-blue-950/30 border-blue-800/40 text-blue-200' : 'bg-blue-50 border-blue-200 text-blue-900'
                 }`}>
                   <HelpCircle className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
@@ -530,7 +530,7 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
                   </div>
                 </div>
               ) : (
-                <div className={`p-3 rounded-xl border text-xs flex items-start gap-3 ${
+                <div className={`p-3  border text-xs flex items-start gap-3 ${
                   themeMode === 'dark' ? 'bg-emerald-950/30 border-emerald-800/40 text-emerald-200' : 'bg-emerald-50 border-emerald-200 text-emerald-900'
                 }`}>
                   <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
@@ -555,7 +555,7 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
                     value={documentTitle}
                     onChange={(e) => setDocumentTitle(e.target.value)}
                     placeholder={uploadPurpose === 'verify_unrecognized' ? "e.g. Inward Suspicious Check Specimen #8491" : "e.g. Acme Corp Master Payroll Check (Verified Original)"}
-                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm outline-none transition font-medium ${
+                    className={`w-full px-3.5 py-2.5  border text-sm outline-none transition font-medium ${
                       themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] focus:border-blue-400 text-white' : 'bg-slate-50 border-slate-300 focus:border-blue-600 text-slate-900'
                     }`}
                   />
@@ -569,7 +569,7 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
                   <select
                     value={libraryCategory}
                     onChange={(e) => setLibraryCategory(e.target.value)}
-                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm outline-none transition font-medium ${
+                    className={`w-full px-3.5 py-2.5  border text-sm outline-none transition font-medium ${
                       themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] focus:border-blue-400 text-white' : 'bg-slate-50 border-slate-300 focus:border-blue-600 text-slate-900'
                     }`}
                   >
@@ -602,7 +602,7 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
                     id="content-library-baseline-select"
                     value={selectedReferenceId}
                     onChange={(e) => setSelectedReferenceId(e.target.value)}
-                    className={`w-full px-3.5 py-2.5 rounded-xl border-2 text-sm font-semibold outline-none transition shadow-sm cursor-pointer ${
+                    className={`w-full px-3.5 py-2.5  border-2 text-sm font-semibold outline-none transition shadow-sm cursor-pointer ${
                       themeMode === 'dark' 
                         ? 'bg-[#202124] border-blue-500 hover:border-blue-400 focus:border-blue-400 text-white focus:ring-2 focus:ring-blue-500/20' 
                         : 'bg-white border-blue-600 hover:border-blue-700 focus:border-blue-600 text-slate-900 focus:ring-2 focus:ring-blue-500/20'
@@ -673,7 +673,7 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
                   <select
                     value={verificationMode}
                     onChange={(e) => setVerificationMode(e.target.value)}
-                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm outline-none transition font-medium ${
+                    className={`w-full px-3.5 py-2.5  border text-sm outline-none transition font-medium ${
                       themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] focus:border-blue-400 text-white' : 'bg-slate-50 border-slate-300 focus:border-blue-600 text-slate-900'
                     }`}
                   >
@@ -697,7 +697,7 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
                   <select
                     value={documentClassification}
                     onChange={(e) => setDocumentClassification(e.target.value)}
-                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm outline-none transition font-medium ${
+                    className={`w-full px-3.5 py-2.5  border text-sm outline-none transition font-medium ${
                       themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] focus:border-blue-400 text-white' : 'bg-slate-50 border-slate-300 focus:border-blue-600 text-slate-900'
                     }`}
                   >
@@ -718,7 +718,7 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
                   <select
                     value={clearinghouseNetwork}
                     onChange={(e) => setClearinghouseNetwork(e.target.value)}
-                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm outline-none transition font-medium ${
+                    className={`w-full px-3.5 py-2.5  border text-sm outline-none transition font-medium ${
                       themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] focus:border-blue-400 text-white' : 'bg-slate-50 border-slate-300 focus:border-blue-600 text-slate-900'
                     }`}
                   >
@@ -735,7 +735,7 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
 
               {/* Active Benchmark Summary Card */}
               {activeReference && (
-                <div className={`p-3.5 rounded-xl border text-xs transition ${
+                <div className={`p-3.5  border text-xs transition ${
                   themeMode === 'dark' 
                     ? 'bg-[#202124] border-blue-500/40' 
                     : 'bg-blue-50/60 border-blue-200'
@@ -744,7 +744,7 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
                     <div className="flex items-center gap-2">
                       <Bookmark className="w-4 h-4 text-blue-500" />
                       <span className="font-bold text-inherit">{activeReference.title}</span>
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold border border-blue-500/20">
+                      <span className="text-[10px] px-2 py-0.5 bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold border border-blue-500/20">
                         {activeReference.categoryLabel}
                       </span>
                     </div>
@@ -776,7 +776,7 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
               )}
 
               {/* Check Fraud & Handwriting Analysis Toggle */}
-              <div className={`p-3 rounded-xl border flex items-center justify-between transition ${
+              <div className={`p-3  border flex items-center justify-between transition ${
                 themeMode === 'dark' ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'
               }`}>
                 <div className="flex items-center gap-3">
@@ -790,13 +790,13 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
                   type="checkbox"
                   checked={includeFraudCheck}
                   onChange={(e) => setIncludeFraudCheck(e.target.checked)}
-                  className="w-4 h-4 accent-blue-600 cursor-pointer rounded"
+                  className="w-4 h-4 accent-blue-600 cursor-pointer "
                 />
               </div>
 
               {/* File Upload Zone / Preview Area */}
               {!previewUrl ? (
-                <label className={`flex flex-col items-center justify-center border-2 border-dashed rounded-2xl p-7 cursor-pointer transition ${
+                <label className={`flex flex-col items-center justify-center border-2 border-dashed  p-7 cursor-pointer transition ${
                   themeMode === 'dark' ? 'border-[#5f6368] hover:border-blue-400 bg-[#202124]/50' : 'border-slate-300 hover:border-blue-500 bg-slate-50'
                 }`}>
                   <Upload className="w-9 h-9 text-blue-500 mb-2 animate-bounce" />
@@ -810,16 +810,16 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
                 </label>
               ) : (
                 <div className="space-y-3">
-                  <div className="relative rounded-xl overflow-hidden border border-inherit max-h-52 flex items-center justify-center bg-black/40">
+                  <div className="relative  overflow-hidden border border-inherit max-h-52 flex items-center justify-center bg-black/40">
                     <img src={previewUrl} alt="Preview" className="max-h-48 object-contain" />
                     <button
                       onClick={() => { setPreviewUrl(null); setSelectedFile(null); }}
-                      className="absolute top-2 right-2 px-3 py-1 bg-black/70 text-white rounded-lg text-xs font-medium hover:bg-black/90 shadow-sm"
+                      className="absolute top-2 right-2 px-3 py-1 bg-black/70 text-white  text-xs font-medium hover:bg-black/90 shadow-sm"
                     >
                       Change File
                     </button>
                   </div>
-                  <div className="flex items-center justify-between text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-3.5 py-2 rounded-lg border border-emerald-500/20">
+                  <div className="flex items-center justify-between text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-3.5 py-2  border border-emerald-500/20">
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 shrink-0" />
                       <span className="font-semibold">Loaded: {selectedFile?.name} ({(selectedFile ? selectedFile.size / 1024 : 0).toFixed(1)} KB)</span>
@@ -832,7 +832,7 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
               )}
 
               {scanError && (
-                <div className="flex items-center gap-2 text-xs text-rose-500 bg-rose-500/10 p-3 rounded-lg border border-rose-500/20">
+                <div className="flex items-center gap-2 text-xs text-rose-500 bg-rose-500/10 p-3  border border-rose-500/20">
                   <AlertTriangle className="w-4 h-4 shrink-0" />
                   <span>{scanError}</span>
                 </div>
@@ -849,14 +849,14 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
               <div className="flex items-center gap-3 ml-auto">
                 <button
                   onClick={onClose}
-                  className="px-4 py-2 rounded-xl text-sm font-medium opacity-75 hover:opacity-100 transition"
+                  className="px-4 py-2  text-sm font-medium opacity-75 hover:opacity-100 transition"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleStartAnalysis}
                   disabled={!previewUrl}
-                  className="flex items-center gap-2 px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold shadow-lg shadow-blue-500/25 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center gap-2 px-5 py-2  bg-slate-700 hover:bg-slate-600 text-white text-sm font-semibold shadow-lg shadow-blue-500/25 transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <FileText className="w-4 h-4" />
                   <span>{uploadPurpose === 'verify_unrecognized' ? 'Run 12-Point Forensic Cross-Reference' : 'Analyze & Register Master Check'}</span>
@@ -871,18 +871,18 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
             <div className={`w-full md:w-1/3 border-b md:border-b-0 md:border-r border-inherit p-4 flex flex-col justify-center relative ${
               themeMode === 'dark' ? 'bg-[#202124]' : 'bg-slate-100/50'
             }`}>
-              <div className="relative rounded-lg overflow-hidden border border-inherit shadow-md w-full flex items-center justify-center bg-black/20">
+              <div className="relative  overflow-hidden border border-inherit shadow-md w-full flex items-center justify-center bg-black/20">
                 <img src={previewUrl!} alt="Document Scan" className="max-w-full max-h-[50vh] object-contain opacity-90" />
                 
                 {/* CSS Laser Scanner Overlay */}
                 {scanState === 'analyzing' && (
-                  <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden rounded-lg">
+                  <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden ">
                     <div className="w-full h-1 bg-cyan-400 shadow-[0_0_12px_3px_rgba(34,211,238,0.7)] animate-[bounce_3s_ease-in-out_infinite]" />
                   </div>
                 )}
                 {scanState === 'complete' && (
-                  <div className="absolute inset-0 z-10 pointer-events-none border-4 border-emerald-500/50 rounded-lg flex items-center justify-center">
-                    <div className="bg-emerald-500/90 text-white px-4 py-2 rounded-full font-bold flex items-center gap-2 shadow-xl backdrop-blur-sm text-xs">
+                  <div className="absolute inset-0 z-10 pointer-events-none border-4 border-emerald-500/50  flex items-center justify-center">
+                    <div className="bg-emerald-500/90 text-white px-4 py-2 font-bold flex items-center gap-2 shadow-xl backdrop-blur-sm text-xs">
                       <CheckCircle2 className="w-4 h-4" />
                       <span>Forensic Cross-Reference Complete</span>
                     </div>
@@ -913,7 +913,7 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
                     <span className="text-[11px] font-bold opacity-75 font-mono">
                       {Math.max(0, Math.round(((currentStageIndex + 1) / activeStages.length) * 100))}%
                     </span>
-                    <div className="flex items-center gap-1.5 text-blue-500 bg-blue-500/10 px-2.5 py-1 rounded-full text-xs font-bold">
+                    <div className="flex items-center gap-1.5 text-blue-500 bg-blue-500/10 px-2.5 py-1 text-xs font-bold">
                       <Loader2 className="w-3 h-3 animate-spin" />
                       <span>Auditing...</span>
                     </div>
@@ -927,12 +927,12 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
                         : '100% Verified'}
                     </span>
                     {finalData?.data?.template?.isFraudulent || (finalData?.data?.template?.riskScore || 0) > 40 ? (
-                      <div className="flex items-center gap-1.5 text-rose-500 bg-rose-500/10 px-2.5 py-1 rounded-full text-xs font-bold border border-rose-500/20">
+                      <div className="flex items-center gap-1.5 text-rose-500 bg-rose-500/10 px-2.5 py-1 text-xs font-bold border border-rose-500/20">
                         <ShieldAlert className="w-3.5 h-3.5" />
                         <span>Critical Anomalies Flagged</span>
                       </div>
                     ) : (
-                      <div className="flex items-center gap-1.5 text-emerald-500 bg-emerald-500/10 px-2.5 py-1 rounded-full text-xs font-bold border border-emerald-500/20">
+                      <div className="flex items-center gap-1.5 text-emerald-500 bg-emerald-500/10 px-2.5 py-1 text-xs font-bold border border-emerald-500/20">
                         <CheckCircle2 className="w-3.5 h-3.5" />
                         <span>All Passed (Clean)</span>
                       </div>
@@ -1078,7 +1078,7 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
                   {scanState === 'analyzing' && (
                     <button
                       onClick={handleAbortScan}
-                      className="px-3.5 py-1.5 rounded-xl border border-rose-500/50 text-rose-500 hover:bg-rose-500 hover:text-white text-xs font-medium transition"
+                      className="px-3.5 py-1.5  border border-rose-500/50 text-rose-500 hover:bg-rose-500 hover:text-white text-xs font-medium transition"
                     >
                       Abort Scan
                     </button>
@@ -1086,10 +1086,10 @@ export const UploadScanModal: React.FC<UploadScanModalProps> = ({
                   <button
                     onClick={handleFinish}
                     disabled={scanState !== 'complete' || !finalData}
-                    className={`flex items-center gap-2 px-5 py-2 rounded-xl text-white text-xs font-semibold shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed ${
+                    className={`flex items-center gap-2 px-5 py-2  text-white text-xs font-semibold shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed ${
                       finalData?.data?.template?.isFraudulent
-                        ? 'bg-rose-600 hover:bg-rose-700 shadow-rose-500/25'
-                        : 'bg-blue-600 hover:bg-blue-700 shadow-blue-500/25'
+                        ? 'bg-rose-800 hover:bg-rose-700 shadow-rose-500/25'
+                        : 'bg-slate-700 hover:bg-slate-600 shadow-blue-500/25'
                     }`}
                   >
                     {scanState === 'complete' && !finalData ? (

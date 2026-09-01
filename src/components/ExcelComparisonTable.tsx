@@ -300,7 +300,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
   const flaggedCount = rows.filter(r => r.status === 'flagged').length;
 
   return (
-    <div className={`flex flex-col h-full rounded-xl border overflow-hidden shadow-xs ${
+    <div className={`flex flex-col h-full  border overflow-hidden shadow-xs ${
       themeMode === 'dark' ? 'bg-[#252629] border-[#3c4043] text-[#e8eaed]' : 'bg-white border-slate-200 text-slate-800'
     }`}>
       {/* Top Header & Cross-Ref Toolbar */}
@@ -308,13 +308,13 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
         themeMode === 'dark' ? 'bg-[#2d2e31] border-[#3c4043]' : 'bg-slate-50 border-slate-200'
       }`}>
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-500">
+          <div className="p-2  bg-emerald-500/10 text-emerald-500">
             <FileSpreadsheet className="w-5 h-5" />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <h3 className="font-bold text-sm uppercase tracking-wider">Excel Cross-Reference & Line-Item Auditor</h3>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-bold">
+              <span className="text-[10px] font-mono px-2 py-0.5  bg-blue-500/10 text-blue-400 border border-blue-500/20 font-bold">
                 {rows.length} Active Lines
               </span>
             </div>
@@ -329,7 +329,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
           {/* Add Manual Line Button */}
           <button
             onClick={() => setIsAddModalOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-xs transition"
+            className="flex items-center gap-1.5 px-3 py-1.5  bg-emerald-800 hover:bg-emerald-700 text-white font-semibold text-xs shadow-xs transition"
             title="Manually enter a new cross-reference item"
           >
             <Plus className="w-3.5 h-3.5" />
@@ -339,7 +339,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
           {/* Export CSV Button */}
           <button
             onClick={handleExportCSV}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium text-xs border transition ${
+            className={`flex items-center gap-1.5 px-3 py-1.5  font-medium text-xs border transition ${
               themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] hover:bg-[#3c4043] text-slate-200' : 'bg-white border-slate-300 hover:bg-slate-100 text-slate-700'
             }`}
             title="Download CSV spreadsheet"
@@ -351,7 +351,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
           {/* Reset to Bank Standard Defaults */}
           <button
             onClick={handleResetDefaults}
-            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg font-medium text-xs border transition ${
+            className={`flex items-center gap-1.5 px-2.5 py-1.5  font-medium text-xs border transition ${
               themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] hover:bg-[#3c4043] text-slate-300' : 'bg-white border-slate-300 hover:bg-slate-100 text-slate-600'
             }`}
             title="Reset table to default bank specification rules"
@@ -368,7 +368,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
             <select
               value={selectedStandardId}
               onChange={(e) => setSelectedStandardId(e.target.value)}
-              className={`px-2.5 py-1.5 rounded-lg border outline-none font-medium text-xs ${
+              className={`px-2.5 py-1.5  border outline-none font-medium text-xs ${
                 themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] text-[#e8eaed]' : 'bg-white border-slate-300 text-slate-800'
               }`}
             >
@@ -403,18 +403,18 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
 
         {/* Audit Metrics Badges */}
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 font-medium text-[11px] border border-emerald-500/20">
+          <div className="flex items-center gap-1 px-2 py-0.5  bg-emerald-500/10 text-emerald-500 font-medium text-[11px] border border-emerald-500/20">
             <CheckCircle2 className="w-3 h-3" />
             <span>{matchCount} Match</span>
           </div>
           {mismatchCount > 0 && (
-            <div className="flex items-center gap-1 px-2 py-0.5 rounded bg-rose-500/10 text-rose-500 font-medium text-[11px] border border-rose-500/20">
+            <div className="flex items-center gap-1 px-2 py-0.5  bg-rose-500/10 text-rose-500 font-medium text-[11px] border border-rose-500/20">
               <XCircle className="w-3 h-3" />
               <span>{mismatchCount} Discrepancy</span>
             </div>
           )}
           {flaggedCount > 0 && (
-            <div className="flex items-center gap-1 px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-medium text-[11px] border border-amber-500/20">
+            <div className="flex items-center gap-1 px-2 py-0.5  bg-amber-500/10 text-amber-500 font-medium text-[11px] border border-amber-500/20">
               <AlertTriangle className="w-3 h-3" />
               <span>{flaggedCount} Flagged</span>
             </div>
@@ -473,7 +473,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
                           value={editForm.field}
                           onChange={(e) => setEditForm({ ...editForm, field: e.target.value })}
                           placeholder="Field name (e.g. Payee Line)"
-                          className={`w-full px-2.5 py-1.5 rounded border text-xs outline-none font-bold ${
+                          className={`w-full px-2.5 py-1.5  border text-xs outline-none font-bold ${
                             themeMode === 'dark' ? 'bg-[#202124] border-blue-500 text-white' : 'bg-white border-blue-500 text-slate-900'
                           }`}
                         />
@@ -484,7 +484,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
                           value={editForm.ocrValue}
                           onChange={(e) => setEditForm({ ...editForm, ocrValue: e.target.value })}
                           placeholder="OCR reading or manual entry"
-                          className={`w-full px-2.5 py-1.5 rounded border text-xs outline-none font-mono resize-none ${
+                          className={`w-full px-2.5 py-1.5  border text-xs outline-none font-mono resize-none ${
                             themeMode === 'dark' ? 'bg-[#202124] border-blue-500 text-blue-300' : 'bg-white border-blue-500 text-blue-700'
                           }`}
                         />
@@ -495,7 +495,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
                           value={editForm.referenceValue}
                           onChange={(e) => setEditForm({ ...editForm, referenceValue: e.target.value })}
                           placeholder="Target standard reference"
-                          className={`w-full px-2.5 py-1.5 rounded border text-xs outline-none font-mono resize-none ${
+                          className={`w-full px-2.5 py-1.5  border text-xs outline-none font-mono resize-none ${
                             themeMode === 'dark' ? 'bg-[#202124] border-blue-500 text-slate-200' : 'bg-white border-blue-500 text-slate-800'
                           }`}
                         />
@@ -504,7 +504,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
                         <select
                           value={editForm.status}
                           onChange={(e) => setEditForm({ ...editForm, status: e.target.value as any })}
-                          className={`w-full px-2 py-1.5 rounded border text-xs outline-none font-bold ${
+                          className={`w-full px-2 py-1.5  border text-xs outline-none font-bold ${
                             themeMode === 'dark' ? 'bg-[#202124] border-blue-500 text-white' : 'bg-white border-blue-500 text-slate-900'
                           }`}
                         >
@@ -518,14 +518,14 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
                         <div className="flex items-center justify-center gap-1.5">
                           <button
                             onClick={() => handleSaveEdit(row.id)}
-                            className="p-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded shadow-xs transition"
+                            className="p-1.5 bg-emerald-800 hover:bg-emerald-700 text-white  shadow-xs transition"
                             title="Save Row Changes"
                           >
                             <Check className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={handleCancelEdit}
-                            className="p-1.5 bg-slate-600 hover:bg-slate-700 text-white rounded shadow-xs transition"
+                            className="p-1.5 bg-slate-600 hover:bg-slate-700 text-white  shadow-xs transition"
                             title="Cancel Editing"
                           >
                             <X className="w-3.5 h-3.5" />
@@ -573,7 +573,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
 
                     {/* Rule Status Badge */}
                     <td className="px-3 py-2.5 border-r border-inherit">
-                      <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                      <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-bold ${
                         isMatch 
                           ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30'
                           : isFlagged
@@ -595,10 +595,10 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
                         {/* Edit Row Button */}
                         <button
                           onClick={() => handleStartEdit(row)}
-                          className={`p-1.5 rounded transition ${
+                          className={`p-1.5  transition ${
                             themeMode === 'dark' 
-                              ? 'bg-[#3c4043] hover:bg-blue-600 text-blue-400 hover:text-white' 
-                              : 'bg-slate-100 hover:bg-blue-600 text-blue-600 hover:text-white'
+                              ? 'bg-[#3c4043] hover:bg-slate-700 text-blue-400 hover:text-white' 
+                              : 'bg-slate-100 hover:bg-slate-700 text-blue-600 hover:text-white'
                           }`}
                           title="Edit Row Details"
                         >
@@ -608,10 +608,10 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
                         {/* Insert Row Above/Below */}
                         <button
                           onClick={() => handleInsertRow(index, 'below')}
-                          className={`p-1.5 rounded transition ${
+                          className={`p-1.5  transition ${
                             themeMode === 'dark' 
-                              ? 'bg-[#3c4043] hover:bg-emerald-600 text-emerald-400 hover:text-white' 
-                              : 'bg-slate-100 hover:bg-emerald-600 text-emerald-600 hover:text-white'
+                              ? 'bg-[#3c4043] hover:bg-emerald-800 text-emerald-400 hover:text-white' 
+                              : 'bg-slate-100 hover:bg-emerald-800 text-emerald-600 hover:text-white'
                           }`}
                           title="Insert New Row Below"
                         >
@@ -621,10 +621,10 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
                         {/* Duplicate Row */}
                         <button
                           onClick={() => handleDuplicateRow(row)}
-                          className={`p-1.5 rounded transition ${
+                          className={`p-1.5  transition ${
                             themeMode === 'dark' 
-                              ? 'bg-[#3c4043] hover:bg-purple-600 text-purple-400 hover:text-white' 
-                              : 'bg-slate-100 hover:bg-purple-600 text-purple-600 hover:text-white'
+                              ? 'bg-[#3c4043] hover:bg-purple-800 text-purple-400 hover:text-white' 
+                              : 'bg-slate-100 hover:bg-purple-800 text-purple-600 hover:text-white'
                           }`}
                           title="Duplicate Row"
                         >
@@ -634,10 +634,10 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
                         {/* Delete Row Button */}
                         <button
                           onClick={() => handleDeleteRow(row.id)}
-                          className={`p-1.5 rounded transition ${
+                          className={`p-1.5  transition ${
                             themeMode === 'dark' 
-                              ? 'bg-[#3c4043] hover:bg-rose-600 text-rose-400 hover:text-white' 
-                              : 'bg-slate-100 hover:bg-rose-600 text-rose-600 hover:text-white'
+                              ? 'bg-[#3c4043] hover:bg-rose-800 text-rose-400 hover:text-white' 
+                              : 'bg-slate-100 hover:bg-rose-800 text-rose-600 hover:text-white'
                           }`}
                           title="Delete Row"
                         >
@@ -675,7 +675,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
       {/* Modal for Adding New Item / Line */}
       {isAddModalOpen && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-xs">
-          <div className={`w-full max-w-lg rounded-2xl border p-6 shadow-2xl space-y-4 animate-in fade-in zoom-in-95 duration-150 ${
+          <div className={`w-full max-w-lg  border p-6 shadow-2xl space-y-4 animate-in fade-in zoom-in-95 duration-150 ${
             themeMode === 'dark' ? 'bg-[#292a2d] border-[#3c4043] text-white' : 'bg-white border-slate-200 text-slate-800'
           }`}>
             <div className="flex items-center justify-between border-b border-inherit pb-3">
@@ -685,7 +685,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
               </div>
               <button 
                 onClick={() => setIsAddModalOpen(false)}
-                className="p-1 rounded hover:bg-black/10 dark:hover:bg-white/10"
+                className="p-1  hover:bg-black/10 dark:hover:bg-white/10"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -702,7 +702,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
                   value={newRowData.field}
                   onChange={(e) => setNewRowData({ ...newRowData, field: e.target.value })}
                   placeholder="e.g. Authorized Signatory Line, Micro-print Line, Bank Routing..."
-                  className={`w-full px-3 py-2 rounded-lg border text-xs outline-none ${
+                  className={`w-full px-3 py-2  border text-xs outline-none ${
                     themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] focus:border-blue-400' : 'bg-slate-50 border-slate-300 focus:border-blue-600'
                   }`}
                 />
@@ -717,7 +717,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
                   value={newRowData.ocrValue}
                   onChange={(e) => setNewRowData({ ...newRowData, ocrValue: e.target.value })}
                   placeholder="e.g. John Doe / $5,000.00 / 021000021"
-                  className={`w-full px-3 py-2 rounded-lg border text-xs outline-none font-mono ${
+                  className={`w-full px-3 py-2  border text-xs outline-none font-mono ${
                     themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] focus:border-blue-400' : 'bg-slate-50 border-slate-300 focus:border-blue-600'
                   }`}
                 />
@@ -732,7 +732,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
                   value={newRowData.referenceValue}
                   onChange={(e) => setNewRowData({ ...newRowData, referenceValue: e.target.value })}
                   placeholder="e.g. Must match authorized signatory card on file"
-                  className={`w-full px-3 py-2 rounded-lg border text-xs outline-none font-mono ${
+                  className={`w-full px-3 py-2  border text-xs outline-none font-mono ${
                     themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] focus:border-blue-400' : 'bg-slate-50 border-slate-300 focus:border-blue-600'
                   }`}
                 />
@@ -745,7 +745,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
                 <select
                   value={newRowData.status}
                   onChange={(e) => setNewRowData({ ...newRowData, status: e.target.value as any })}
-                  className={`w-full px-3 py-2 rounded-lg border text-xs outline-none font-bold ${
+                  className={`w-full px-3 py-2  border text-xs outline-none font-bold ${
                     themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                   }`}
                 >
@@ -760,7 +760,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
                 <button
                   type="button"
                   onClick={() => setIsAddModalOpen(false)}
-                  className={`px-4 py-2 rounded-lg text-xs font-medium border ${
+                  className={`px-4 py-2  text-xs font-medium border ${
                     themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] text-slate-300' : 'bg-white border-slate-300 text-slate-700'
                   }`}
                 >
@@ -768,7 +768,7 @@ export const ExcelComparisonTable: React.FC<ExcelComparisonTableProps> = ({
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-xs transition"
+                  className="px-5 py-2  bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-semibold shadow-xs transition"
                 >
                   Add Cross-Ref Line
                 </button>

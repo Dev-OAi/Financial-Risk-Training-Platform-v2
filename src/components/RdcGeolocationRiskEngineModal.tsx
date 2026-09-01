@@ -76,7 +76,7 @@ export const RdcGeolocationRiskEngineModal: React.FC<RdcGeolocationRiskEngineMod
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-xs p-4">
-      <div className={`w-full max-w-3xl rounded-2xl border shadow-2xl overflow-hidden flex flex-col max-h-[90vh] ${
+      <div className={`w-full max-w-3xl  border shadow-2xl overflow-hidden flex flex-col max-h-[90vh] ${
         themeMode === 'dark' ? 'bg-[#202124] border-[#3c4043] text-[#e8eaed]' : 'bg-white border-slate-200 text-slate-900'
       }`}>
         {/* Header */}
@@ -90,7 +90,7 @@ export const RdcGeolocationRiskEngineModal: React.FC<RdcGeolocationRiskEngineMod
               <p className="text-xs opacity-75">Correlate IP, GPS, and device fingerprint against account holder profiles</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-lg opacity-75 hover:opacity-100 hover:bg-black/10 transition">
+          <button onClick={onClose} className="p-1.5  opacity-75 hover:opacity-100 hover:bg-black/10 transition">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -105,7 +105,7 @@ export const RdcGeolocationRiskEngineModal: React.FC<RdcGeolocationRiskEngineMod
               </label>
 
               {!fileName ? (
-                <label className={`border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer transition ${
+                <label className={`border-2 border-dashed  p-8 flex flex-col items-center justify-center cursor-pointer transition ${
                   themeMode === 'dark' ? 'border-[#5f6368] hover:border-indigo-400 bg-[#292a2d]' : 'border-slate-300 hover:border-indigo-600 bg-slate-50'
                 }`}>
                   <FileJson className="w-8 h-8 text-indigo-500 mb-2" />
@@ -114,14 +114,14 @@ export const RdcGeolocationRiskEngineModal: React.FC<RdcGeolocationRiskEngineMod
                   <input type="file" onChange={handleFileChange} className="hidden" />
                 </label>
               ) : (
-                <div className={`relative rounded-xl border p-4 flex flex-col items-center justify-center text-center space-y-2 ${
+                <div className={`relative  border p-4 flex flex-col items-center justify-center text-center space-y-2 ${
                   themeMode === 'dark' ? 'border-[#5f6368] bg-[#292a2d]' : 'border-slate-300 bg-slate-50'
                 }`}>
                   <FileJson className="w-8 h-8 text-indigo-500" />
                   <span className="text-xs font-medium break-all">{fileName}</span>
                   <button
                     onClick={() => { setFileName(null); setSelectedFile(null); setEngineResult(null); }}
-                    className="mt-2 px-3 py-1 rounded bg-rose-600/80 hover:bg-rose-600 text-white text-xs font-medium transition"
+                    className="mt-2 px-3 py-1  bg-rose-800/80 hover:bg-rose-800 text-white text-xs font-medium transition"
                   >
                     Remove Payload
                   </button>
@@ -132,11 +132,11 @@ export const RdcGeolocationRiskEngineModal: React.FC<RdcGeolocationRiskEngineMod
                 <button
                   onClick={handleRunEngine}
                   disabled={isAnalyzing}
-                  className="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow flex items-center justify-center gap-2 transition disabled:opacity-50"
+                  className="w-full py-2.5  bg-indigo-800 hover:bg-indigo-700 text-white font-bold text-xs shadow flex items-center justify-center gap-2 transition disabled:opacity-50"
                 >
                   {isAnalyzing ? (
                     <>
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent animate-spin" />
                       <span>Correlating Telemetry...</span>
                     </>
                   ) : (
@@ -155,7 +155,7 @@ export const RdcGeolocationRiskEngineModal: React.FC<RdcGeolocationRiskEngineMod
                 Engine JSON Output
               </label>
 
-              <div className={`flex-1 rounded-xl p-4 font-mono text-xs border overflow-y-auto ${
+              <div className={`flex-1  p-4 font-mono text-xs border overflow-y-auto ${
                 themeMode === 'dark' ? 'bg-[#18191c] border-[#3c4043]' : 'bg-slate-900 text-slate-100 border-slate-800'
               }`}>
                 {engineResult ? (
@@ -173,7 +173,7 @@ export const RdcGeolocationRiskEngineModal: React.FC<RdcGeolocationRiskEngineMod
           </div>
 
           {engineResult && (
-            <div className={`p-4 rounded-xl border flex items-center justify-between ${
+            <div className={`p-4  border flex items-center justify-between ${
               engineResult.findings.risk_score > 75
                 ? 'bg-rose-500/10 border-rose-500/30 text-rose-400'
                 : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
@@ -194,7 +194,7 @@ export const RdcGeolocationRiskEngineModal: React.FC<RdcGeolocationRiskEngineMod
                 </div>
               </div>
               <div className="flex flex-col items-end gap-1">
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded bg-black/20 uppercase tracking-wider`}>
+                <span className={`text-[10px] font-bold px-2 py-0.5  bg-black/20 uppercase tracking-wider`}>
                   Risk Score
                 </span>
                 <span className="font-mono text-xs">
@@ -211,7 +211,7 @@ export const RdcGeolocationRiskEngineModal: React.FC<RdcGeolocationRiskEngineMod
         }`}>
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow transition"
+            className="px-4 py-2  bg-slate-700 hover:bg-slate-600 text-white font-medium text-xs shadow transition"
           >
             Close Risk Engine
           </button>

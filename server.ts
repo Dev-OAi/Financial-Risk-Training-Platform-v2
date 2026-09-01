@@ -6,6 +6,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+
+
 const app = express();
 const PORT = 3000;
 
@@ -208,10 +210,10 @@ For each stage specify:
     };
 
     let response;
-    let usedModel = "gemini-3.7-flash";
+    let usedModel = "gemini-2.5-flash";
     try {
       response = await ai.models.generateContent({
-        model: "gemini-3.7-flash",
+        model: "gemini-2.5-flash",
         contents: [
           {
             inlineData: {
@@ -229,10 +231,10 @@ For each stage specify:
         }
       });
     } catch (primaryError: any) {
-      console.warn("gemini-3.7-flash high demand/rate limit, falling back to gemini-3.1-flash-lite...", primaryError?.message || primaryError);
-      usedModel = "gemini-3.1-flash-lite";
+      console.log("gemini-2.5-flash high demand/rate limit, retrying...", primaryError?.message || primaryError);
+      usedModel = "gemini-2.5-flash";
       response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
+        model: "gemini-2.5-flash",
         contents: [
           {
             inlineData: {
@@ -264,7 +266,7 @@ For each stage specify:
     });
 
   } catch (error: any) {
-    console.warn("OCR Vision Scan using fallback heuristic parser:", error?.message || error);
+    console.log("OCR Vision Scan using fallback heuristic parser:", error?.message || error);
     const { imageBase64, documentTitle = "Uploaded Specimen", referenceStandardTitle = "Wells Fargo Business Banking" } = req.body;
     
     // Comprehensive fallback forensic evaluator
@@ -556,10 +558,10 @@ app.post("/api/generate-template", async (req, res) => {
     - hotspots (array of 4-6 objects with: id, title, x (percentage 10-85), y (percentage 20-85), riskLevel ("low" | "medium" | "high" | "critical"), titleDescription, detail)`;
 
     let response;
-    let usedModel = "gemini-3.7-flash";
+    let usedModel = "gemini-2.5-flash";
     try {
       response = await ai.models.generateContent({
-        model: "gemini-3.7-flash",
+        model: "gemini-2.5-flash",
         contents: aiPrompt,
         config: {
           responseMimeType: "application/json",
@@ -596,10 +598,10 @@ app.post("/api/generate-template", async (req, res) => {
         }
       });
     } catch (primaryError: any) {
-      console.warn("gemini-3.7-flash high demand/rate limit, falling back to gemini-3.1-flash-lite...", primaryError?.message || primaryError);
-      usedModel = "gemini-3.1-flash-lite";
+      console.log("gemini-2.5-flash high demand/rate limit, retrying...", primaryError?.message || primaryError);
+      usedModel = "gemini-2.5-flash";
       response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
+        model: "gemini-2.5-flash",
         contents: aiPrompt,
         config: {
           responseMimeType: "application/json",
@@ -648,7 +650,7 @@ app.post("/api/generate-template", async (req, res) => {
       }
     });
   } catch (error: any) {
-    console.error("AI Generation Error / Quota Exhausted, falling back:", error);
+    console.log("AI Generation Error / Quota Exhausted, falling back:", error);
     const { prompt, theme = "blue", isFraudulent = false } = req.body;
     res.json({
       success: true,
@@ -1123,10 +1125,10 @@ Respond ONLY with a valid JSON object matching the schema.`;
     }
 
     let response;
-    let modelName = "gemini-3.7-flash";
+    let modelName = "gemini-2.5-flash";
     try {
       response = await ai.models.generateContent({
-        model: "gemini-3.7-flash",
+        model: "gemini-2.5-flash",
         contents: contents,
         config: {
           responseMimeType: "application/json",
@@ -1134,9 +1136,9 @@ Respond ONLY with a valid JSON object matching the schema.`;
         }
       });
     } catch (err: any) {
-      modelName = "gemini-3.1-flash-lite";
+      modelName = "gemini-2.5-flash";
       response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
+        model: "gemini-2.5-flash",
         contents: contents,
         config: {
           responseMimeType: "application/json",
@@ -1178,7 +1180,7 @@ Respond ONLY with a valid JSON object matching the schema.`;
       result: parsed
     });
   } catch (error: any) {
-    console.error("Build-a-Thon check fraud parser error:", error);
+    console.log("Build-a-Thon check fraud parser error:", error);
     res.status(500).json({
       success: false,
       error: error?.message || "Failed to execute Build-a-Thon check fraud parser",
@@ -1262,19 +1264,19 @@ TASK REQUIREMENTS:
 Respond strictly in valid JSON format.`;
 
     let response;
-    let modelName = "gemini-3.7-flash";
+    let modelName = "gemini-2.5-flash";
     try {
       response = await ai.models.generateContent({
-        model: "gemini-3.7-flash",
+        model: "gemini-2.5-flash",
         contents: candidatePrompt,
         config: {
           responseMimeType: "application/json"
         }
       });
     } catch (err: any) {
-      modelName = "gemini-3.1-flash-lite";
+      modelName = "gemini-2.5-flash";
       response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
+        model: "gemini-2.5-flash",
         contents: candidatePrompt,
         config: {
           responseMimeType: "application/json"
@@ -1289,7 +1291,7 @@ Respond strictly in valid JSON format.`;
       output: parsed
     });
   } catch (error: any) {
-    console.error("Build-a-Thon candidate runner error:", error);
+    console.log("Build-a-Thon candidate runner error:", error);
     res.status(500).json({
       success: false,
       error: error?.message || "Failed to execute candidate AI workflow"

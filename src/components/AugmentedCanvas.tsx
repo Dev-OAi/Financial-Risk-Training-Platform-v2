@@ -25,17 +25,17 @@ export const AugmentedCanvas: React.FC<AugmentedCanvasProps> = ({
   return (
     <div className="w-full flex-1 flex flex-col items-center justify-start p-2 sm:p-3.5 overflow-y-auto">
       {/* Top Banner / Risk Badge & Heatmap Toggle */}
-      <div className={`w-full max-w-5xl mb-2.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 px-3.5 py-2.5 rounded-lg border shadow-xs transition-colors ${
+      <div className={`w-full max-w-5xl mb-2.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 px-3.5 py-2.5  border shadow-xs transition-colors ${
         themeMode === 'dark' ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-[#dadce0]'
       }`}>
         <div className="flex items-center gap-2.5 min-w-0">
-          <div className={`p-2 rounded-lg shrink-0 ${template.isFraudulent ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}`}>
+          <div className={`p-2  shrink-0 ${template.isFraudulent ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}`}>
             {template.isFraudulent ? <ShieldAlert className="w-4 h-4" /> : <ShieldCheck className="w-4 h-4" />}
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
               <h2 className="text-xs sm:text-sm font-bold text-inherit truncate">{template.title}</h2>
-              <span className={`text-[9px] px-1.5 py-0.5 rounded font-semibold ${
+              <span className={`text-[9px] px-1.5 py-0.5  font-semibold ${
                 template.isFraudulent ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
               }`}>
                 {template.isFraudulent ? 'HIGH FRAUD PROBABILITY' : 'COMPLIANT TRAINING SAMPLE'}
@@ -49,7 +49,7 @@ export const AugmentedCanvas: React.FC<AugmentedCanvasProps> = ({
         <div className="flex items-center gap-2.5 shrink-0 flex-wrap">
           <button
             onClick={() => setShowHeatmap(!showHeatmap)}
-            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition border ${
+            className={`flex items-center gap-1.5 px-2.5 py-1.5  text-xs font-semibold transition border ${
               showHeatmap 
                 ? 'bg-amber-500/20 border-amber-500/40 text-amber-400' 
                 : themeMode === 'dark' ? 'bg-[#323639] border-[#3c4043] text-slate-300 hover:bg-[#3c4043]' : 'bg-slate-100 border-slate-300 text-slate-700 hover:bg-slate-200'
@@ -60,7 +60,7 @@ export const AugmentedCanvas: React.FC<AugmentedCanvasProps> = ({
             <span>Heatmap: {showHeatmap ? 'ON' : 'OFF'}</span>
           </button>
 
-          <div className={`flex items-center gap-3 px-3 py-1.5 rounded-lg border shrink-0 ${
+          <div className={`flex items-center gap-3 px-3 py-1.5  border shrink-0 ${
             themeMode === 'dark' ? 'bg-[#323639] border-[#3c4043]' : 'bg-[#f8f9fa] border-[#dadce0]'
           }`}>
             <div>
@@ -83,9 +83,9 @@ export const AugmentedCanvas: React.FC<AugmentedCanvasProps> = ({
         
         {/* Primary Document Canvas */}
         <div className="relative flex flex-col items-center w-full">
-          <div className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5 flex items-center gap-1.5 self-start">
-            <Sparkles className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
-            <span>{comparisonMode === 'compare' ? 'Primary Document (Sample A)' : 'Augmented Training Canvas'}</span>
+          <div className={`text-[11px] font-semibold uppercase tracking-wider mb-1.5 flex items-center gap-1.5 self-start ${template.isFraudulent ? 'text-rose-600 dark:text-rose-400' : 'text-slate-700 dark:text-slate-300'}`}>
+            {template.isFraudulent ? <ShieldAlert className="w-3 h-3" /> : <Sparkles className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />}
+            <span>{comparisonMode === 'compare' ? `Primary Document (Sample A - ${template.isFraudulent ? 'Fraudulent Variant' : 'Genuine Sample'})` : 'Augmented Training Canvas'}</span>
           </div>
 
           <DocumentSvgRenderer 
@@ -100,9 +100,9 @@ export const AugmentedCanvas: React.FC<AugmentedCanvasProps> = ({
         {/* Comparison Document Canvas (If Compare Mode Active) */}
         {comparisonMode === 'compare' && comparisonTemplate && (
           <div className="relative flex flex-col items-center w-full">
-            <div className="text-[11px] font-semibold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5 self-start">
-              <ShieldAlert className="w-3 h-3" />
-              <span>Comparison Document (Sample B - Fraudulent Variant)</span>
+            <div className={`text-[11px] font-semibold uppercase tracking-wider mb-1.5 flex items-center gap-1.5 self-start ${comparisonTemplate.isFraudulent ? 'text-rose-600 dark:text-rose-400' : 'text-slate-700 dark:text-slate-300'}`}>
+              {comparisonTemplate.isFraudulent ? <ShieldAlert className="w-3 h-3" /> : <Sparkles className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />}
+              <span>{`Comparison Document (Sample B - ${comparisonTemplate.isFraudulent ? 'Fraudulent Variant' : 'Genuine Sample'})`}</span>
             </div>
 
             <DocumentSvgRenderer 
@@ -135,7 +135,7 @@ const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
   showHeatmap,
 }) => {
   return (
-    <div id={`document-canvas-${template.id}`} className={`relative w-full aspect-[1.95/1] max-w-5xl rounded-lg border shadow-xs p-1 sm:p-2 overflow-hidden flex items-center justify-center select-none group transition-colors ${
+    <div id={`document-canvas-${template.id}`} className={`relative w-full aspect-[1.95/1] max-w-5xl  border shadow-xs p-1 sm:p-2 overflow-hidden flex items-center justify-center select-none group transition-colors ${
       themeMode === 'dark' ? 'bg-slate-900 border-slate-700' : 'bg-slate-50 border-slate-300'
     }`}>
       
@@ -158,7 +158,7 @@ const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
             return (
               <div
                 key={`heatmap-${spot.id}`}
-                className={`absolute rounded-full filter blur-xl transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
+                className={`absolute filter blur-xl transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
                   isCritical 
                     ? 'w-36 h-36 bg-rose-500/40 animate-pulse' 
                     : 'w-28 h-28 bg-emerald-500/30'
@@ -171,11 +171,11 @@ const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
       )}
 
       {template.imageUrl ? (
-        <div className="absolute inset-2 flex items-center justify-center overflow-hidden rounded bg-black/40 z-1">
+        <div className="absolute inset-2 flex items-center justify-center overflow-hidden  bg-black/40 z-1">
           <img 
             src={template.imageUrl} 
             alt={template.title} 
-            className="w-full h-full object-contain rounded"
+            className="w-full h-full object-contain "
             referrerPolicy="no-referrer"
           />
         </div>
@@ -267,23 +267,23 @@ const DocumentSvgRenderer: React.FC<DocumentSvgRendererProps> = ({
             style={{ left: `${spot.x}%`, top: `${spot.y}%` }}
           >
             {/* Pulsing Outer Ring */}
-            <span className={`absolute -inset-2 rounded-full animate-ping opacity-50 ${
+            <span className={`absolute -inset-2 animate-ping opacity-50 ${
               spot.riskLevel === 'critical' ? 'bg-rose-500' :
               spot.riskLevel === 'high' ? 'bg-amber-500' :
               'bg-slate-600'
             }`}></span>
 
             {/* Core Badge */}
-            <div className={`relative flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold shadow-md transition-transform transform group-hover/node:scale-125 ${
-              spot.riskLevel === 'critical' ? 'bg-rose-600 text-white shadow-rose-500/50' :
-              spot.riskLevel === 'high' ? 'bg-amber-600 text-white shadow-amber-500/50' :
+            <div className={`relative flex items-center justify-center w-6 h-6 text-xs font-bold shadow-md transition-transform transform group-hover/node:scale-125 ${
+              spot.riskLevel === 'critical' ? 'bg-rose-800 text-white shadow-rose-500/50' :
+              spot.riskLevel === 'high' ? 'bg-amber-800 text-white shadow-amber-500/50' :
               isSelected ? 'bg-slate-900 text-white ring-2 ring-slate-400' : 'bg-slate-800 text-white shadow-slate-500/50'
             }`}>
               {spot.riskLevel === 'critical' ? '!' : spot.id.replace('h', '').replace('inv-', '').replace('cc-', '')}
             </div>
 
             {/* Hover Tooltip Label */}
-            <div className="absolute left-1/2 bottom-full mb-2 transform -translate-x-1/2 px-2.5 py-1 rounded bg-slate-900 border border-slate-700 text-slate-100 text-[11px] whitespace-nowrap opacity-0 group-hover/node:opacity-100 transition-opacity pointer-events-none shadow-lg z-30">
+            <div className="absolute left-1/2 bottom-full mb-2 transform -translate-x-1/2 px-2.5 py-1  bg-slate-900 border border-slate-700 text-slate-100 text-[11px] whitespace-nowrap opacity-0 group-hover/node:opacity-100 transition-opacity pointer-events-none shadow-lg z-30">
               {spot.title}
             </div>
           </div>

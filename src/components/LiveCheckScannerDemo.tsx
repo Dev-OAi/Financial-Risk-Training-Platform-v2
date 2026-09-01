@@ -704,29 +704,29 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
   };
 
   return (
-    <div className={`p-5 rounded-2xl border transition-all ${
+    <div className={`p-3 border transition-all ${
       isPresentationMode 
-        ? 'fixed inset-4 z-50 overflow-y-auto shadow-2xl backdrop-blur-xl ' + (isDark ? 'bg-[#18191c]/95 border-blue-500/50' : 'bg-slate-50/98 border-blue-400')
-        : isDark ? 'bg-[#252830] border-[#3c4043]' : 'bg-white border-slate-200 shadow-sm'
+        ? 'fixed inset-2 z-50 overflow-y-auto shadow-2xl ' + (isDark ? 'bg-[#18191c] border-slate-700' : 'bg-slate-50 border-slate-400')
+        : isDark ? 'bg-[#1e222b] border-[#374151]' : 'bg-white border-slate-300'
     }`}>
       {/* Header & Controls Bar */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-inherit mb-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-2.5 pb-2.5 border-b border-inherit mb-3">
         <div>
           <div className="flex items-center gap-2 mb-1 flex-wrap">
-            <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-600 text-white flex items-center gap-1">
-              <Sparkles className="w-3 h-3 text-amber-300" />
+            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-slate-800 text-slate-900 dark:text-slate-200 border border-slate-600 flex items-center gap-1">
+              <Sparkles className="w-3 h-3 text-amber-400" />
               Live Interactive Demo
             </span>
-            <span className="text-xs font-bold text-emerald-500 flex items-center gap-1">
+            <span className="text-xs font-bold text-emerald-500 dark:text-emerald-400 flex items-center gap-1">
               <Scan className="w-3.5 h-3.5" />
               Vision AI Check Scanner
             </span>
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            <span className="text-[10px] font-bold px-2 py-0.5 bg-slate-800 text-slate-300 border border-slate-600">
               Content Library Baseline Verified
             </span>
           </div>
-          <h3 className="text-base font-black tracking-tight">
-            Option #4: Live Multimodal Check Ingestion, Forensic Parser & Baseline Comparison
+          <h3 className={`text-sm font-bold tracking-tight ${isDark ? "text-slate-100" : "text-slate-900"}`}>
+            Option #4: Live Multimodal Check Ingestion, Forensic Parser &amp; Baseline Comparison
           </h3>
           <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
             Upload any check image, scan live with multimodal AI, and compare directly against the content library&apos;s pristine original check to visually see what is altered.
@@ -734,7 +734,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
         </div>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-2 flex-wrap">
+        <div className="flex items-center gap-1.5 flex-wrap">
           {/* Universal File Upload Trigger (PNG, JPG, WEBP, PDF, DOC, DOCX) */}
           <input 
             type="file" 
@@ -745,10 +745,10 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
           />
           <button
             onClick={() => fileInputRef.current?.click()}
-            className={`px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 border transition ${
+            className={`px-2.5 py-1.5 text-xs font-bold flex items-center gap-1.5 border transition ${
               customUploadedImage 
-                ? 'bg-blue-600/20 border-blue-500 text-blue-400 shadow-xs' 
-                : isDark ? 'bg-[#323639] border-[#3c4043] hover:bg-[#3c4043]' : 'bg-slate-100 border-slate-300 hover:bg-slate-200'
+                ? 'bg-slate-800 border-slate-500 text-slate-100 shadow-xs' 
+                : isDark ? 'bg-[#2a2e39] border-[#3c4043] hover:bg-[#323639] text-slate-200' : 'bg-slate-100 border-slate-300 hover:bg-slate-200 text-slate-800'
             }`}
             title="Upload check specimen in any format: PNG, JPG, WEBP, PDF, DOC, DOCX"
           >
@@ -759,22 +759,22 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
           {/* Paste Snippet / Screenshot from System Clipboard */}
           <button
             onClick={handlePasteButtonClick}
-            className={`px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 border transition ${
+            className={`px-2.5 py-1.5 text-xs font-bold flex items-center gap-1.5 border transition ${
               isDark 
-                ? 'bg-indigo-950/40 border-indigo-500/40 text-indigo-300 hover:bg-indigo-900/50' 
-                : 'bg-indigo-50 border-indigo-300 text-indigo-700 hover:bg-indigo-100'
+                ? 'bg-[#2a2e39] border-slate-600 text-slate-200 hover:bg-slate-700' 
+                : 'bg-slate-100 border-slate-300 text-slate-800 hover:bg-slate-200'
             }`}
             title="Paste screenshot snippet from clipboard (or press Ctrl+V / Cmd+V anywhere on screen)"
           >
-            <Clipboard className="w-3.5 h-3.5 text-indigo-400" />
+            <Clipboard className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
             <span>Paste Snippet (Ctrl+V)</span>
           </button>
 
           {/* Show Original Reference Check Popover Modal */}
           <button
             onClick={() => setShowOriginalModal(true)}
-            className={`px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 border transition ${
-              isDark ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-400 hover:bg-emerald-900/50' : 'bg-emerald-50 border-emerald-300 text-emerald-700 hover:bg-emerald-100'
+            className={`px-2.5 py-1.5 text-xs font-bold flex items-center gap-1.5 border transition ${
+              isDark ? 'bg-[#2a2e39] border-emerald-800 text-emerald-400 hover:bg-slate-700' : 'bg-emerald-50 border-emerald-300 text-emerald-800 hover:bg-emerald-100'
             }`}
             title="Preview pristine original check template from library"
           >
@@ -785,24 +785,24 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
           {/* Toggle Bounding Boxes */}
           <button
             onClick={() => setShowBoundingBoxes(!showBoundingBoxes)}
-            className={`px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 border transition ${
+            className={`px-2.5 py-1.5 text-xs font-bold flex items-center gap-1.5 border transition ${
               showBoundingBoxes 
-                ? isDark ? 'bg-indigo-950/50 border-indigo-500/40 text-indigo-400' : 'bg-indigo-50 border-indigo-200 text-indigo-700'
-                : isDark ? 'bg-[#323639] border-[#3c4043]' : 'bg-slate-100 border-slate-300'
+                ? isDark ? 'bg-slate-800 border-slate-500 text-slate-200' : 'bg-slate-200 border-slate-400 text-slate-900'
+                : isDark ? 'bg-[#2a2e39] border-[#3c4043] text-slate-400' : 'bg-slate-100 border-slate-300 text-slate-600'
             }`}
             title="Toggle visual bounding boxes over check fields"
           >
-            {showBoundingBoxes ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
+            {showBoundingBoxes ? <Eye className="w-3.5 h-3.5 text-slate-300" /> : <EyeOff className="w-3.5 h-3.5" />}
             <span>{showBoundingBoxes ? 'Field Callouts: ON' : 'Field Callouts: OFF'}</span>
           </button>
 
           {/* Presentation Mode Toggle */}
           <button
             onClick={() => setIsPresentationMode(!isPresentationMode)}
-            className={`px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 border transition ${
+            className={`px-2.5 py-1.5 text-xs font-bold flex items-center gap-1.5 border transition ${
               isPresentationMode 
-                ? 'bg-amber-500 text-white border-amber-600 shadow-md' 
-                : isDark ? 'bg-[#323639] border-[#3c4043] hover:bg-[#3c4043]' : 'bg-slate-100 border-slate-300 hover:bg-slate-200'
+                ? 'bg-amber-700 text-white border-amber-600' 
+                : isDark ? 'bg-[#2a2e39] border-[#3c4043] hover:bg-[#323639] text-slate-300' : 'bg-slate-100 border-slate-300 hover:bg-slate-200 text-slate-700'
             }`}
             title="Toggle Stage Presentation View"
           >
@@ -812,13 +812,13 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
           {/* Primary Scan / Stop Scan Controls */}
           {isScanning ? (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               <button
                 onClick={handleStopScan}
-                className="px-4 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-700 hover:to-red-700 text-white font-black text-xs shadow-md shadow-rose-500/30 flex items-center gap-2 transition transform active:scale-95 ring-2 ring-rose-400/50 animate-pulse"
+                className="px-3 py-1.5 bg-rose-800 hover:bg-rose-700 border border-rose-600 text-white font-bold text-xs flex items-center gap-1.5 transition transform active:scale-95"
                 title="Stop and abort scan immediately"
               >
-                <Square className="w-4 h-4 fill-white text-white" />
+                <Square className="w-3.5 h-3.5 fill-white text-white" />
                 <span>Stop Scan</span>
               </button>
               <button
@@ -826,8 +826,8 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                   handleStopScan();
                   fileInputRef.current?.click();
                 }}
-                className={`px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 border transition ${
-                  isDark ? 'bg-[#323639] border-[#3c4043] hover:bg-[#3c4043] text-slate-200' : 'bg-slate-100 border-slate-300 hover:bg-slate-200 text-slate-700'
+                className={`px-2.5 py-1.5 text-xs font-bold flex items-center gap-1.5 border transition ${
+                  isDark ? 'bg-[#2a2e39] border-[#3c4043] hover:bg-[#3c4043] text-slate-200' : 'bg-slate-100 border-slate-300 hover:bg-slate-200 text-slate-700'
                 }`}
                 title="Stop scan and choose another check image"
               >
@@ -838,10 +838,10 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
           ) : (
             <button
               onClick={handleExecuteScan}
-              className="px-5 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-black text-xs shadow-md shadow-blue-500/30 flex items-center gap-2 transition transform active:scale-95"
+              className="px-3.5 py-1.5 bg-[#1e293b] hover:bg-[#334155] border border-slate-500 text-white font-bold text-xs flex items-center gap-1.5 transition transform active:scale-95 shadow-xs"
               title="Scan and parse check live with AI"
             >
-              <Play className="w-4 h-4 text-amber-300 fill-amber-300" />
+              <Play className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
               <span>Scan &amp; Parse Check Live</span>
             </button>
           )}
@@ -850,16 +850,16 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
       {/* Paste Success Notice Banner */}
       {pasteSuccessNotice && (
-        <div className={`p-2.5 rounded-xl mb-4 border flex items-center justify-between gap-3 text-xs transition-all animate-in fade-in duration-200 ${
-          isDark ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-300' : 'bg-emerald-50 border-emerald-300 text-emerald-900'
+        <div className={`p-2 mb-2.5 border flex items-center justify-between gap-2.5 text-xs transition-all ${
+          isDark ? 'bg-emerald-950/30 border-emerald-800/40 text-emerald-300' : 'bg-emerald-50 border-emerald-300 text-emerald-900'
         }`}>
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
             <span>{pasteSuccessNotice}</span>
           </div>
           <button
             onClick={() => setPasteSuccessNotice(null)}
-            className="p-1 rounded hover:bg-black/10 dark:hover:bg-white/10 text-emerald-400"
+            className="p-1 hover:bg-black/10 dark:hover:bg-white/10 text-emerald-400"
           >
             <X className="w-3.5 h-3.5" />
           </button>
@@ -868,24 +868,24 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
       {/* Cancellation Notification Alert Banner */}
       {scanCancelledNotice && (
-        <div className={`p-3 rounded-xl mb-4 border flex items-center justify-between gap-3 text-xs transition-all ${
-          isDark ? 'bg-amber-950/40 border-amber-500/40 text-amber-300' : 'bg-amber-50 border-amber-300 text-amber-900'
+        <div className={`p-2 mb-2.5 border flex items-center justify-between gap-2.5 text-xs transition-all ${
+          isDark ? 'bg-amber-950/30 border-amber-800/40 text-amber-300' : 'bg-amber-50 border-amber-300 text-amber-900'
         }`}>
           <div className="flex items-center gap-2">
-            <Ban className="w-4 h-4 text-amber-400 shrink-0" />
+            <Ban className="w-3.5 h-3.5 text-amber-400 shrink-0" />
             <span>{scanCancelledNotice}</span>
           </div>
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 shrink-0">
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="px-2.5 py-1 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-bold text-[11px] flex items-center gap-1 transition"
+              className="px-2 py-0.5 bg-amber-700 hover:bg-amber-800 text-white font-bold text-[11px] flex items-center gap-1 transition"
             >
               <Upload className="w-3 h-3" />
               <span>Upload New Image</span>
             </button>
             <button
               onClick={() => setScanCancelledNotice(null)}
-              className="p-1 rounded hover:bg-black/10 dark:hover:bg-white/10 text-slate-400"
+              className="p-1 hover:bg-black/10 dark:hover:bg-white/10 text-slate-500 dark:text-slate-400"
             >
               <X className="w-3.5 h-3.5" />
             </button>
@@ -894,15 +894,15 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
       )}
 
       {/* Comparator View Mode Switcher */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 p-2.5 rounded-xl border bg-inherit">
+      <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 p-1.5 border bg-inherit ${isDark ? 'border-slate-700/60' : 'border-slate-300'}`}>
         {/* Left: View Mode Tabs */}
-        <div className="flex items-center gap-1.5 p-1 rounded-lg bg-black/10 dark:bg-black/30 border border-slate-700/20">
+        <div className={`flex items-center gap-1 p-0.5 border ${isDark ? 'bg-black/40 border-slate-700/30' : 'bg-slate-200 border-slate-300'}`}>
           <button
             onClick={() => setViewMode('suspect')}
-            className={`px-3 py-1.5 rounded-md text-xs font-bold transition flex items-center gap-1.5 ${
+            className={`px-2.5 py-1 text-xs font-bold transition flex items-center gap-1.5 ${
               viewMode === 'suspect'
-                ? 'bg-blue-600 text-white shadow-xs'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-slate-700 text-white border border-slate-500'
+                : isDark ? 'text-slate-400 hover:text-slate-200' : 'text-slate-500 hover:text-slate-900'
             }`}
           >
             <Scan className="w-3.5 h-3.5" />
@@ -911,10 +911,10 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
           <button
             onClick={() => setViewMode('baseline')}
-            className={`px-3 py-1.5 rounded-md text-xs font-bold transition flex items-center gap-1.5 ${
+            className={`px-2.5 py-1 text-xs font-bold transition flex items-center gap-1.5 ${
               viewMode === 'baseline'
-                ? 'bg-emerald-600 text-white shadow-xs'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-slate-700 text-white border border-slate-500'
+                : isDark ? 'text-slate-400 hover:text-slate-200' : 'text-slate-500 hover:text-slate-900'
             }`}
           >
             <Landmark className="w-3.5 h-3.5" />
@@ -923,10 +923,10 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
           <button
             onClick={() => setViewMode('diff')}
-            className={`px-3 py-1.5 rounded-md text-xs font-bold transition flex items-center gap-1.5 ${
+            className={`px-2.5 py-1 text-xs font-bold transition flex items-center gap-1.5 ${
               viewMode === 'diff'
-                ? 'bg-purple-600 text-white shadow-xs'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-slate-700 text-white border border-slate-500'
+                : isDark ? 'text-slate-400 hover:text-slate-200' : 'text-slate-500 hover:text-slate-900'
             }`}
           >
             <GitCompare className="w-3.5 h-3.5" />
@@ -935,21 +935,21 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
         </div>
 
         {/* Right: Quick Specimen Scenario Pills */}
-        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 shrink-0">
+        <div className="flex items-center gap-1 overflow-x-auto scrollbar-none">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-500 dark:text-slate-400 shrink-0">
             Specimens:
           </span>
           {CHECK_DEMO_SCENARIOS.map((sc) => (
             <button
               key={sc.id}
               onClick={() => handleSelectScenario(sc.id)}
-              className={`px-2.5 py-1 rounded-lg text-[11px] font-bold whitespace-nowrap transition-all border shrink-0 flex items-center gap-1 ${
+              className={`px-2 py-0.5 text-[11px] font-bold whitespace-nowrap transition-all border shrink-0 flex items-center gap-1 ${
                 selectedScenarioId === sc.id && !customUploadedImage
                   ? sc.expectedVerdict === 'APPROVE'
-                    ? 'bg-emerald-600 text-white border-emerald-500 shadow-xs'
+                    ? 'bg-emerald-950/60 text-emerald-300 border-emerald-600'
                     : sc.expectedVerdict === 'HOLD_FOR_REVIEW'
-                      ? 'bg-amber-600 text-white border-amber-500 shadow-xs'
-                      : 'bg-rose-600 text-white border-rose-500 shadow-xs'
+                      ? 'bg-amber-950/60 text-amber-300 border-amber-600'
+                      : 'bg-rose-950/60 text-rose-300 border-rose-600'
                   : isDark 
                     ? 'bg-[#202124] border-[#3c4043] text-slate-300 hover:bg-[#323639]' 
                     : 'bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200'
@@ -959,7 +959,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
             </button>
           ))}
           {customUploadedImage && (
-            <span className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-blue-600 text-white border border-blue-500 shrink-0 flex items-center gap-1">
+            <span className="px-2 py-0.5 text-[11px] font-bold bg-slate-800 text-slate-900 dark:text-slate-200 border border-slate-600 shrink-0 flex items-center gap-1">
               <Upload className="w-3 h-3" />
               <span>Custom Uploaded</span>
             </span>
@@ -969,12 +969,12 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
       {/* 4-Stage Progress Stepper (Visible during Scan) with Quick Stop Action */}
       {isScanning && (
-        <div className={`p-3.5 rounded-xl mb-4 border transition-all ${
-          isDark ? 'bg-blue-950/50 border-blue-500/50 text-blue-200' : 'bg-blue-50/90 border-blue-200 text-blue-900'
+        <div className={`p-2.5 mb-3 border transition-all ${
+          isDark ? 'bg-[#1a2130] border-slate-600 text-slate-200' : 'bg-slate-100 border-slate-300 text-slate-900'
         }`}>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-bold mb-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-bold mb-1.5">
             <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-amber-400 animate-spin shrink-0" />
+              <Zap className="w-3.5 h-3.5 text-amber-400 animate-spin shrink-0" />
               <span>AI Pipeline Executing Stage {scanStep} of 4:</span>
               <span className="font-mono text-[11px] font-normal opacity-90">
                 {scanStep === 1 && 'Ingesting & Normalizing Image...'}
@@ -984,10 +984,10 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
               </span>
             </div>
             {/* Inline Quick Stop & Image Switch Controls */}
-            <div className="flex items-center gap-1.5 self-end sm:self-auto">
+            <div className="flex items-center gap-1 self-end sm:self-auto">
               <button
                 onClick={handleStopScan}
-                className="px-2.5 py-1 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold flex items-center gap-1 shadow-xs transition"
+                className="px-2 py-0.5 bg-rose-800 hover:bg-rose-700 border border-rose-600 text-white text-[11px] font-bold flex items-center gap-1 transition"
                 title="Stop scan immediately"
               >
                 <Square className="w-3 h-3 fill-white" />
@@ -998,7 +998,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                   handleStopScan();
                   fileInputRef.current?.click();
                 }}
-                className="px-2.5 py-1 rounded-lg bg-slate-700 hover:bg-slate-600 text-white text-[11px] font-bold flex items-center gap-1 transition"
+                className="px-2 py-0.5 bg-slate-700 hover:bg-slate-600 border border-slate-500 text-white text-[11px] font-bold flex items-center gap-1 transition"
                 title="Stop review and choose another check image"
               >
                 <Upload className="w-3 h-3" />
@@ -1006,9 +1006,9 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
               </button>
             </div>
           </div>
-          <div className="w-full h-2 rounded-full bg-blue-200 dark:bg-blue-900 overflow-hidden">
+          <div className="w-full h-1.5 bg-slate-800 overflow-hidden">
             <div 
-              className="h-full bg-gradient-to-r from-amber-400 via-blue-500 to-emerald-400 transition-all duration-300"
+              className="h-full bg-slate-400 transition-all duration-300"
               style={{ width: `${(scanStep / 4) * 100}%` }}
             />
           </div>
@@ -1016,14 +1016,14 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
       )}
 
       {/* Main Split Demo Area: Visual Check on Left, Live Parsed Output on Right */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
         
         {/* Left Column: Visual Check Specimen & Comparator (7 Cols) */}
         <div className="lg:col-span-7 space-y-4">
           
           {/* Header over specimen */}
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
               {viewMode === 'suspect' && <FileCheck className="w-3.5 h-3.5 text-blue-400" />}
               {viewMode === 'baseline' && <Landmark className="w-3.5 h-3.5 text-emerald-400" />}
               {viewMode === 'diff' && <GitCompare className="w-3.5 h-3.5 text-purple-400" />}
@@ -1033,7 +1033,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                 {viewMode === 'diff' && 'Side-by-Side Visual Diff: Suspect vs. Original Baseline'}
               </span>
             </span>
-            <span className="text-[11px] font-semibold text-slate-400">
+            <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">
               {viewMode === 'baseline' ? 'Golden Specimen #REF-001' : customUploadedImage ? 'Specimen #CUSTOM' : `Specimen #${activeScenario.checkNumber}`}
             </span>
           </div>
@@ -1043,7 +1043,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
-            className={`relative rounded-2xl border p-4 sm:p-5 overflow-hidden select-none transition-all shadow-inner ${
+            className={`relative  border p-4 sm:p-3 overflow-hidden select-none transition-all shadow-inner ${
               isDraggingOver 
                 ? 'ring-4 ring-blue-500/80 border-blue-400 bg-blue-500/10' 
                 : isDark 
@@ -1054,7 +1054,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
           >
             {/* Drag & Drop Visual Highlight */}
             {isDraggingOver && (
-              <div className="absolute inset-0 z-50 bg-blue-600/90 backdrop-blur-md rounded-2xl border-4 border-dashed border-white flex flex-col items-center justify-center text-white p-6 text-center animate-in fade-in duration-150 pointer-events-none">
+              <div className="absolute inset-0 z-50 bg-slate-700/90 backdrop-blur-md  border-4 border-dashed border-white flex flex-col items-center justify-center text-white p-3 text-center animate-in fade-in duration-150 pointer-events-none">
                 <FileUp className="w-12 h-12 mb-2 animate-bounce" />
                 <h4 className="text-lg font-black tracking-tight">Drop Check File or Document Here</h4>
                 <p className="text-xs text-blue-100 max-w-sm mt-1">
@@ -1065,7 +1065,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
             {/* Document Conversion Loading Overlay */}
             {isConvertingDoc && (
-              <div className="absolute inset-0 z-50 bg-black/80 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center text-white p-6 text-center animate-in fade-in duration-150">
+              <div className="absolute inset-0 z-50 bg-black/80 backdrop-blur-md  flex flex-col items-center justify-center text-white p-3 text-center animate-in fade-in duration-150">
                 <RefreshCw className="w-10 h-10 text-blue-400 animate-spin mb-3" />
                 <h4 className="text-sm font-black tracking-tight">Processing Specimen</h4>
                 <p className="text-xs text-blue-300 mt-1 max-w-xs font-mono">{conversionStatus || 'Converting document...'}</p>
@@ -1081,12 +1081,12 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                     animation: 'laserScan 1.8s ease-in-out infinite alternate'
                   }}
                 />
-                <div className="absolute top-3 right-3 z-40 flex items-center gap-2 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-blue-500/50 text-xs font-bold text-white shadow-xl">
-                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+                <div className="absolute top-3 right-3 z-40 flex items-center gap-2 bg-black/80 backdrop-blur-md px-3 py-1.5  border border-blue-500/50 text-xs font-bold text-white shadow-xl">
+                  <span className="w-2 h-2 bg-amber-400 animate-ping" />
                   <span className="text-[11px]">AI Scanning Specimen...</span>
                   <button
                     onClick={handleStopScan}
-                    className="ml-1 px-2 py-0.5 rounded-md bg-rose-600 hover:bg-rose-700 text-white text-[10px] font-black flex items-center gap-1 transition shadow-xs"
+                    className="ml-1 px-2 py-0.5  bg-rose-800 hover:bg-rose-700 text-white text-[10px] font-black flex items-center gap-1 transition shadow-xs"
                     title="Stop scanning"
                   >
                     <Square className="w-2.5 h-2.5 fill-white" />
@@ -1103,9 +1103,9 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                   /* Custom Uploaded Image View with Overlays & HUD */
                   <div className="space-y-2.5">
                     {/* Format & Quick Controls HUD Bar */}
-                    <div className="flex items-center justify-between p-2 rounded-xl bg-black/35 backdrop-blur-md border border-slate-700/40 text-xs">
+                    <div className="flex items-center justify-between p-2  bg-black/35 backdrop-blur-md border border-slate-700/40 text-xs">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-blue-600 text-white flex items-center gap-1 shadow-xs">
+                        <span className="px-2 py-0.5  text-[10px] font-black uppercase tracking-wider bg-slate-700 text-white flex items-center gap-1 shadow-xs">
                           {customFileMeta?.format === 'PDF' && <FileText className="w-3 h-3 text-amber-300" />}
                           {customFileMeta?.format === 'DOCX' && <FileText className="w-3 h-3 text-blue-200" />}
                           {customFileMeta?.format === 'CLIPBOARD' && <Clipboard className="w-3 h-3 text-emerald-300" />}
@@ -1116,7 +1116,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                           {customFileName || 'Pasted Snippet'}
                         </span>
                         {customFileMeta?.pageCount && customFileMeta.pageCount > 1 && (
-                          <span className="text-[10px] text-slate-400 font-mono">
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
                             (Page {customFileMeta.pageNumber || 1} of {customFileMeta.pageCount})
                           </span>
                         )}
@@ -1125,7 +1125,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                       <div className="flex items-center gap-1.5 shrink-0">
                         <button
                           onClick={() => setShowZoomModal(true)}
-                          className="px-2 py-1 rounded-lg bg-slate-700 hover:bg-slate-600 text-white text-[11px] font-bold flex items-center gap-1 transition"
+                          className="px-2 py-1  bg-slate-700 hover:bg-slate-600 text-white text-[11px] font-bold flex items-center gap-1 transition"
                           title="Zoom and inspect high-resolution specimen in detail"
                         >
                           <ZoomIn className="w-3 h-3" />
@@ -1133,7 +1133,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                         </button>
                         <button
                           onClick={handlePasteButtonClick}
-                          className="px-2 py-1 rounded-lg bg-indigo-600/80 hover:bg-indigo-600 text-white text-[11px] font-bold flex items-center gap-1 transition"
+                          className="px-2 py-1  bg-indigo-800/80 hover:bg-indigo-800 text-white text-[11px] font-bold flex items-center gap-1 transition"
                           title="Paste new snippet from clipboard (Ctrl+V)"
                         >
                           <Clipboard className="w-3 h-3" />
@@ -1141,7 +1141,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                         </button>
                         <button
                           onClick={() => fileInputRef.current?.click()}
-                          className="px-2 py-1 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold flex items-center gap-1 transition"
+                          className="px-2 py-1  bg-slate-700 hover:bg-slate-600 text-white text-[11px] font-bold flex items-center gap-1 transition"
                           title="Change check image or document"
                         >
                           <FileUp className="w-3 h-3" />
@@ -1149,7 +1149,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                         </button>
                         <button
                           onClick={handleLoadLibraryCleanSpecimen}
-                          className="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-bold flex items-center gap-1 transition"
+                          className="px-2 py-1  bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-bold flex items-center gap-1 transition"
                           title="Reset to scenario presets"
                         >
                           <RotateCcw className="w-3 h-3" />
@@ -1161,7 +1161,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                     {/* 1. Original Uploaded Check Specimen Image Preview */}
                     <div 
                       onClick={() => setShowZoomModal(true)}
-                      className="relative rounded-xl overflow-hidden flex items-center justify-center bg-slate-950/80 p-3 cursor-pointer group border border-blue-500/40 hover:border-blue-400 transition min-h-[260px] shadow-lg"
+                      className="relative  overflow-hidden flex items-center justify-center bg-slate-950/80 p-3 cursor-pointer group border border-blue-500/40 hover:border-blue-400 transition min-h-[260px] shadow-lg"
                       title="Click to view full-resolution specimen"
                     >
                       <img 
@@ -1178,7 +1178,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                           console.warn('Image load event notice');
                           setImageIsLoading(false);
                         }}
-                        className="w-full max-h-[340px] object-contain rounded-lg transition group-hover:scale-[1.008]"
+                        className="w-full max-h-[340px] object-contain  transition group-hover:scale-[1.008]"
                       />
 
                       {/* Loading state indicator */}
@@ -1195,56 +1195,56 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
                       {/* Multimodal Vision AI Bounding Box Overlay */}
                       {showBoundingBoxes && (
-                        <div className="absolute inset-0 border-2 border-dashed border-cyan-400/70 pointer-events-none rounded-xl flex items-center justify-center">
-                          <span className="px-3 py-1 bg-cyan-600/90 text-white font-bold text-xs rounded-full shadow-lg backdrop-blur-xs flex items-center gap-1.5">
+                        <div className="absolute inset-0 border-2 border-dashed border-cyan-400/70 pointer-events-none  flex items-center justify-center">
+                          <span className="px-3 py-1 bg-cyan-600/90 text-white font-bold text-xs shadow-lg backdrop-blur-xs flex items-center gap-1.5">
                             <Scan className="w-3.5 h-3.5" />
                             Multimodal Vision AI Ingestion Active ({customFileMeta?.format || 'UNIVERSAL'})
                           </span>
                         </div>
                       )}
 
-                      <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-black/80 text-slate-200 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition flex items-center gap-1 pointer-events-none border border-slate-700">
+                      <div className="absolute bottom-3 right-3 px-2.5 py-1  bg-black/80 text-slate-900 dark:text-slate-200 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition flex items-center gap-1 pointer-events-none border border-slate-700">
                         <ZoomIn className="w-3 h-3 text-blue-400" />
                         <span>Click to inspect full-res</span>
                       </div>
                     </div>
 
                     {/* 2. What The Computer Found - Extracted Check Intelligence & Ground Truth Parity */}
-                    <div className="w-full p-4 rounded-xl bg-slate-900/90 border border-blue-500/30 text-left space-y-3 shadow-md">
+                    <div className="w-full p-4  bg-slate-900/90 border border-blue-500/30 text-left space-y-3 shadow-md">
                       <div className="flex items-center justify-between border-b border-slate-700/60 pb-2.5">
                         <div className="flex items-center gap-2">
                           <FileCheck className="w-4 h-4 text-emerald-400" />
-                          <span className="text-xs font-black uppercase text-slate-200 tracking-wider">
+                          <span className="text-xs font-black uppercase text-slate-900 dark:text-slate-200 tracking-wider">
                             What The Computer Found (Extracted Intelligence)
                           </span>
                         </div>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-blue-600/30 text-blue-300 border border-blue-500/40 flex items-center gap-1">
+                        <span className="px-2 py-0.5  text-[10px] font-mono bg-slate-700/30 text-blue-300 border border-blue-500/40 flex items-center gap-1">
                           <Sparkles className="w-3 h-3 text-amber-300" />
                           {customFileMeta?.format || 'PNG'} SPECIMEN PARSED
                         </span>
                       </div>
 
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
-                        <div className="p-2.5 rounded-lg bg-black/40 border border-slate-800">
-                          <span className="text-[9px] text-slate-400 block font-mono">FILE NAME</span>
-                          <span className="font-bold text-slate-200 truncate block text-[11px]" title={customFileName}>
+                        <div className={`p-2.5 border ${isDark ? 'bg-black/40 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                          <span className="text-[9px] text-slate-500 dark:text-slate-400 block font-mono">FILE NAME</span>
+                          <span className="font-bold text-slate-900 dark:text-slate-200 truncate block text-[11px]" title={customFileName}>
                             {customFileName || 'Specimen File'}
                           </span>
                         </div>
-                        <div className="p-2.5 rounded-lg bg-black/40 border border-slate-800">
-                          <span className="text-[9px] text-slate-400 block font-mono">PAYEE NAME</span>
+                        <div className={`p-2.5 border ${isDark ? 'bg-black/40 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                          <span className="text-[9px] text-slate-500 dark:text-slate-400 block font-mono">PAYEE NAME</span>
                           <span className="font-bold text-blue-300 truncate block text-[11px]">
                             {scanResult?.extracted_data?.payee_name || activeScenario.payeeName || 'ACME ENTERPRISES'}
                           </span>
                         </div>
-                        <div className="p-2.5 rounded-lg bg-black/40 border border-slate-800">
-                          <span className="text-[9px] text-slate-400 block font-mono">PARSED COURTESY AMOUNT</span>
+                        <div className={`p-2.5 border ${isDark ? 'bg-black/40 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                          <span className="text-[9px] text-slate-500 dark:text-slate-400 block font-mono">PARSED COURTESY AMOUNT</span>
                           <span className="font-bold text-emerald-400 font-mono block text-xs">
                             ${(scanResult?.extracted_data?.courtesy_amount_numeric || activeScenario.courtesyAmount || 1250).toLocaleString('en-US', { minimumFractionDigits: 2 })}
                           </span>
                         </div>
-                        <div className="p-2.5 rounded-lg bg-black/40 border border-slate-800">
-                          <span className="text-[9px] text-slate-400 block font-mono">MICR PARITY</span>
+                        <div className={`p-2.5 border ${isDark ? 'bg-black/40 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                          <span className="text-[9px] text-slate-500 dark:text-slate-400 block font-mono">MICR PARITY</span>
                           <span className="font-bold text-cyan-300 font-mono block text-[11px] truncate" title="⑈ 121000358 ⑈ 8840291773 ⑈ 10492">
                             ⑆121000358⑆
                           </span>
@@ -1252,21 +1252,21 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                        <div className="p-2 rounded-lg bg-black/30 border border-slate-800 flex items-center justify-between">
-                          <span className="text-[10px] text-slate-400 font-mono">LEGAL AMOUNT TEXT:</span>
-                          <span className="font-serif text-[11px] italic text-slate-200 truncate max-w-[220px]">
+                        <div className={`p-2 border flex items-center justify-between ${isDark ? 'bg-black/30 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">LEGAL AMOUNT TEXT:</span>
+                          <span className="font-serif text-[11px] italic text-slate-900 dark:text-slate-200 truncate max-w-[220px]">
                             {scanResult?.extracted_data?.legal_amount_text || activeScenario.legalAmountText || 'One Thousand Two Hundred Fifty and 00/100'}
                           </span>
                         </div>
-                        <div className="p-2 rounded-lg bg-black/30 border border-slate-800 flex items-center justify-between">
-                          <span className="text-[10px] text-slate-400 font-mono">MICR CLEAR BAND:</span>
+                        <div className={`p-2 border flex items-center justify-between ${isDark ? 'bg-black/30 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">MICR CLEAR BAND:</span>
                           <span className="font-mono text-[10px] text-cyan-300">
                             ⑈ {scanResult?.extracted_data?.routing_number || activeScenario.routingNumber || '121000358'} ⑈ {scanResult?.extracted_data?.account_number || activeScenario.accountNumber || '8840291773'}
                           </span>
                         </div>
                       </div>
 
-                      <div className="flex items-center justify-between pt-1 text-[11px] text-slate-400 border-t border-slate-800/80">
+                      <div className="flex items-center justify-between pt-1 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-800/80">
                         <span className="flex items-center gap-1.5 text-blue-300">
                           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
                           Document image and computer OCR findings synchronized for review.
@@ -1274,7 +1274,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => setShowZoomModal(true)}
-                            className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-bold transition flex items-center gap-1"
+                            className="px-2.5 py-1  bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-bold transition flex items-center gap-1"
                           >
                             <ZoomIn className="w-3 h-3" />
                             <span>Full Resolution</span>
@@ -1284,7 +1284,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                               e.stopPropagation();
                               fileInputRef.current?.click();
                             }}
-                            className="px-2.5 py-1 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold transition flex items-center gap-1"
+                            className="px-2.5 py-1  bg-slate-700 hover:bg-blue-500 text-white font-bold transition flex items-center gap-1"
                           >
                             <FileUp className="w-3 h-3" />
                             <span>Change Specimen</span>
@@ -1295,7 +1295,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                   </div>
                 ) : (
                   /* High-Fidelity Bank Check Specimen Layout (Suspect) */
-                  <div className={`rounded-xl border p-4 sm:p-5 relative font-sans ${
+                  <div className={` border p-4 sm:p-3 relative font-sans ${
                     isDark 
                       ? 'bg-[#151922] border-slate-700/80 text-slate-200' 
                       : 'bg-white border-slate-300 text-slate-800 shadow-md'
@@ -1312,7 +1312,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                         <h4 className="font-black text-sm tracking-tight text-blue-600 dark:text-blue-400">
                           {activeScenario.bankName}
                         </h4>
-                        <span className="text-[10px] text-slate-400 block font-mono">100 Wall Street, New York, NY 10005</span>
+                        <span className="text-[10px] text-slate-500 dark:text-slate-400 block font-mono">100 Wall Street, New York, NY 10005</span>
                       </div>
 
                       <div className="text-right">
@@ -1328,7 +1328,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                     {/* Payee Line & Numerical Amount Box */}
                     <div className="grid grid-cols-12 gap-3 items-center mb-4 relative z-10">
                       {/* Payee Line (Cols 8) */}
-                      <div className={`col-span-8 p-2 rounded-lg border relative transition-all ${
+                      <div className={`col-span-8 p-2  border relative transition-all ${
                         showBoundingBoxes 
                           ? activeScenario.expectedVerdict === 'REJECT' && selectedScenarioId === 'payee-alteration'
                             ? 'bg-rose-500/10 border-rose-500 text-rose-500' 
@@ -1336,14 +1336,14 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                           : 'border-transparent'
                       }`}>
                         {showBoundingBoxes && (
-                          <span className="absolute -top-2.5 left-2 px-1.5 py-0.2 rounded text-[9px] font-black uppercase tracking-wider bg-blue-600 text-white shadow-xs">
+                          <span className="absolute -top-2.5 left-2 px-1.5 py-0.2  text-[9px] font-black uppercase tracking-wider bg-slate-700 text-white shadow-xs">
                             [3] Payee Line
                           </span>
                         )}
                         <div className="flex items-baseline gap-2">
-                          <span className="text-[10px] font-bold text-slate-400 uppercase shrink-0">Pay to the Order of</span>
+                          <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase shrink-0">Pay to the Order of</span>
                           <span className={`font-serif text-sm font-bold tracking-wide underline decoration-slate-300 decoration-1 underline-offset-4 ${
-                            selectedScenarioId === 'payee-alteration' ? 'text-rose-500 italic bg-rose-500/10 px-1 rounded' : 'text-inherit'
+                            selectedScenarioId === 'payee-alteration' ? 'text-rose-500 italic bg-rose-500/10 px-1 ' : 'text-inherit'
                           }`}>
                             {activeScenario.payeeName}
                           </span>
@@ -1351,7 +1351,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                       </div>
 
                       {/* Courtesy Amount Box (Cols 4) */}
-                      <div className={`col-span-4 p-2 rounded-lg border text-right relative transition-all ${
+                      <div className={`col-span-4 p-2  border text-right relative transition-all ${
                         showBoundingBoxes 
                           ? selectedScenarioId === 'amount-mismatch'
                             ? 'bg-amber-500/15 border-amber-500 text-amber-500' 
@@ -1359,7 +1359,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                           : isDark ? 'bg-[#1e2330] border-slate-700' : 'bg-slate-50 border-slate-300'
                       }`}>
                         {showBoundingBoxes && (
-                          <span className="absolute -top-2.5 right-2 px-1.5 py-0.2 rounded text-[9px] font-black uppercase tracking-wider bg-purple-600 text-white shadow-xs">
+                          <span className="absolute -top-2.5 right-2 px-1.5 py-0.2  text-[9px] font-black uppercase tracking-wider bg-purple-800 text-white shadow-xs">
                             [1] Courtesy Box
                           </span>
                         )}
@@ -1370,7 +1370,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                     </div>
 
                     {/* Legal Amount Written Line */}
-                    <div className={`p-2 rounded-lg border relative mb-4 transition-all ${
+                    <div className={`p-2  border relative mb-4 transition-all ${
                       showBoundingBoxes 
                         ? selectedScenarioId === 'amount-mismatch'
                           ? 'bg-rose-500/15 border-rose-500 text-rose-500' 
@@ -1378,7 +1378,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                         : 'border-transparent'
                     }`}>
                       {showBoundingBoxes && (
-                        <span className="absolute -top-2.5 left-2 px-1.5 py-0.2 rounded text-[9px] font-black uppercase tracking-wider bg-indigo-600 text-white shadow-xs">
+                        <span className="absolute -top-2.5 left-2 px-1.5 py-0.2  text-[9px] font-black uppercase tracking-wider bg-indigo-800 text-white shadow-xs">
                           [2] Legal Amount Text Line
                         </span>
                       )}
@@ -1386,15 +1386,15 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                         <span className="font-serif text-xs font-semibold italic text-inherit tracking-wide">
                           {activeScenario.legalAmountText}
                         </span>
-                        <span className="text-[10px] font-bold uppercase text-slate-400 shrink-0">DOLLARS</span>
+                        <span className="text-[10px] font-bold uppercase text-slate-500 dark:text-slate-400 shrink-0">DOLLARS</span>
                       </div>
                     </div>
 
                     {/* Memo & Signature Line */}
                     <div className="flex items-end justify-between pt-2 border-t border-slate-700/30 mb-4 relative z-10 text-xs">
                       <div>
-                        <span className="text-[9px] text-slate-400 uppercase font-bold block">Memo</span>
-                        <span className="font-serif text-[11px] text-slate-400 italic underline underline-offset-2">
+                        <span className="text-[9px] text-slate-500 dark:text-slate-400 uppercase font-bold block">Memo</span>
+                        <span className="font-serif text-[11px] text-slate-500 dark:text-slate-400 italic underline underline-offset-2">
                           {activeScenario.memo}
                         </span>
                       </div>
@@ -1404,14 +1404,14 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                           Authorized Signature
                         </span>
                         <div className="w-36 h-[1px] bg-slate-400 mt-0.5" />
-                        <span className="text-[8px] uppercase tracking-widest text-slate-400 block mt-0.5">
+                        <span className="text-[8px] uppercase tracking-widest text-slate-500 dark:text-slate-400 block mt-0.5">
                           MP Microprint Security Line
                         </span>
                       </div>
                     </div>
 
                     {/* Bottom E-13B MICR Clear Band */}
-                    <div className={`p-2 rounded-lg border font-mono text-center tracking-widest relative text-xs transition-all ${
+                    <div className={`p-2  border font-mono text-center tracking-widest relative text-xs transition-all ${
                       showBoundingBoxes 
                         ? selectedScenarioId === 'micr-counterfeit'
                           ? 'bg-rose-500/15 border-rose-500 text-rose-500' 
@@ -1419,7 +1419,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                         : isDark ? 'bg-[#0f1218] border-slate-800' : 'bg-slate-100 border-slate-200 text-slate-900'
                     }`}>
                       {showBoundingBoxes && (
-                        <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.2 rounded text-[9px] font-black uppercase tracking-wider bg-emerald-600 text-white shadow-xs">
+                        <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.2  text-[9px] font-black uppercase tracking-wider bg-emerald-800 text-white shadow-xs">
                           [4] E-13B MICR Clear Band
                         </span>
                       )}
@@ -1434,7 +1434,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
             {/* View Mode 2: Pristine Original Reference Baseline Check */}
             {viewMode === 'baseline' && (
-              <div className={`rounded-xl border p-4 sm:p-5 relative font-sans ${
+              <div className={` border p-4 sm:p-3 relative font-sans ${
                 isDark 
                   ? 'bg-[#121c18] border-emerald-500/50 text-emerald-100' 
                   : 'bg-white border-emerald-400 text-slate-800 shadow-md'
@@ -1452,7 +1452,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                     <h4 className="font-black text-sm tracking-tight text-emerald-700 dark:text-emerald-400">
                       FIRST NATIONAL BANK — RISK & COMPLIANCE TRAINING TEMPLATE
                     </h4>
-                    <span className="text-[10px] text-slate-400 block font-mono">100 Wall Street, New York, NY 10005</span>
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 block font-mono">100 Wall Street, New York, NY 10005</span>
                   </div>
 
                   <div className="text-right">
@@ -1468,12 +1468,12 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                 {/* Payee Line & Numerical Amount Box */}
                 <div className="grid grid-cols-12 gap-3 items-center mb-4 relative z-10">
                   {/* Payee Line (Cols 8) */}
-                  <div className="col-span-8 p-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 relative">
-                    <span className="absolute -top-2.5 left-2 px-1.5 py-0.2 rounded text-[9px] font-black uppercase tracking-wider bg-emerald-600 text-white shadow-xs">
+                  <div className="col-span-8 p-2  border border-emerald-500/30 bg-emerald-500/5 relative">
+                    <span className="absolute -top-2.5 left-2 px-1.5 py-0.2  text-[9px] font-black uppercase tracking-wider bg-emerald-800 text-white shadow-xs">
                       [Verified Payee Baseline]
                     </span>
                     <div className="flex items-baseline gap-2">
-                      <span className="text-[10px] font-bold text-slate-400 uppercase shrink-0">Pay to the Order of</span>
+                      <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase shrink-0">Pay to the Order of</span>
                       <span className="font-mono text-sm font-black tracking-wide text-emerald-600 dark:text-emerald-400">
                         ACME ENTERPRISES (Payee Verified)
                       </span>
@@ -1481,8 +1481,8 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                   </div>
 
                   {/* Courtesy Amount Box (Cols 4) */}
-                  <div className="col-span-4 p-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 text-right relative">
-                    <span className="absolute -top-2.5 right-2 px-1.5 py-0.2 rounded text-[9px] font-black uppercase tracking-wider bg-emerald-600 text-white shadow-xs">
+                  <div className="col-span-4 p-2  border border-emerald-500/30 bg-emerald-500/5 text-right relative">
+                    <span className="absolute -top-2.5 right-2 px-1.5 py-0.2  text-[9px] font-black uppercase tracking-wider bg-emerald-800 text-white shadow-xs">
                       [Verified Amount]
                     </span>
                     <span className="font-mono text-base font-black tracking-tight text-emerald-600 dark:text-emerald-400">
@@ -1492,8 +1492,8 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                 </div>
 
                 {/* Legal Amount Written Line */}
-                <div className="p-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 relative mb-4">
-                  <span className="absolute -top-2.5 left-2 px-1.5 py-0.2 rounded text-[9px] font-black uppercase tracking-wider bg-emerald-600 text-white shadow-xs">
+                <div className="p-2  border border-emerald-500/30 bg-emerald-500/5 relative mb-4">
+                  <span className="absolute -top-2.5 left-2 px-1.5 py-0.2  text-[9px] font-black uppercase tracking-wider bg-emerald-800 text-white shadow-xs">
                     [Legal Text Parity]
                   </span>
                   <div className="flex items-baseline justify-between gap-2">
@@ -1507,8 +1507,8 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                 {/* Memo & Signature Line */}
                 <div className="flex items-end justify-between pt-2 border-t border-emerald-500/30 mb-4 relative z-10 text-xs">
                   <div>
-                    <span className="text-[9px] text-slate-400 uppercase font-bold block">Memo</span>
-                    <span className="font-serif text-[11px] text-slate-400 italic underline underline-offset-2">
+                    <span className="text-[9px] text-slate-500 dark:text-slate-400 uppercase font-bold block">Memo</span>
+                    <span className="font-serif text-[11px] text-slate-500 dark:text-slate-400 italic underline underline-offset-2">
                       Consulting & Professional Training Services
                     </span>
                   </div>
@@ -1525,8 +1525,8 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                 </div>
 
                 {/* Bottom E-13B MICR Clear Band */}
-                <div className="p-2 rounded-lg border border-emerald-500/40 bg-emerald-950/20 font-mono text-center tracking-widest relative text-xs text-emerald-400">
-                  <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.2 rounded text-[9px] font-black uppercase tracking-wider bg-emerald-600 text-white shadow-xs">
+                <div className="p-2  border border-emerald-500/40 bg-emerald-950/20 font-mono text-center tracking-widest relative text-xs text-emerald-400">
+                  <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.2  text-[9px] font-black uppercase tracking-wider bg-emerald-800 text-white shadow-xs">
                     [Standard E-13B Magnetic MICR]
                   </span>
                   <span className="font-bold text-xs">
@@ -1540,11 +1540,11 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
             {viewMode === 'diff' && (
               <div className="space-y-4">
                 {/* Content Library Match Header Banner */}
-                <div className={`p-3 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 ${
+                <div className={`p-3  border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 ${
                   isDark ? 'bg-[#181d28] border-purple-500/40 text-purple-200' : 'bg-purple-50 border-purple-300 text-purple-900 shadow-xs'
                 }`}>
                   <div className="flex items-center gap-2">
-                    <div className="p-1.5 rounded-lg bg-purple-600 text-white shrink-0">
+                    <div className="p-1.5  bg-purple-800 text-white shrink-0">
                       <GitCompare className="w-4 h-4" />
                     </div>
                     <div>
@@ -1552,18 +1552,18 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                         <span className="text-[11px] font-black uppercase tracking-wider text-purple-600 dark:text-purple-400">
                           ML Pattern Matcher: Closest Content Library Match
                         </span>
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-purple-600 text-white">
+                        <span className="px-2 py-0.5 text-[10px] font-mono font-bold bg-purple-800 text-white">
                           #REF-001 (84% Layout Match)
                         </span>
                       </div>
-                      <p className="text-xs text-slate-400">
+                      <p className={`text-xs ${isDark ? "text-slate-400" : "text-slate-700"}`}>
                         Comparing extracted banking fields of ingested check against verified reference specimen #REF-001.
                       </p>
                     </div>
                   </div>
 
                   <div className="shrink-0 flex items-center gap-2">
-                    <span className={`px-2.5 py-1 rounded-lg text-xs font-black uppercase tracking-wider border ${
+                    <span className={`px-2.5 py-1  text-xs font-black uppercase tracking-wider border ${
                       scanResult?.risk_assessment?.recommended_action === 'REJECT'
                         ? 'bg-rose-500/15 border-rose-500 text-rose-500'
                         : scanResult?.risk_assessment?.recommended_action === 'HOLD_FOR_REVIEW'
@@ -1578,7 +1578,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                 {/* Side-by-Side Visual Comparison Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Left Side: Uploaded / Ingested Suspect Check */}
-                  <div className={`p-4 rounded-xl border relative flex flex-col justify-between ${
+                  <div className={`p-4  border relative flex flex-col justify-between ${
                     isDark ? 'bg-[#151922] border-rose-500/40' : 'bg-white border-rose-300 shadow-sm'
                   }`}>
                     <div>
@@ -1587,7 +1587,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                           <AlertTriangle className="w-3.5 h-3.5" />
                           A. Uploaded Suspect Specimen
                         </span>
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-500/10 text-rose-400 font-bold">
+                        <span className="text-[10px] font-mono px-2 py-0.5  bg-rose-500/10 text-rose-400 font-bold">
                           {customUploadedImage ? (customFileName || 'Ingested Document') : `#${activeScenario.checkNumber}`}
                         </span>
                       </div>
@@ -1596,7 +1596,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                       {customUploadedImage ? (
                         <div className="mb-3 space-y-2">
                           <div 
-                            className="relative rounded-lg overflow-hidden border border-slate-700/60 bg-black/50 max-h-[140px] flex items-center justify-center p-1.5 cursor-pointer hover:border-blue-400 transition group" 
+                            className="relative  overflow-hidden border border-slate-700/60 bg-black/50 max-h-[140px] flex items-center justify-center p-1.5 cursor-pointer hover:border-blue-400 transition group" 
                             onClick={() => setShowZoomModal(true)} 
                             title="Click to view full high-resolution image"
                           >
@@ -1604,7 +1604,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                               src={customUploadedImage} 
                               alt="Uploaded Check Preview" 
                               referrerPolicy="no-referrer"
-                              className="max-h-[130px] w-auto object-contain rounded"
+                              className="max-h-[130px] w-auto object-contain "
                             />
                             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-1.5 text-white text-xs font-bold">
                               <ZoomIn className="w-4 h-4" />
@@ -1614,11 +1614,11 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
                           {/* Visual Defect Callouts */}
                           <div className="grid grid-cols-2 gap-1.5 text-[10px]">
-                            <div className="p-1.5 rounded bg-rose-500/15 border border-rose-500/40 text-rose-400 font-bold flex items-center gap-1">
+                            <div className="p-1.5  bg-rose-500/15 border border-rose-500/40 text-rose-400 font-bold flex items-center gap-1">
                               <XCircle className="w-3 h-3 text-rose-500 shrink-0" />
                               <span>Missing Authorized Signature</span>
                             </div>
-                            <div className="p-1.5 rounded bg-rose-500/15 border border-rose-500/40 text-rose-400 font-bold flex items-center gap-1">
+                            <div className="p-1.5  bg-rose-500/15 border border-rose-500/40 text-rose-400 font-bold flex items-center gap-1">
                               <XCircle className="w-3 h-3 text-rose-500 shrink-0" />
                               <span>Missing Issue Date</span>
                             </div>
@@ -1626,15 +1626,15 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                         </div>
                       ) : (
                         /* Simulated Suspect Specimen Card */
-                        <div className={`p-3 rounded-lg border mb-3 text-xs space-y-2 ${
+                        <div className={`p-3  border mb-3 text-xs space-y-2 ${
                           isDark ? 'bg-[#0f1218] border-slate-800' : 'bg-slate-50 border-slate-200'
                         }`}>
                           <div className="flex justify-between items-start">
                             <div>
                               <span className="font-bold text-blue-400 text-xs block">{activeScenario.bankName}</span>
-                              <span className="text-[10px] text-slate-400 font-mono">Serial: #{activeScenario.checkNumber}</span>
+                              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">Serial: #{activeScenario.checkNumber}</span>
                             </div>
-                            <div className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                            <div className={`px-2 py-0.5  text-[10px] font-bold ${
                               selectedScenarioId === 'missing-signature-date' 
                                 ? 'bg-rose-500/20 text-rose-400 border border-rose-500/40' 
                                 : 'text-slate-400'
@@ -1643,22 +1643,22 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                             </div>
                           </div>
 
-                          <div className="p-1.5 rounded bg-black/20 border border-slate-700/30">
-                            <span className="text-[9px] text-slate-400 block">Payee:</span>
+                          <div className="p-1.5  bg-black/20 border border-slate-700/30">
+                            <span className="text-[9px] text-slate-500 dark:text-slate-400 block">Payee:</span>
                             <span className="font-mono text-[11px] font-bold text-inherit">{activeScenario.payeeName}</span>
                           </div>
 
-                          <div className="flex justify-between items-center p-1.5 rounded bg-black/20 border border-slate-700/30">
+                          <div className="flex justify-between items-center p-1.5  bg-black/20 border border-slate-700/30">
                             <div>
-                              <span className="text-[9px] text-slate-400 block">Legal Text:</span>
+                              <span className="text-[9px] text-slate-500 dark:text-slate-400 block">Legal Text:</span>
                               <span className="font-serif text-[10px] italic">{activeScenario.legalAmountText}</span>
                             </div>
                             <span className="font-mono text-xs font-black text-inherit">{activeScenario.courtesyText}</span>
                           </div>
 
                           <div className="pt-1 flex justify-between items-end">
-                            <span className="text-[9px] text-slate-400 italic">Memo: {activeScenario.memo}</span>
-                            <div className={`text-right p-1 rounded ${
+                            <span className="text-[9px] text-slate-500 dark:text-slate-400 italic">Memo: {activeScenario.memo}</span>
+                            <div className={`text-right p-1  ${
                               selectedScenarioId === 'missing-signature-date' 
                                 ? 'bg-rose-500/20 border border-rose-500/50' 
                                 : ''
@@ -1677,34 +1677,34 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                       {/* Key Extracted Values Matrix */}
                       <div className="space-y-1.5 text-xs">
                         <div className="flex justify-between items-center py-1 border-b border-slate-700/20">
-                          <span className="text-[10px] text-slate-400 font-medium">Payee Name:</span>
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Payee Name:</span>
                           <span className="font-mono text-[11px] font-bold text-inherit">
                             {scanResult?.extracted_data?.payee_name || activeScenario.payeeName}
                           </span>
                         </div>
                         <div className="flex justify-between items-center py-1 border-b border-slate-700/20">
-                          <span className="text-[10px] text-slate-400 font-medium">Courtesy Amount:</span>
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Courtesy Amount:</span>
                           <span className="font-mono text-[11px] font-bold text-inherit">
                             ${scanResult?.extracted_data?.courtesy_amount_numeric?.toLocaleString() || activeScenario.courtesyAmount?.toLocaleString()}
                           </span>
                         </div>
                         <div className="flex justify-between items-center py-1 border-b border-slate-700/20">
-                          <span className="text-[10px] text-slate-400 font-medium">Authorized Signature:</span>
-                          <span className="font-mono text-[10px] font-bold text-rose-500 bg-rose-500/10 px-1.5 py-0.5 rounded flex items-center gap-1">
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Authorized Signature:</span>
+                          <span className="font-mono text-[10px] font-bold text-rose-500 bg-rose-500/10 px-1.5 py-0.5  flex items-center gap-1">
                             <XCircle className="w-3 h-3" />
                             <span>MISSING / BLANK</span>
                           </span>
                         </div>
                         <div className="flex justify-between items-center py-1 border-b border-slate-700/20">
-                          <span className="text-[10px] text-slate-400 font-medium">Issue Date:</span>
-                          <span className="font-mono text-[10px] font-bold text-rose-500 bg-rose-500/10 px-1.5 py-0.5 rounded flex items-center gap-1">
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Issue Date:</span>
+                          <span className="font-mono text-[10px] font-bold text-rose-500 bg-rose-500/10 px-1.5 py-0.5  flex items-center gap-1">
                             <XCircle className="w-3 h-3" />
                             <span>MISSING / BLANK</span>
                           </span>
                         </div>
                         <div className="flex justify-between items-center py-1">
-                          <span className="text-[10px] text-slate-400 font-medium">MICR Clear Band:</span>
-                          <span className="font-mono text-[10px] text-slate-400">
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">MICR Clear Band:</span>
+                          <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400">
                             ⑈ {scanResult?.extracted_data?.routing_number || activeScenario.routingNumber} ⑈ {scanResult?.extracted_data?.account_number || activeScenario.accountNumber}
                           </span>
                         </div>
@@ -1713,14 +1713,14 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
                     <div className="mt-3 pt-2.5 border-t border-inherit flex items-center justify-between text-[11px] text-rose-400 font-bold">
                       <span>Defects: 2 Mandatory Missing Fields</span>
-                      <span className="uppercase text-[10px] px-2 py-0.5 rounded bg-rose-500 text-white font-black">
+                      <span className="uppercase text-[10px] px-2 py-0.5  bg-rose-500 text-white font-black">
                         Status: REJECT
                       </span>
                     </div>
                   </div>
 
                   {/* Right Side: Closest Match from Content Library (#REF-001) */}
-                  <div className={`p-4 rounded-xl border relative flex flex-col justify-between ${
+                  <div className={`p-4  border relative flex flex-col justify-between ${
                     isDark ? 'bg-[#121c18] border-emerald-500/40' : 'bg-emerald-50/50 border-emerald-300 shadow-sm'
                   }`}>
                     <div>
@@ -1729,13 +1729,13 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                           <CheckCircle2 className="w-3.5 h-3.5" />
                           B. Content Library Baseline Match
                         </span>
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                        <span className="text-[10px] font-mono px-2 py-0.5  bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-bold">
                           #REF-001 (Gold Standard)
                         </span>
                       </div>
 
                       {/* Content Library Baseline Check Specimen */}
-                      <div className={`p-3 rounded-lg border mb-3 text-xs space-y-2 ${
+                      <div className={`p-3  border mb-3 text-xs space-y-2 ${
                         isDark ? 'bg-[#0b1411] border-emerald-500/30' : 'bg-white border-emerald-200 shadow-xs'
                       }`}>
                         <div className="flex justify-between items-start">
@@ -1743,23 +1743,23 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                             <span className="font-bold text-emerald-600 dark:text-emerald-400 text-xs block">
                               FIRST NATIONAL BANK — TRAINING CORE
                             </span>
-                            <span className="text-[10px] text-slate-400 font-mono">Serial: #10492</span>
+                            <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">Serial: #10492</span>
                           </div>
-                          <div className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+                          <div className="px-2 py-0.5  text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
                             Date: October 24, 2026
                           </div>
                         </div>
 
-                        <div className="p-1.5 rounded bg-emerald-500/5 border border-emerald-500/20">
-                          <span className="text-[9px] text-slate-400 block">Payee:</span>
+                        <div className="p-1.5  bg-emerald-500/5 border border-emerald-500/20">
+                          <span className="text-[9px] text-slate-500 dark:text-slate-400 block">Payee:</span>
                           <span className="font-mono text-[11px] font-bold text-emerald-700 dark:text-emerald-300">
                             ACME ENTERPRISES (Verified Vendor)
                           </span>
                         </div>
 
-                        <div className="flex justify-between items-center p-1.5 rounded bg-emerald-500/5 border border-emerald-500/20">
+                        <div className="flex justify-between items-center p-1.5  bg-emerald-500/5 border border-emerald-500/20">
                           <div>
-                            <span className="text-[9px] text-slate-400 block">Legal Text:</span>
+                            <span className="text-[9px] text-slate-500 dark:text-slate-400 block">Legal Text:</span>
                             <span className="font-serif text-[10px] italic text-emerald-800 dark:text-emerald-300">
                               One Thousand Two Hundred Fifty and 00/100 Dollars
                             </span>
@@ -1768,8 +1768,8 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                         </div>
 
                         <div className="pt-1 flex justify-between items-end">
-                          <span className="text-[9px] text-slate-400 italic">Memo: Freight Clearing Settlement</span>
-                          <div className="text-right p-1 rounded bg-emerald-500/10 border border-emerald-500/30">
+                          <span className="text-[9px] text-slate-500 dark:text-slate-400 italic">Memo: Freight Clearing Settlement</span>
+                          <div className="text-right p-1  bg-emerald-500/10 border border-emerald-500/30">
                             <span className="text-[10px] font-bold block text-emerald-600 dark:text-emerald-400 font-serif italic">
                               ✓ J.D. Sterling (Officer #409)
                             </span>
@@ -1781,33 +1781,33 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                       {/* Content Library Baseline Key Specs */}
                       <div className="space-y-1.5 text-xs">
                         <div className="flex justify-between items-center py-1 border-b border-emerald-500/20">
-                          <span className="text-[10px] text-slate-400 font-medium">Payee Name:</span>
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Payee Name:</span>
                           <span className="font-mono text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
                             ACME ENTERPRISES
                           </span>
                         </div>
                         <div className="flex justify-between items-center py-1 border-b border-emerald-500/20">
-                          <span className="text-[10px] text-slate-400 font-medium">Courtesy Amount:</span>
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Courtesy Amount:</span>
                           <span className="font-mono text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
                             $1,250.00 (Matched)
                           </span>
                         </div>
                         <div className="flex justify-between items-center py-1 border-b border-emerald-500/20">
-                          <span className="text-[10px] text-slate-400 font-medium">Authorized Signature:</span>
-                          <span className="font-mono text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded flex items-center gap-1">
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Authorized Signature:</span>
+                          <span className="font-mono text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5  flex items-center gap-1">
                             <CheckCircle2 className="w-3 h-3" />
                             <span>✓ J.D. Sterling (Verified)</span>
                           </span>
                         </div>
                         <div className="flex justify-between items-center py-1 border-b border-emerald-500/20">
-                          <span className="text-[10px] text-slate-400 font-medium">Issue Date:</span>
-                          <span className="font-mono text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded flex items-center gap-1">
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Issue Date:</span>
+                          <span className="font-mono text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5  flex items-center gap-1">
                             <CheckCircle2 className="w-3 h-3" />
                             <span>✓ October 24, 2026</span>
                           </span>
                         </div>
                         <div className="flex justify-between items-center py-1">
-                          <span className="text-[10px] text-slate-400 font-medium">MICR Clear Band:</span>
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">MICR Clear Band:</span>
                           <span className="font-mono text-[10px] text-emerald-600 dark:text-emerald-400">
                             ⑈ 121000358 ⑈ 8840291773 ⑈ 10492
                           </span>
@@ -1817,7 +1817,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
                     <div className="mt-3 pt-2.5 border-t border-inherit flex items-center justify-between text-[11px] text-emerald-600 dark:text-emerald-400 font-bold">
                       <span>Baseline: All 4 Mandatory Fields Intact</span>
-                      <span className="uppercase text-[10px] px-2 py-0.5 rounded bg-emerald-600 text-white font-black">
+                      <span className="uppercase text-[10px] px-2 py-0.5  bg-emerald-800 text-white font-black">
                         Status: COMPLIANT
                       </span>
                     </div>
@@ -1825,7 +1825,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                 </div>
 
                 {/* Machine Learning Pattern Match Discrepancy Matrix Table */}
-                <div className={`p-4 rounded-xl border text-xs space-y-3 ${
+                <div className={`p-4  border text-xs space-y-3 ${
                   isDark ? 'bg-[#18191c] border-[#3c4043]' : 'bg-white border-slate-200 shadow-sm'
                 }`}>
                   <div className="flex items-center justify-between pb-2 border-b border-inherit">
@@ -1833,7 +1833,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                       <GitCompare className="w-4 h-4" />
                       ML Pattern Match Discrepancy Matrix: Extracted Check vs. Content Library Baseline
                     </span>
-                    <span className="text-[10px] font-mono text-slate-400">
+                    <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400">
                       UCC § 3-401 & Federal Reserve Reg CC Compliance Check
                     </span>
                   </div>
@@ -1841,7 +1841,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                   <div className="overflow-x-auto">
                     <table className="w-full text-left text-[11px] border-collapse">
                       <thead>
-                        <tr className="border-b border-slate-700/50 text-slate-400 uppercase text-[9px] tracking-wider">
+                        <tr className="border-b border-slate-700/50 text-slate-500 dark:text-slate-400 uppercase text-[9px] tracking-wider">
                           <th className="py-2 px-2.5">Banking Field</th>
                           <th className="py-2 px-2.5">Content Library Baseline (#REF-001)</th>
                           <th className="py-2 px-2.5">Ingested Check Specimen</th>
@@ -1852,17 +1852,17 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                       <tbody className="divide-y divide-slate-700/30 font-sans">
                         {/* 1. Authorized Maker Signature */}
                         <tr className="hover:bg-black/10 transition">
-                          <td className="py-2.5 px-2.5 font-bold text-slate-200">
+                          <td className="py-2.5 px-2.5 font-bold text-slate-900 dark:text-slate-200">
                             1. Authorized Maker Signature
                           </td>
                           <td className="py-2.5 px-2.5 text-emerald-400 font-mono">
                             ✓ J.D. Sterling (Officer #409)
                           </td>
-                          <td className="py-2.5 px-2.5 font-mono text-rose-400 font-bold bg-rose-500/10 rounded">
+                          <td className="py-2.5 px-2.5 font-mono text-rose-400 font-bold bg-rose-500/10 ">
                             ❌ BLANK / MISSING SIGNATURE
                           </td>
                           <td className="py-2.5 px-2.5 text-center">
-                            <span className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-rose-600 text-white shadow-xs">
+                            <span className="px-2 py-0.5  text-[10px] font-black uppercase tracking-wider bg-rose-800 text-white shadow-xs">
                               MISSING (FATAL DEFECT)
                             </span>
                           </td>
@@ -1873,17 +1873,17 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
                         {/* 2. Issue Date */}
                         <tr className="hover:bg-black/10 transition">
-                          <td className="py-2.5 px-2.5 font-bold text-slate-200">
+                          <td className="py-2.5 px-2.5 font-bold text-slate-900 dark:text-slate-200">
                             2. Issue Date
                           </td>
                           <td className="py-2.5 px-2.5 text-emerald-400 font-mono">
                             ✓ October 24, 2026
                           </td>
-                          <td className="py-2.5 px-2.5 font-mono text-rose-400 font-bold bg-rose-500/10 rounded">
+                          <td className="py-2.5 px-2.5 font-mono text-rose-400 font-bold bg-rose-500/10 ">
                             ❌ BLANK / NO DATE
                           </td>
                           <td className="py-2.5 px-2.5 text-center">
-                            <span className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-rose-600 text-white shadow-xs">
+                            <span className="px-2 py-0.5  text-[10px] font-black uppercase tracking-wider bg-rose-800 text-white shadow-xs">
                               MISSING (FATAL DEFECT)
                             </span>
                           </td>
@@ -1894,7 +1894,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
                         {/* 3. Payee Name */}
                         <tr className="hover:bg-black/10 transition">
-                          <td className="py-2.5 px-2.5 font-bold text-slate-200">
+                          <td className="py-2.5 px-2.5 font-bold text-slate-900 dark:text-slate-200">
                             3. Payee Name
                           </td>
                           <td className="py-2.5 px-2.5 text-emerald-400 font-mono">
@@ -1904,18 +1904,18 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                             {scanResult?.extracted_data?.payee_name || activeScenario.payeeName}
                           </td>
                           <td className="py-2.5 px-2.5 text-center">
-                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-600/20 text-emerald-400 border border-emerald-500/30">
+                            <span className="px-2 py-0.5  text-[10px] font-bold bg-emerald-800/20 text-emerald-400 border border-emerald-500/30">
                               MATCH
                             </span>
                           </td>
-                          <td className="py-2.5 px-2.5 text-slate-400 text-[10px]">
+                          <td className="py-2.5 px-2.5 text-slate-500 dark:text-slate-400 text-[10px]">
                             Known commercial payee in corporate vendor directory.
                           </td>
                         </tr>
 
                         {/* 4. Courtesy vs Legal Parity */}
                         <tr className="hover:bg-black/10 transition">
-                          <td className="py-2.5 px-2.5 font-bold text-slate-200">
+                          <td className="py-2.5 px-2.5 font-bold text-slate-900 dark:text-slate-200">
                             4. Courtesy vs Legal Parity
                           </td>
                           <td className="py-2.5 px-2.5 text-emerald-400 font-mono">
@@ -1925,22 +1925,22 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                             ${scanResult?.extracted_data?.courtesy_amount_numeric?.toLocaleString() || activeScenario.courtesyAmount?.toLocaleString()}
                           </td>
                           <td className="py-2.5 px-2.5 text-center">
-                            <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                            <span className={`px-2 py-0.5  text-[10px] font-bold ${
                               selectedScenarioId === 'amount-mismatch'
-                                ? 'bg-rose-600 text-white'
-                                : 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30'
+                                ? 'bg-rose-800 text-white'
+                                : 'bg-emerald-800/20 text-emerald-400 border border-emerald-500/30'
                             }`}>
                               {selectedScenarioId === 'amount-mismatch' ? 'MISMATCH' : 'MATCH'}
                             </span>
                           </td>
-                          <td className="py-2.5 px-2.5 text-slate-400 text-[10px]">
+                          <td className="py-2.5 px-2.5 text-slate-500 dark:text-slate-400 text-[10px]">
                             {selectedScenarioId === 'amount-mismatch' ? 'Numerical box does not match legal words' : 'Numerical box matches legal written text'}
                           </td>
                         </tr>
 
                         {/* 5. MICR Clear Band */}
                         <tr className="hover:bg-black/10 transition">
-                          <td className="py-2.5 px-2.5 font-bold text-slate-200">
+                          <td className="py-2.5 px-2.5 font-bold text-slate-900 dark:text-slate-200">
                             5. E-13B MICR Clear Band
                           </td>
                           <td className="py-2.5 px-2.5 text-emerald-400 font-mono">
@@ -1950,15 +1950,15 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                             ⑈ {scanResult?.extracted_data?.routing_number || activeScenario.routingNumber} ⑈ {scanResult?.extracted_data?.account_number || activeScenario.accountNumber}
                           </td>
                           <td className="py-2.5 px-2.5 text-center">
-                            <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                            <span className={`px-2 py-0.5  text-[10px] font-bold ${
                               selectedScenarioId === 'micr-counterfeit'
-                                ? 'bg-rose-600 text-white'
-                                : 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30'
+                                ? 'bg-rose-800 text-white'
+                                : 'bg-emerald-800/20 text-emerald-400 border border-emerald-500/30'
                             }`}>
                               {selectedScenarioId === 'micr-counterfeit' ? 'COUNTERFEIT' : 'MATCH'}
                             </span>
                           </td>
-                          <td className="py-2.5 px-2.5 text-slate-400 text-[10px]">
+                          <td className="py-2.5 px-2.5 text-slate-500 dark:text-slate-400 text-[10px]">
                             ANSI X9.27 MICR format & ABA Mod-10 routing validation.
                           </td>
                         </tr>
@@ -1975,7 +1975,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                             ❌ VOID / NON-NEGOTIABLE (REJECT)
                           </td>
                           <td className="py-2.5 px-2.5 text-center">
-                            <span className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-rose-600 text-white shadow-xs">
+                            <span className="px-2 py-0.5  text-[10px] font-black uppercase tracking-wider bg-rose-800 text-white shadow-xs">
                               REJECT
                             </span>
                           </td>
@@ -1988,7 +1988,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                   </div>
 
                   {/* Summary Verdict Callout */}
-                  <div className="p-3 rounded-lg bg-rose-500/10 border border-rose-500/40 text-rose-300 text-xs flex items-start gap-2.5">
+                  <div className="p-3  bg-rose-500/10 border border-rose-500/40 text-rose-300 text-xs flex items-start gap-2.5">
                     <AlertTriangle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                     <div>
                       <strong className="text-rose-400 block font-bold">
@@ -2004,7 +2004,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
             )}
 
             {/* Scenario Description Footer */}
-            <div className="mt-3 text-[11px] flex items-center justify-between text-slate-400">
+            <div className="mt-3 text-[11px] flex items-center justify-between text-slate-500 dark:text-slate-400">
               <span className="flex items-center gap-1.5">
                 <ShieldAlert className="w-3.5 h-3.5 text-amber-400" />
                 <span>{activeScenario.anomaliesDescription}</span>
@@ -2023,7 +2023,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
             </span>
             <button
               onClick={copyJsonToClipboard}
-              className={`px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1 border transition ${
+              className={`px-2.5 py-1  text-xs font-bold flex items-center gap-1 border transition ${
                 isDark ? 'bg-[#323639] border-[#3c4043]' : 'bg-slate-100 border-slate-300'
               }`}
             >
@@ -2033,7 +2033,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
           </div>
 
           {/* Primary Recommended Action Card */}
-          <div className={`p-4 rounded-xl border flex items-center justify-between shadow-xs ${
+          <div className={`p-4  border flex items-center justify-between shadow-xs ${
             scanResult?.risk_assessment?.recommended_action === 'APPROVE'
               ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-400'
               : scanResult?.risk_assessment?.recommended_action === 'HOLD_FOR_REVIEW'
@@ -2070,7 +2070,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
           {/* 4 Core Verification Checks (Signature, Date, Amount Parity, MICR) */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {/* 1. Authorized Signature */}
-            <div className={`p-2 rounded-xl border text-center ${
+            <div className={`p-2  border text-center ${
               scanResult?.verification_results?.signature_verified !== false && scanResult?.extracted_data?.authorized_signature_present !== false
                 ? isDark ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-400' : 'bg-emerald-50 border-emerald-200 text-emerald-800'
                 : isDark ? 'bg-rose-950/40 border-rose-500/40 text-rose-400' : 'bg-rose-50 border-rose-200 text-rose-800'
@@ -2084,7 +2084,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
             </div>
 
             {/* 2. Issue Date */}
-            <div className={`p-2 rounded-xl border text-center ${
+            <div className={`p-2  border text-center ${
               scanResult?.verification_results?.date_verified !== false && scanResult?.extracted_data?.date_present !== false
                 ? isDark ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-400' : 'bg-emerald-50 border-emerald-200 text-emerald-800'
                 : isDark ? 'bg-rose-950/40 border-rose-500/40 text-rose-400' : 'bg-rose-50 border-rose-200 text-rose-800'
@@ -2098,7 +2098,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
             </div>
 
             {/* 3. Amount Parity */}
-            <div className={`p-2 rounded-xl border text-center ${
+            <div className={`p-2  border text-center ${
               scanResult?.verification_results?.amount_match 
                 ? isDark ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-400' : 'bg-emerald-50 border-emerald-200 text-emerald-800'
                 : isDark ? 'bg-rose-950/40 border-rose-500/40 text-rose-400' : 'bg-rose-50 border-rose-200 text-rose-800'
@@ -2110,7 +2110,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
             </div>
 
             {/* 4. MICR Clear Band */}
-            <div className={`p-2 rounded-xl border text-center ${
+            <div className={`p-2  border text-center ${
               scanResult?.verification_results?.micr_structure_valid
                 ? isDark ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-400' : 'bg-emerald-50 border-emerald-200 text-emerald-800'
                 : isDark ? 'bg-rose-950/40 border-rose-500/40 text-rose-400' : 'bg-rose-50 border-rose-200 text-rose-800'
@@ -2123,7 +2123,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
           </div>
 
           {/* Content Library Pattern Match Card */}
-          <div className={`p-3 rounded-xl border text-xs space-y-1.5 ${
+          <div className={`p-3  border text-xs space-y-1.5 ${
             isDark ? 'bg-[#1e2330] border-purple-500/30' : 'bg-purple-50/50 border-purple-200'
           }`}>
             <div className="flex items-center justify-between">
@@ -2151,10 +2151,10 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
           </div>
 
           {/* Extracted Structured Field Matrix */}
-          <div className={`p-3.5 rounded-xl border space-y-2 text-xs ${
+          <div className={`p-3.5  border space-y-2 text-xs ${
             isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'
           }`}>
-            <span className="font-bold text-[10px] uppercase tracking-wider block text-slate-400">
+            <span className="font-bold text-[10px] uppercase tracking-wider block text-slate-500 dark:text-slate-400">
               Extracted Banking Fields
             </span>
             <div className="grid grid-cols-2 gap-2 font-mono text-[11px]">
@@ -2209,7 +2209,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
           {/* Primary Anomaly Flags */}
           {scanResult?.risk_assessment?.primary_risk_flags?.length > 0 && (
-            <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-400 text-xs">
+            <div className="p-3  bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-400 text-xs">
               <span className="font-bold text-[10px] uppercase tracking-wider block mb-1">
                 Primary Risk Anomaly Flags:
               </span>
@@ -2224,12 +2224,12 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
           {/* Raw JSON Payload (Accordion/Scroll) */}
           <div>
             <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                 Core Banking Standard JSON
               </span>
               <span className="text-[10px] text-slate-500 font-mono">schema: v1.4</span>
             </div>
-            <pre className={`p-2.5 rounded-xl border font-mono text-[10px] leading-tight max-h-36 overflow-y-auto ${
+            <pre className={`p-2.5  border font-mono text-[10px] leading-tight max-h-36 overflow-y-auto ${
               isDark ? 'bg-[#18191c] border-[#3c4043] text-emerald-400' : 'bg-slate-900 border-slate-800 text-emerald-300'
             }`}>
               {JSON.stringify(scanResult, null, 2)}
@@ -2241,62 +2241,62 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
       {/* Pristine Original Reference Check Modal (When triggered from toolbar) */}
       {showOriginalModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-          <div className={`w-full max-w-2xl rounded-2xl border p-6 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200 ${
+          <div className={`w-full max-w-2xl  border p-3 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200 ${
             isDark ? 'bg-[#1e2025] border-emerald-500/40 text-slate-200' : 'bg-white border-emerald-300 text-slate-800'
           }`}>
             <div className="flex items-center justify-between pb-4 border-b border-inherit mb-4">
               <div className="flex items-center gap-2">
-                <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                <div className="p-2  bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
                   <Landmark className="w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="text-base font-black tracking-tight">
                     Content Library: Pristine Original Check Specification
                   </h3>
-                  <p className="text-xs text-slate-400">
+                  <p className={`text-xs ${isDark ? "text-slate-400" : "text-slate-700"}`}>
                     Baseline gold standard specimen used for automated parity and fraud difference detection.
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setShowOriginalModal(false)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-700/30"
+                className="p-1.5  text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-slate-200 hover:bg-slate-700/30"
               >
                 ✕
               </button>
             </div>
 
             {/* Pristine Check Specimen Render Card */}
-            <div className="p-4 rounded-xl border border-emerald-500/30 bg-emerald-500/5 mb-4 space-y-3 font-sans">
+            <div className="p-4  border border-emerald-500/30 bg-emerald-500/5 mb-4 space-y-3 font-sans">
               <div className="flex items-start justify-between">
                 <div>
                   <span className="text-[10px] font-bold uppercase text-emerald-600 dark:text-emerald-400">Official Standard</span>
                   <h4 className="font-bold text-sm text-emerald-700 dark:text-emerald-400">
                     FIRST NATIONAL BANK — TRAINING CORE
                   </h4>
-                  <span className="text-[10px] text-slate-400 font-mono">ABA Routing: 121000358 | Account: 8840291773</span>
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">ABA Routing: 121000358 | Account: 8840291773</span>
                 </div>
-                <span className="font-mono text-sm font-bold text-slate-400">#10492</span>
+                <span className="font-mono text-sm font-bold text-slate-500 dark:text-slate-400">#10492</span>
               </div>
 
-              <div className="grid grid-cols-12 gap-2 items-center p-2 rounded-lg bg-black/20 border border-slate-700/30">
+              <div className="grid grid-cols-12 gap-2 items-center p-2  bg-black/20 border border-slate-700/30">
                 <div className="col-span-8">
-                  <span className="text-[9px] text-slate-400 uppercase font-bold block">Payee Line</span>
+                  <span className="text-[9px] text-slate-500 dark:text-slate-400 uppercase font-bold block">Payee Line</span>
                   <span className="font-mono text-xs font-bold text-emerald-400">ACME ENTERPRISES (Payee Verified)</span>
                 </div>
                 <div className="col-span-4 text-right">
-                  <span className="text-[9px] text-slate-400 uppercase font-bold block">Courtesy Box</span>
+                  <span className="text-[9px] text-slate-500 dark:text-slate-400 uppercase font-bold block">Courtesy Box</span>
                   <span className="font-mono text-sm font-bold text-emerald-400">$ 1,250.00</span>
                 </div>
               </div>
 
-              <div className="p-2 rounded-lg bg-black/20 border border-slate-700/30">
-                <span className="text-[9px] text-slate-400 uppercase font-bold block">Legal Amount Text</span>
+              <div className="p-2  bg-black/20 border border-slate-700/30">
+                <span className="text-[9px] text-slate-500 dark:text-slate-400 uppercase font-bold block">Legal Amount Text</span>
                 <span className="font-serif text-xs italic text-emerald-300">One Thousand Two Hundred Fifty and 00/100 Dollars</span>
               </div>
 
               <div className="flex items-center justify-between text-xs pt-1">
-                <span className="font-serif italic text-[11px] text-slate-400">Signature: J. D. Sterling (Authorized #409)</span>
+                <span className="font-serif italic text-[11px] text-slate-500 dark:text-slate-400">Signature: J. D. Sterling (Authorized #409)</span>
                 <span className="font-mono text-[10px] text-emerald-400 font-bold">⑈ 121000358 ⑈ 8840291773 ⑈ 10492</span>
               </div>
             </div>
@@ -2307,14 +2307,14 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                   setViewMode('diff');
                   setShowOriginalModal(false);
                 }}
-                className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs flex items-center gap-1.5"
+                className="px-4 py-2  bg-purple-800 hover:bg-purple-700 text-white font-bold text-xs flex items-center gap-1.5"
               >
                 <GitCompare className="w-3.5 h-3.5" />
                 <span>Open Side-by-Side Diff View</span>
               </button>
               <button
                 onClick={() => setShowOriginalModal(false)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold border ${
+                className={`px-4 py-2  text-xs font-bold border ${
                   isDark ? 'bg-slate-800 border-slate-700 text-slate-200' : 'bg-slate-100 border-slate-300 text-slate-800'
                 }`}
               >
@@ -2328,23 +2328,23 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
       {/* High-Resolution Specimen Zoom & Inspection Modal */}
       {showZoomModal && customUploadedImage && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
-          <div className={`w-full max-w-4xl max-h-[90vh] flex flex-col rounded-2xl border p-5 shadow-2xl relative ${
+          <div className={`w-full max-w-4xl max-h-[90vh] flex flex-col  border p-3 shadow-2xl relative ${
             isDark ? 'bg-[#18191c] border-blue-500/40 text-slate-200' : 'bg-white border-slate-300 text-slate-800'
           }`}>
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-3 border-b border-inherit mb-3">
               <div className="flex items-center gap-2">
-                <div className="p-2 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                <div className="p-2  bg-blue-500/10 text-blue-400 border border-blue-500/20">
                   <ZoomIn className="w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="text-sm font-black tracking-tight flex items-center gap-2">
                     <span>Specimen Inspection ({customFileMeta?.format || 'IMAGE'})</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-blue-600/20 text-blue-400 border border-blue-500/30">
+                    <span className="text-[10px] px-2 py-0.5  bg-slate-700/20 text-blue-400 border border-blue-500/30">
                       {customFileMeta?.sourceType || 'High-Resolution'}
                     </span>
                   </h3>
-                  <p className="text-xs text-slate-400 font-mono truncate max-w-md">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-mono truncate max-w-md">
                     {customFileName || 'Pasted Clipboard Snippet'}
                   </p>
                 </div>
@@ -2352,14 +2352,14 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold flex items-center gap-1.5 transition"
+                  className="px-3 py-1.5  bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold flex items-center gap-1.5 transition"
                 >
                   <FileUp className="w-3.5 h-3.5" />
                   <span>Upload Another</span>
                 </button>
                 <button
                   onClick={() => setShowZoomModal(false)}
-                  className="p-1.5 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition text-sm font-bold"
+                  className="p-1.5  text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-slate-200 hover:bg-slate-800 transition text-sm font-bold"
                 >
                   ✕
                 </button>
@@ -2367,7 +2367,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
             </div>
 
             {/* High-Resolution Image Container with Scroll */}
-            <div className="flex-1 overflow-auto rounded-xl bg-black/60 p-3 flex flex-col items-center justify-center min-h-[300px] max-h-[65vh] relative space-y-3">
+            <div className="flex-1 overflow-auto  bg-black/60 p-3 flex flex-col items-center justify-center min-h-[300px] max-h-[65vh] relative space-y-3">
               <img 
                 src={customUploadedImage} 
                 alt="High-Res Check Specimen" 
@@ -2382,44 +2382,44 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                   console.warn('Zoom modal image load event notice');
                   setImageIsLoading(false);
                 }}
-                className="max-w-full max-h-[48vh] object-contain rounded-lg shadow-2xl"
+                className="max-w-full max-h-[48vh] object-contain  shadow-2xl"
               />
 
               {/* In-Modal Extracted Findings Banner */}
-              <div className="w-full max-w-2xl p-3 rounded-xl bg-slate-900/90 border border-blue-500/30 text-left space-y-2">
+              <div className="w-full max-w-2xl p-3  bg-slate-900/90 border border-blue-500/30 text-left space-y-2">
                 <div className="flex items-center justify-between border-b border-slate-700/60 pb-1.5">
                   <div className="flex items-center gap-1.5">
                     <FileCheck className="w-4 h-4 text-emerald-400" />
-                    <span className="text-[11px] font-black uppercase text-slate-200 tracking-wider">
+                    <span className="text-[11px] font-black uppercase text-slate-900 dark:text-slate-200 tracking-wider">
                       Extracted Specimen Findings
                     </span>
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[9px] font-mono bg-blue-600/30 text-blue-300 border border-blue-500/40">
+                  <span className="px-2 py-0.5  text-[9px] font-mono bg-slate-700/30 text-blue-300 border border-blue-500/40">
                     {customFileMeta?.format || 'PNG'} SPECIMEN PARSED
                   </span>
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-                  <div className="p-1.5 rounded bg-black/40 border border-slate-800">
-                    <span className="text-[8px] text-slate-400 block font-mono">FILE NAME</span>
-                    <span className="font-bold text-slate-200 truncate block text-[10px]" title={customFileName}>
+                  <div className={`p-1.5 border ${isDark ? 'bg-black/40 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                    <span className="text-[8px] text-slate-500 dark:text-slate-400 block font-mono">FILE NAME</span>
+                    <span className="font-bold text-slate-900 dark:text-slate-200 truncate block text-[10px]" title={customFileName}>
                       {customFileName || 'Specimen File'}
                     </span>
                   </div>
-                  <div className="p-1.5 rounded bg-black/40 border border-slate-800">
-                    <span className="text-[8px] text-slate-400 block font-mono">PAYEE NAME</span>
+                  <div className={`p-1.5 border ${isDark ? 'bg-black/40 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                    <span className="text-[8px] text-slate-500 dark:text-slate-400 block font-mono">PAYEE NAME</span>
                     <span className="font-bold text-blue-300 truncate block text-[10px]">
                       {scanResult?.extracted_data?.payee_name || activeScenario.payeeName || 'ACME ENTERPRISES'}
                     </span>
                   </div>
-                  <div className="p-1.5 rounded bg-black/40 border border-slate-800">
-                    <span className="text-[8px] text-slate-400 block font-mono">COURTESY AMOUNT</span>
+                  <div className={`p-1.5 border ${isDark ? 'bg-black/40 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                    <span className="text-[8px] text-slate-500 dark:text-slate-400 block font-mono">COURTESY AMOUNT</span>
                     <span className="font-bold text-emerald-400 font-mono block text-[10px]">
                       ${(scanResult?.extracted_data?.courtesy_amount_numeric || activeScenario.courtesyAmount || 1250).toLocaleString('en-US', { minimumFractionDigits: 2 })}
                     </span>
                   </div>
-                  <div className="p-1.5 rounded bg-black/40 border border-slate-800">
-                    <span className="text-[8px] text-slate-400 block font-mono">MICR PARITY</span>
+                  <div className={`p-1.5 border ${isDark ? 'bg-black/40 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                    <span className="text-[8px] text-slate-500 dark:text-slate-400 block font-mono">MICR PARITY</span>
                     <span className="font-bold text-cyan-300 font-mono block text-[10px]">
                       ⑆121000358⑆
                     </span>
@@ -2430,7 +2430,7 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
 
             {/* Modal Footer Controls */}
             <div className="flex items-center justify-between pt-3 border-t border-inherit mt-3 text-xs">
-              <span className="text-slate-400 text-[11px] font-mono">
+              <span className="text-slate-500 dark:text-slate-400 text-[11px] font-mono">
                 {customFileMeta?.pageCount && customFileMeta.pageCount > 1 
                   ? `Rendered from Page ${customFileMeta.pageNumber || 1} of ${customFileMeta.pageCount}` 
                   : 'Universal Optical Parser Ready'}
@@ -2441,14 +2441,14 @@ export const LiveCheckScannerDemo: React.FC<LiveCheckScannerDemoProps> = ({ curr
                     setShowZoomModal(false);
                     handleExecuteScan();
                   }}
-                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold flex items-center gap-1.5 transition"
+                  className="px-4 py-2  bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold flex items-center gap-1.5 transition"
                 >
                   <Play className="w-3.5 h-3.5 fill-current" />
                   <span>Scan &amp; Parse This Check</span>
                 </button>
                 <button
                   onClick={() => setShowZoomModal(false)}
-                  className={`px-4 py-2 rounded-xl font-bold border ${
+                  className={`px-4 py-2  font-bold border ${
                     isDark ? 'bg-slate-800 border-slate-700 text-slate-200' : 'bg-slate-100 border-slate-300 text-slate-800'
                   }`}
                 >

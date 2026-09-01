@@ -78,7 +78,7 @@ export const CheckLightingTamperDetectorModal: React.FC<CheckLightingTamperDetec
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-xs p-4">
-      <div className={`w-full max-w-3xl rounded-2xl border shadow-2xl overflow-hidden flex flex-col max-h-[90vh] ${
+      <div className={`w-full max-w-3xl  border shadow-2xl overflow-hidden flex flex-col max-h-[90vh] ${
         themeMode === 'dark' ? 'bg-[#202124] border-[#3c4043] text-[#e8eaed]' : 'bg-white border-slate-200 text-slate-900'
       }`}>
         {/* Header */}
@@ -92,7 +92,7 @@ export const CheckLightingTamperDetectorModal: React.FC<CheckLightingTamperDetec
               <p className="text-xs opacity-75">Apply physics-based vision to identify digital splicing</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-lg opacity-75 hover:opacity-100 hover:bg-black/10 transition">
+          <button onClick={onClose} className="p-1.5  opacity-75 hover:opacity-100 hover:bg-black/10 transition">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -107,7 +107,7 @@ export const CheckLightingTamperDetectorModal: React.FC<CheckLightingTamperDetec
               </label>
 
               {!previewUrl ? (
-                <label className={`border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer transition ${
+                <label className={`border-2 border-dashed  p-8 flex flex-col items-center justify-center cursor-pointer transition ${
                   themeMode === 'dark' ? 'border-[#5f6368] hover:border-fuchsia-400 bg-[#292a2d]' : 'border-slate-300 hover:border-fuchsia-600 bg-slate-50'
                 }`}>
                   <ImageIcon className="w-8 h-8 text-fuchsia-500 mb-2" />
@@ -116,11 +116,11 @@ export const CheckLightingTamperDetectorModal: React.FC<CheckLightingTamperDetec
                   <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
                 </label>
               ) : (
-                <div className="relative rounded-xl overflow-hidden border border-inherit bg-black/40 p-2 flex flex-col items-center">
-                  <img src={previewUrl} alt="Check Preview" className="max-h-[200px] object-contain rounded" />
+                <div className="relative  overflow-hidden border border-inherit bg-black/40 p-2 flex flex-col items-center">
+                  <img src={previewUrl} alt="Check Preview" className="max-h-[200px] object-contain " />
                   <button
                     onClick={() => { setPreviewUrl(null); setSelectedFile(null); setDetectorResult(null); }}
-                    className="mt-3 px-3 py-1 rounded bg-rose-600/80 hover:bg-rose-600 text-white text-xs font-medium transition"
+                    className="mt-3 px-3 py-1  bg-rose-800/80 hover:bg-rose-800 text-white text-xs font-medium transition"
                   >
                     Remove / Change Image
                   </button>
@@ -131,11 +131,11 @@ export const CheckLightingTamperDetectorModal: React.FC<CheckLightingTamperDetec
                 <button
                   onClick={handleRunDetector}
                   disabled={isAnalyzing}
-                  className="w-full py-2.5 rounded-xl bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-bold text-xs shadow flex items-center justify-center gap-2 transition disabled:opacity-50"
+                  className="w-full py-2.5  bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-bold text-xs shadow flex items-center justify-center gap-2 transition disabled:opacity-50"
                 >
                   {isAnalyzing ? (
                     <>
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent animate-spin" />
                       <span>Analyzing Shadow Geometry...</span>
                     </>
                   ) : (
@@ -154,7 +154,7 @@ export const CheckLightingTamperDetectorModal: React.FC<CheckLightingTamperDetec
                 Detector JSON Output
               </label>
 
-              <div className={`flex-1 rounded-xl p-4 font-mono text-xs border overflow-y-auto ${
+              <div className={`flex-1  p-4 font-mono text-xs border overflow-y-auto ${
                 themeMode === 'dark' ? 'bg-[#18191c] border-[#3c4043]' : 'bg-slate-900 text-slate-100 border-slate-800'
               }`}>
                 {detectorResult ? (
@@ -172,7 +172,7 @@ export const CheckLightingTamperDetectorModal: React.FC<CheckLightingTamperDetec
           </div>
 
           {detectorResult && (
-            <div className={`p-4 rounded-xl border flex items-center justify-between ${
+            <div className={`p-4  border flex items-center justify-between ${
               detectorResult.findings.splicing_detected
                 ? 'bg-rose-500/10 border-rose-500/30 text-rose-400'
                 : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
@@ -193,7 +193,7 @@ export const CheckLightingTamperDetectorModal: React.FC<CheckLightingTamperDetec
                 </div>
               </div>
               <div className="flex flex-col items-end gap-1">
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded bg-black/20 uppercase tracking-wider`}>
+                <span className={`text-[10px] font-bold px-2 py-0.5  bg-black/20 uppercase tracking-wider`}>
                   Splice Probability
                 </span>
                 <span className="font-mono text-xs">
@@ -210,7 +210,7 @@ export const CheckLightingTamperDetectorModal: React.FC<CheckLightingTamperDetec
         }`}>
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow transition"
+            className="px-4 py-2  bg-slate-700 hover:bg-slate-600 text-white font-medium text-xs shadow transition"
           >
             Close Detector
           </button>

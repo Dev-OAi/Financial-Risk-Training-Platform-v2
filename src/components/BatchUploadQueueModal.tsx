@@ -86,7 +86,7 @@ export const BatchUploadQueueModal: React.FC<BatchUploadQueueModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
-      <div className={`w-full max-w-3xl rounded-2xl border shadow-2xl overflow-hidden flex flex-col max-h-[85vh] ${
+      <div className={`w-full max-w-3xl  border shadow-2xl overflow-hidden flex flex-col max-h-[85vh] ${
         themeMode === 'dark' ? 'bg-[#202124] border-[#3c4043] text-[#e8eaed]' : 'bg-white border-slate-200 text-slate-900'
       }`}>
         {/* Header */}
@@ -100,7 +100,7 @@ export const BatchUploadQueueModal: React.FC<BatchUploadQueueModalProps> = ({
               <p className="text-xs opacity-75">Automated high-volume check and wire document processing pipeline</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-lg opacity-75 hover:opacity-100 hover:bg-black/10 transition">
+          <button onClick={onClose} className="p-1.5  opacity-75 hover:opacity-100 hover:bg-black/10 transition">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -108,13 +108,13 @@ export const BatchUploadQueueModal: React.FC<BatchUploadQueueModalProps> = ({
         {/* Content Body */}
         <div className="p-6 overflow-y-auto space-y-4 flex-1">
           {/* Upload Drop Zone */}
-          <div className={`border-2 border-dashed rounded-xl p-6 text-center transition ${
+          <div className={`border-2 border-dashed  p-6 text-center transition ${
             themeMode === 'dark' ? 'border-[#5f6368] hover:border-blue-500 bg-[#292a2d]' : 'border-slate-300 hover:border-blue-500 bg-slate-50/50'
           }`}>
             <Upload className="w-8 h-8 mx-auto mb-2 text-blue-500 opacity-80" />
             <h4 className="font-bold text-xs uppercase tracking-wider mb-1">Drop Check Specimen Images or Click to Upload Batch</h4>
             <p className="text-xs opacity-75 mb-3">Supports PNG, JPG, TIFF, PDF multi-page bundles</p>
-            <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow transition">
+            <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2  bg-slate-700 hover:bg-slate-600 text-white font-medium text-xs shadow transition">
               <Upload className="w-4 h-4" />
               <span>Select Files for Batch Queue</span>
               <input type="file" multiple accept="image/*" onChange={handleFileDrop} className="hidden" />
@@ -128,7 +128,7 @@ export const BatchUploadQueueModal: React.FC<BatchUploadQueueModalProps> = ({
               <button
                 onClick={runBatchProcessing}
                 disabled={isProcessing || batchItems.length === 0}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-medium text-xs shadow transition"
+                className="flex items-center gap-1.5 px-3 py-1.5  bg-emerald-800 hover:bg-emerald-700 disabled:opacity-50 text-white font-medium text-xs shadow transition"
               >
                 <Play className="w-3.5 h-3.5 fill-current" />
                 <span>{isProcessing ? 'Processing STP...' : 'Run STP Batch Pipeline'}</span>
@@ -144,12 +144,12 @@ export const BatchUploadQueueModal: React.FC<BatchUploadQueueModalProps> = ({
               return (
                 <div 
                   key={item.id}
-                  className={`flex items-center justify-between p-3 rounded-xl border transition ${
+                  className={`flex items-center justify-between p-3  border transition ${
                     themeMode === 'dark' ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-slate-50 border-slate-200'
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg overflow-hidden bg-black/20 flex items-center justify-center shrink-0 border border-inherit">
+                    <div className="w-10 h-10  overflow-hidden bg-black/20 flex items-center justify-center shrink-0 border border-inherit">
                       <img src={item.imageUrl} alt="" className="w-full h-full object-cover" />
                     </div>
                     <div>
@@ -159,7 +159,7 @@ export const BatchUploadQueueModal: React.FC<BatchUploadQueueModalProps> = ({
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold ${
+                    <span className={`inline-flex items-center gap-1 px-2.5 py-1 text-[10px] font-bold ${
                       isCompleted 
                         ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/30'
                         : isFlagged
@@ -173,7 +173,7 @@ export const BatchUploadQueueModal: React.FC<BatchUploadQueueModalProps> = ({
 
                     <button
                       onClick={() => removeItem(item.id)}
-                      className="p-1.5 rounded hover:bg-rose-500/10 hover:text-rose-500 opacity-60 hover:opacity-100 transition"
+                      className="p-1.5  hover:bg-rose-500/10 hover:text-rose-500 opacity-60 hover:opacity-100 transition"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -194,7 +194,7 @@ export const BatchUploadQueueModal: React.FC<BatchUploadQueueModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow transition"
+            className="px-4 py-2  bg-slate-700 hover:bg-slate-600 text-white font-medium text-xs shadow transition"
           >
             Close Batch Queue
           </button>

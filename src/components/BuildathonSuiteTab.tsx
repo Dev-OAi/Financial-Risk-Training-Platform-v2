@@ -153,18 +153,18 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
       <div className={`border-b shrink-0 px-6 py-4 ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 via-emerald-600 to-blue-600 flex items-center justify-center text-white shadow-md">
+            <div className="w-10 h-10  bg-gradient-to-br from-amber-500 via-emerald-600 to-blue-600 flex items-center justify-center text-white shadow-md">
               <Trophy className="w-5 h-5" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-lg font-bold tracking-tight">Bank Innovation Build-a-Thon 2026</h1>
-                <span className="text-xs px-2 py-0.5 rounded-full font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/30 flex items-center gap-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <h1 className="text-lg font-bold tracking-tight whitespace-nowrap">Bank Innovation Build-a-Thon 2026</h1>
+                <span className="text-xs px-2 py-0.5 font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/30 flex items-center gap-1 shrink-0">
                   <Sparkles className="w-3 h-3" />
                   100% Scorecard Optimized
                 </span>
               </div>
-              <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+              <p className={`text-xs mt-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                 Engineered across 4 Judging Pillars: Business Value (25%) • Reusability (25%) • Solution Design (25%) • Output Quality (25%)
               </p>
             </div>
@@ -174,9 +174,9 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
           <div className="flex items-center gap-1.5 flex-wrap">
             <button
               onClick={() => setActiveSubTab('option4')}
-              className={`px-3.5 py-2 rounded-lg text-xs font-bold flex items-center gap-2 transition-all ${
+              className={`px-3.5 py-2  text-xs font-bold flex items-center gap-2 transition-all ${
                 activeSubTab === 'option4'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25 border border-blue-500'
+                  ? 'bg-slate-700 text-white shadow-md shadow-blue-500/25 border border-blue-500'
                   : isDark ? 'bg-[#323639] hover:bg-[#3c4043] text-slate-200' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
               }`}
             >
@@ -186,9 +186,9 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
 
             <button
               onClick={() => setActiveSubTab('candidates')}
-              className={`px-3.5 py-2 rounded-lg text-xs font-bold flex items-center gap-2 transition-all ${
+              className={`px-3.5 py-2  text-xs font-bold flex items-center gap-2 transition-all ${
                 activeSubTab === 'candidates'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25 border border-blue-500'
+                  ? 'bg-slate-700 text-white shadow-md shadow-blue-500/25 border border-blue-500'
                   : isDark ? 'bg-[#323639] hover:bg-[#3c4043] text-slate-200' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
               }`}
             >
@@ -198,9 +198,9 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
 
             <button
               onClick={() => setActiveSubTab('rubric')}
-              className={`px-3.5 py-2 rounded-lg text-xs font-bold flex items-center gap-2 transition-all ${
+              className={`px-3.5 py-2  text-xs font-bold flex items-center gap-2 transition-all ${
                 activeSubTab === 'rubric'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25 border border-blue-500'
+                  ? 'bg-slate-700 text-white shadow-md shadow-blue-500/25 border border-blue-500'
                   : isDark ? 'bg-[#323639] hover:bg-[#3c4043] text-slate-200' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
               }`}
             >
@@ -210,9 +210,9 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
 
             <button
               onClick={() => setActiveSubTab('dossier')}
-              className={`px-3.5 py-2 rounded-lg text-xs font-bold flex items-center gap-2 transition-all ${
+              className={`px-3.5 py-2  text-xs font-bold flex items-center gap-2 transition-all ${
                 activeSubTab === 'dossier'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25 border border-blue-500'
+                  ? 'bg-slate-700 text-white shadow-md shadow-blue-500/25 border border-blue-500'
                   : isDark ? 'bg-[#323639] hover:bg-[#3c4043] text-slate-200' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
               }`}
             >
@@ -224,7 +224,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
       </div>
 
       {/* Main Scrollable Content Area */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-6">
+      <div className="flex-1 overflow-y-auto p-3 space-y-6">
 
         {/* ========================================================================= */}
         {/* SUB-VIEW 1: OPTION #4 SUBMISSION PACKET & LIVE MULTIMODAL PARSER */}
@@ -233,18 +233,18 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
           <div className="space-y-6 max-w-7xl mx-auto">
             
             {/* Header Hero Banner */}
-            <div className={`p-6 rounded-2xl border relative overflow-hidden ${
+            <div className={`p-3  border relative overflow-hidden ${
               isDark 
-                ? 'bg-gradient-to-r from-[#202538] via-[#24293e] to-[#1e2233] border-blue-500/30' 
-                : 'bg-gradient-to-r from-blue-50 via-indigo-50 to-slate-50 border-blue-200 shadow-sm'
+                ? 'bg-[#1e1f20] border-blue-500/30' 
+                : 'bg-slate-50 border-blue-200 shadow-sm'
             }`}>
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-blue-600 text-white shadow-xs">
+                    <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 bg-slate-700 text-white shadow-xs">
                       Official Candidate Entry • Option #4
                     </span>
-                    <span className={`text-[11px] font-bold px-2 py-0.5 rounded-full border ${
+                    <span className={`text-[11px] font-bold px-2 py-0.5 border ${
                       isDark ? 'bg-[#323639] border-[#3c4043] text-emerald-400' : 'bg-emerald-100 border-emerald-200 text-emerald-800'
                     }`}>
                       {OPTION_4_SUBMISSION.category}
@@ -260,7 +260,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                   <button
                     onClick={handleRunOption4Parser}
                     disabled={isParsingOption4}
-                    className="px-5 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-black text-sm shadow-lg shadow-blue-500/30 flex items-center gap-2 transition transform active:scale-95 disabled:opacity-50"
+                    className="px-5 py-3  bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-black text-sm shadow-sm flex items-center gap-2 transition transform active:scale-95 disabled:opacity-50"
                   >
                     {isParsingOption4 ? (
                       <>
@@ -279,22 +279,22 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
 
               {/* 4 Pillars Summary Ribbon */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-4 border-t border-blue-500/20">
-                <div className={`p-3 rounded-xl border text-center ${isDark ? 'bg-[#1e1f20]/60 border-[#3c4043]' : 'bg-white/80 border-slate-200'}`}>
+                <div className={`p-3  border text-center ${isDark ? 'bg-[#1e1f20]/60 border-[#3c4043]' : 'bg-white/80 border-slate-200'}`}>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-blue-500 block">1. Business Value</span>
                   <span className="text-lg font-black text-emerald-500">25 / 25</span>
                   <span className="text-[10px] block opacity-75">60-70% Review Queue Cut</span>
                 </div>
-                <div className={`p-3 rounded-xl border text-center ${isDark ? 'bg-[#1e1f20]/60 border-[#3c4043]' : 'bg-white/80 border-slate-200'}`}>
+                <div className={`p-3  border text-center ${isDark ? 'bg-[#1e1f20]/60 border-[#3c4043]' : 'bg-white/80 border-slate-200'}`}>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-blue-500 block">2. Reusability</span>
                   <span className="text-lg font-black text-emerald-500">25 / 25</span>
                   <span className="text-[10px] block opacity-75">Branches, Mobile, Ops, PosPay</span>
                 </div>
-                <div className={`p-3 rounded-xl border text-center ${isDark ? 'bg-[#1e1f20]/60 border-[#3c4043]' : 'bg-white/80 border-slate-200'}`}>
+                <div className={`p-3  border text-center ${isDark ? 'bg-[#1e1f20]/60 border-[#3c4043]' : 'bg-white/80 border-slate-200'}`}>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-blue-500 block">3. Solution Design</span>
                   <span className="text-lg font-black text-emerald-500">25 / 25</span>
                   <span className="text-[10px] block opacity-75">4-Stage Vision AI Pipeline</span>
                 </div>
-                <div className={`p-3 rounded-xl border text-center ${isDark ? 'bg-[#1e1f20]/60 border-[#3c4043]' : 'bg-white/80 border-slate-200'}`}>
+                <div className={`p-3  border text-center ${isDark ? 'bg-[#1e1f20]/60 border-[#3c4043]' : 'bg-white/80 border-slate-200'}`}>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-blue-500 block">4. Output Quality</span>
                   <span className="text-lg font-black text-emerald-500">25 / 25</span>
                   <span className="text-[10px] block opacity-75">Strict Standardized JSON</span>
@@ -306,18 +306,18 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
             <LiveCheckScannerDemo currentTemplate={currentTemplate} themeMode={themeMode} />
 
             {/* Section 1: Executive Summary & Business Case (25%) */}
-            <div className={`p-5 rounded-xl border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
+            <div className={`p-3  border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
               <div className="flex items-center justify-between pb-3 border-b border-inherit mb-4">
                 <div className="flex items-center gap-2">
                   <Briefcase className="w-5 h-5 text-blue-500" />
                   <h3 className="font-bold text-sm tracking-tight">1. Executive Summary & Business Case (25% Business Value & Impact)</h3>
                 </div>
-                <span className="text-xs font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                <span className="text-xs font-bold px-2 py-0.5  bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
                   Max Business Impact
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 <div className="space-y-3 text-xs leading-relaxed">
                   <div>
                     <h4 className="font-bold text-rose-500 mb-1 flex items-center gap-1.5">
@@ -339,7 +339,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                     </p>
                   </div>
 
-                  <div className={`p-3 rounded-lg border space-y-2 ${isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'}`}>
+                  <div className={`p-3  border space-y-2 ${isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'}`}>
                     <span className="font-bold text-[11px] uppercase tracking-wider block text-blue-400">Measurable Value & ROI Outcomes</span>
                     <ul className="space-y-1.5 list-disc pl-4 text-[11px]">
                       <li><strong className="text-inherit">Direct Loss Prevention:</strong> {OPTION_4_SUBMISSION.executiveSummary.roi.directLossPrevention}</li>
@@ -350,7 +350,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                 </div>
 
                 {/* Interactive ROI & Savings Calculator */}
-                <div className={`p-4 rounded-xl border ${isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-blue-50/50 border-blue-200'}`}>
+                <div className={`p-4  border ${isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-blue-50/50 border-blue-200'}`}>
                   <div className="flex items-center gap-2 mb-3">
                     <Calculator className="w-4 h-4 text-blue-500" />
                     <h4 className="font-bold text-xs">Interactive Branch Network ROI Calculator</h4>
@@ -407,17 +407,17 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
 
                     {/* Calculated Outcome Cards */}
                     <div className="grid grid-cols-2 gap-2 pt-2 border-t border-inherit">
-                      <div className={`p-2.5 rounded-lg border text-center ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-blue-200'}`}>
+                      <div className={`p-2.5  border text-center ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-blue-200'}`}>
                         <span className="text-[10px] font-bold block opacity-75">Annual Manual Queue Savings</span>
                         <span className="text-base font-black font-mono text-emerald-500">${Math.round(manualReviewSavings).toLocaleString()}/yr</span>
                       </div>
-                      <div className={`p-2.5 rounded-lg border text-center ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-blue-200'}`}>
+                      <div className={`p-2.5  border text-center ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-blue-200'}`}>
                         <span className="text-[10px] font-bold block opacity-75">Fraud Losses Intercepted</span>
                         <span className="text-base font-black font-mono text-amber-500">${Math.round(directFraudLossPrevented).toLocaleString()}/yr</span>
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-lg bg-emerald-600/10 border border-emerald-500/30 text-center">
+                    <div className="p-3  bg-emerald-800/10 border border-emerald-500/30 text-center">
                       <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-400 block">Total Net Bank Value Generated</span>
                       <span className="text-xl font-black font-mono text-emerald-600 dark:text-emerald-300">
                         ${Math.round(totalAnnualValue).toLocaleString()} / year
@@ -429,13 +429,13 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
             </div>
 
             {/* Section 2: Reusability Across Valley & Bank Network (25%) */}
-            <div className={`p-5 rounded-xl border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
+            <div className={`p-3  border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
               <div className="flex items-center justify-between pb-3 border-b border-inherit mb-4">
                 <div className="flex items-center gap-2">
                   <Users className="w-5 h-5 text-indigo-500" />
                   <h3 className="font-bold text-sm tracking-tight">2. Cross-Departmental Reusability (25% Reusability)</h3>
                 </div>
-                <span className="text-xs font-bold px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-500 border border-indigo-500/20">
+                <span className="text-xs font-bold px-2 py-0.5  bg-indigo-500/10 text-indigo-500 border border-indigo-500/20">
                   4 Critical Bank Channels
                 </span>
               </div>
@@ -444,12 +444,12 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                 {OPTION_4_SUBMISSION.reusability.departments.map((dept, idx) => (
                   <div 
                     key={idx} 
-                    className={`p-4 rounded-xl border transition hover:border-blue-500 ${
+                    className={`p-4  border transition hover:border-blue-500 ${
                       isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'
                     }`}
                   >
                     <div className="flex items-center gap-2 mb-2">
-                      <div className="w-7 h-7 rounded-lg bg-blue-600/10 text-blue-500 flex items-center justify-center font-bold text-xs">
+                      <div className="w-7 h-7  bg-slate-700/10 text-blue-500 flex items-center justify-center font-bold text-xs">
                         0{idx + 1}
                       </div>
                       <h4 className="font-bold text-xs tracking-tight">{dept.name}</h4>
@@ -470,7 +470,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
             </div>
 
             {/* Section 3: Solution Design & Architecture (25%) */}
-            <div className={`p-5 rounded-xl border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
+            <div className={`p-3  border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
               <div className="flex items-center justify-between pb-3 border-b border-inherit mb-4">
                 <div className="flex items-center gap-2">
                   <Layers className="w-5 h-5 text-purple-500" />
@@ -478,7 +478,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                 </div>
                 <div className="flex items-center gap-2">
                   {OPTION_4_SUBMISSION.solutionDesign.toolsUsed.map((tool, idx) => (
-                    <span key={idx} className="hidden md:inline text-[10px] font-bold px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                    <span key={idx} className="hidden md:inline text-[10px] font-bold px-2 py-0.5  bg-purple-500/10 text-purple-400 border border-purple-500/20">
                       {tool}
                     </span>
                   ))}
@@ -490,12 +490,12 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                 {OPTION_4_SUBMISSION.solutionDesign.workflowSteps.map((step) => (
                   <div 
                     key={step.stepNumber}
-                    className={`p-4 rounded-xl border relative ${
+                    className={`p-4  border relative ${
                       isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'
                     }`}
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-blue-600 text-white">
+                      <span className="text-[10px] font-black uppercase px-2 py-0.5  bg-slate-700 text-white">
                         Step {step.stepNumber}
                       </span>
                       <ChevronRight className="w-4 h-4 text-slate-400 hidden md:block" />
@@ -515,7 +515,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
             </div>
 
             {/* Section 4: Implementation, Prompts & Output Quality (25%) */}
-            <div className={`p-5 rounded-xl border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
+            <div className={`p-3  border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
               <div className="flex items-center justify-between pb-3 border-b border-inherit mb-4">
                 <div className="flex items-center gap-2">
                   <FileText className="w-5 h-5 text-emerald-500" />
@@ -527,7 +527,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                       `${OPTION_4_SUBMISSION.implementation.systemRole}\n\nTASK: ${OPTION_4_SUBMISSION.implementation.task}\n\nINSTRUCTIONS:\n${OPTION_4_SUBMISSION.implementation.instructions.join('\n')}\n\nOUTPUT REQUIREMENTS:\n${OPTION_4_SUBMISSION.implementation.jsonSchema}`,
                       'prompt'
                     )}
-                    className={`px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 border transition ${
+                    className={`px-3 py-1  text-xs font-bold flex items-center gap-1.5 border transition ${
                       isDark ? 'bg-[#323639] border-[#3c4043] hover:bg-[#3c4043]' : 'bg-slate-100 border-slate-300 hover:bg-slate-200'
                     }`}
                   >
@@ -537,7 +537,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
 
                   <button
                     onClick={() => copyToClipboard(JSON.stringify(option4Result, null, 2), 'json')}
-                    className={`px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 border transition ${
+                    className={`px-3 py-1  text-xs font-bold flex items-center gap-1.5 border transition ${
                       isDark ? 'bg-[#323639] border-[#3c4043] hover:bg-[#3c4043]' : 'bg-slate-100 border-slate-300 hover:bg-slate-200'
                     }`}
                   >
@@ -548,7 +548,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
               </div>
 
               {/* Side-by-Side: Interactive Prompt Display & Live Parser Results */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 
                 {/* Left: Exact Prompt & Schema */}
                 <div className="space-y-4">
@@ -559,7 +559,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                         Core Workflow Prompt (Input to Multimodal AI)
                       </span>
                     </div>
-                    <div className={`p-3.5 rounded-xl border font-mono text-[11px] leading-relaxed max-h-72 overflow-y-auto ${
+                    <div className={`p-3.5  border font-mono text-[11px] leading-relaxed max-h-72 overflow-y-auto ${
                       isDark ? 'bg-[#1a1b1d] border-[#3c4043] text-emerald-400' : 'bg-slate-900 border-slate-800 text-emerald-300'
                     }`}>
                       <p className="text-amber-300 font-bold mb-2">{OPTION_4_SUBMISSION.implementation.systemRole}</p>
@@ -577,7 +577,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                     <span className="text-xs font-bold uppercase tracking-wider text-purple-400 block mb-1.5">
                       Strict JSON Output Schema
                     </span>
-                    <pre className={`p-3 rounded-xl border font-mono text-[10px] leading-snug max-h-48 overflow-y-auto ${
+                    <pre className={`p-3  border font-mono text-[10px] leading-snug max-h-48 overflow-y-auto ${
                       isDark ? 'bg-[#1a1b1d] border-[#3c4043] text-purple-300' : 'bg-slate-900 border-slate-800 text-purple-300'
                     }`}>
                       {OPTION_4_SUBMISSION.implementation.jsonSchema}
@@ -595,7 +595,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                     <button
                       onClick={handleRunOption4Parser}
                       disabled={isParsingOption4}
-                      className="px-3 py-1 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center gap-1.5 transition disabled:opacity-50"
+                      className="px-3 py-1  bg-slate-700 hover:bg-slate-600 text-white font-bold text-xs flex items-center gap-1.5 transition disabled:opacity-50"
                     >
                       {isParsingOption4 ? <RefreshCw className="w-3 h-3 animate-spin" /> : <Play className="w-3 h-3" />}
                       <span>Re-Run Parser</span>
@@ -604,7 +604,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
 
                   {/* Visual Evaluation Summary Cards */}
                   <div className="grid grid-cols-3 gap-2">
-                    <div className={`p-2.5 rounded-xl border text-center ${
+                    <div className={`p-2.5  border text-center ${
                       option4Result?.verification_results?.amount_match 
                         ? isDark ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-400' : 'bg-emerald-50 border-emerald-200 text-emerald-800'
                         : isDark ? 'bg-rose-950/40 border-rose-500/40 text-rose-400' : 'bg-rose-50 border-rose-200 text-rose-800'
@@ -615,7 +615,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                       </span>
                     </div>
 
-                    <div className={`p-2.5 rounded-xl border text-center ${
+                    <div className={`p-2.5  border text-center ${
                       option4Result?.verification_results?.micr_structure_valid
                         ? isDark ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-400' : 'bg-emerald-50 border-emerald-200 text-emerald-800'
                         : isDark ? 'bg-rose-950/40 border-rose-500/40 text-rose-400' : 'bg-rose-50 border-rose-200 text-rose-800'
@@ -626,7 +626,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                       </span>
                     </div>
 
-                    <div className={`p-2.5 rounded-xl border text-center ${
+                    <div className={`p-2.5  border text-center ${
                       !option4Result?.verification_results?.payee_alteration_detected
                         ? isDark ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-400' : 'bg-emerald-50 border-emerald-200 text-emerald-800'
                         : isDark ? 'bg-rose-950/40 border-rose-500/40 text-rose-400' : 'bg-rose-50 border-rose-200 text-rose-800'
@@ -639,7 +639,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                   </div>
 
                   {/* Decision & Risk Banner */}
-                  <div className={`p-3.5 rounded-xl border flex items-center justify-between ${
+                  <div className={`p-3.5  border flex items-center justify-between ${
                     option4Result?.risk_assessment?.recommended_action === 'APPROVE'
                       ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-400'
                       : option4Result?.risk_assessment?.recommended_action === 'HOLD_FOR_REVIEW'
@@ -657,7 +657,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                   </div>
 
                   {/* Extracted Data Table */}
-                  <div className={`p-3.5 rounded-xl border space-y-2 text-xs ${
+                  <div className={`p-3.5  border space-y-2 text-xs ${
                     isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'
                   }`}>
                     <span className="font-bold text-[11px] uppercase tracking-wider block text-slate-400">Extracted Structured Fields</span>
@@ -691,7 +691,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
 
                   {/* Primary Risk Flags */}
                   {option4Result?.risk_assessment?.primary_risk_flags?.length > 0 && (
-                    <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-400 text-xs">
+                    <div className="p-3  bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-400 text-xs">
                       <span className="font-bold text-[11px] uppercase tracking-wider block mb-1">Primary Anomaly Flags Detected:</span>
                       <ul className="list-disc pl-4 space-y-0.5 text-[11px]">
                         {option4Result.risk_assessment.primary_risk_flags.map((flag: string, fIdx: number) => (
@@ -706,7 +706,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                     <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
                       Raw Output JSON Payload
                     </span>
-                    <pre className={`p-3 rounded-xl border font-mono text-[10px] leading-tight max-h-40 overflow-y-auto ${
+                    <pre className={`p-3  border font-mono text-[10px] leading-tight max-h-40 overflow-y-auto ${
                       isDark ? 'bg-[#1a1b1d] border-[#3c4043] text-emerald-400' : 'bg-slate-900 border-slate-800 text-emerald-300'
                     }`}>
                       {JSON.stringify(option4Result, null, 2)}
@@ -739,7 +739,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                 <select
                   value={candidateDeptFilter}
                   onChange={(e) => setCandidateDeptFilter(e.target.value)}
-                  className={`text-xs px-3 py-1.5 rounded-lg border font-medium ${
+                  className={`text-xs px-3 py-1.5  border font-medium ${
                     isDark ? 'bg-[#292a2d] border-[#3c4043] text-[#e8eaed]' : 'bg-white border-slate-300 text-slate-900'
                   }`}
                 >
@@ -763,15 +763,15 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                 <button
                   key={cand.id}
                   onClick={() => setSelectedCandidateId(cand.id)}
-                  className={`p-3.5 rounded-xl border text-left transition-all flex flex-col justify-between ${
+                  className={`p-3.5  border text-left transition-all flex flex-col justify-between ${
                     selectedCandidateId === cand.id
-                      ? 'border-blue-500 ring-2 ring-blue-500/20 bg-blue-600/10'
+                      ? 'border-blue-500 ring-2 ring-blue-500/20 bg-slate-700/10'
                       : isDark ? 'bg-[#292a2d] border-[#3c4043] hover:bg-[#323639]' : 'bg-white border-slate-200 hover:bg-slate-50 shadow-xs'
                   }`}
                 >
                   <div>
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[10px] font-black px-2 py-0.5 rounded bg-blue-600 text-white">
+                      <span className="text-[10px] font-black px-2 py-0.5  bg-slate-700 text-white">
                         Idea #{cand.id}
                       </span>
                       <span className="text-[10px] font-bold text-emerald-500">
@@ -781,7 +781,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                     <h3 className="font-bold text-xs leading-tight mb-1 line-clamp-2">{cand.title}</h3>
                     <span className="text-[10px] opacity-75 font-medium block mb-2">{cand.department}</span>
                   </div>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-slate-500/10 font-medium inline-block truncate max-w-full">
+                  <span className="text-[10px] px-2 py-0.5  bg-slate-500/10 font-medium inline-block truncate max-w-full">
                     {cand.solutionType}
                   </span>
                 </button>
@@ -789,17 +789,17 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
             </div>
 
             {/* Active Candidate Detailed Interactive Sandbox */}
-            <div className={`p-6 rounded-2xl border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-md'}`}>
+            <div className={`p-3  border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-md'}`}>
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-inherit mb-6">
                 <div>
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className="text-xs font-black px-2.5 py-0.5 rounded-full bg-blue-600 text-white">
+                    <span className="text-xs font-black px-2.5 py-0.5 bg-slate-700 text-white">
                       Candidate #{currentCandidate.id}
                     </span>
-                    <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/30">
+                    <span className="text-xs font-bold px-2.5 py-0.5 bg-purple-500/10 text-purple-400 border border-purple-500/30">
                       {currentCandidate.solutionType}
                     </span>
-                    <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                    <span className="text-xs font-bold px-2.5 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
                       {currentCandidate.department}
                     </span>
                   </div>
@@ -812,7 +812,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                 <button
                   onClick={() => handleRunCandidateWorkflow(currentCandidate)}
                   disabled={isCandidateRunning}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-xs shadow-md shadow-blue-500/30 flex items-center gap-2 transition disabled:opacity-50 shrink-0"
+                  className="px-5 py-2.5  bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold text-xs shadow-sm flex items-center gap-2 transition disabled:opacity-50 shrink-0"
                 >
                   {isCandidateRunning ? (
                     <>
@@ -830,21 +830,21 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
 
               {/* 4 Pillars & Why it Wins Row */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-6">
-                <div className={`p-3 rounded-xl border ${isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'}`}>
+                <div className={`p-3  border ${isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'}`}>
                   <span className="text-[10px] font-bold text-blue-500 uppercase block">Why It Wins</span>
                   <span className="text-xs font-bold text-inherit mt-0.5 block leading-snug">{currentCandidate.whyItWins}</span>
                 </div>
-                <div className={`p-3 rounded-xl border ${isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'}`}>
+                <div className={`p-3  border ${isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'}`}>
                   <span className="text-[10px] font-bold text-emerald-500 uppercase block">Business Value (25%)</span>
                   <span className="text-lg font-black text-emerald-500">{currentCandidate.pillarScores.businessValue} / 25</span>
                   <span className="text-[10px] opacity-75 block">{currentCandidate.keyMetrics[0]}</span>
                 </div>
-                <div className={`p-3 rounded-xl border ${isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'}`}>
+                <div className={`p-3  border ${isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'}`}>
                   <span className="text-[10px] font-bold text-purple-500 uppercase block">Reusability (25%)</span>
                   <span className="text-lg font-black text-purple-500">{currentCandidate.pillarScores.reusability} / 25</span>
                   <span className="text-[10px] opacity-75 block">{currentCandidate.keyMetrics[1]}</span>
                 </div>
-                <div className={`p-3 rounded-xl border ${isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'}`}>
+                <div className={`p-3  border ${isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'}`}>
                   <span className="text-[10px] font-bold text-cyan-500 uppercase block">Solution & Quality (50%)</span>
                   <span className="text-lg font-black text-cyan-500">
                     {currentCandidate.pillarScores.solutionDesign + currentCandidate.pillarScores.outputQuality} / 50
@@ -854,7 +854,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
               </div>
 
               {/* Side-by-Side Interactive Scenario & AI Output */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 
                 {/* Left: Input Scenario Parameters */}
                 <div className="space-y-3">
@@ -871,7 +871,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                     </button>
                   </div>
 
-                  <div className={`p-4 rounded-xl border space-y-3 text-xs ${
+                  <div className={`p-4  border space-y-3 text-xs ${
                     isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'
                   }`}>
                     {Object.entries(candidateInputState[currentCandidate.id] || currentCandidate.defaultInput).map(([key, val]) => (
@@ -887,7 +887,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                               const updated = { ...(candidateInputState[currentCandidate.id] || currentCandidate.defaultInput), [key]: e.target.value };
                               setCandidateInputState(prev => ({ ...prev, [currentCandidate.id]: updated }));
                             }}
-                            className={`w-full p-2 rounded-lg border text-xs font-mono ${
+                            className={`w-full p-2  border text-xs font-mono ${
                               isDark ? 'bg-[#1a1b1d] border-[#3c4043] text-slate-200' : 'bg-white border-slate-300 text-slate-900'
                             }`}
                           />
@@ -902,7 +902,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                                 setCandidateInputState(prev => ({ ...prev, [currentCandidate.id]: updated }));
                               } catch (err) {}
                             }}
-                            className={`w-full p-2 rounded-lg border text-xs font-mono ${
+                            className={`w-full p-2  border text-xs font-mono ${
                               isDark ? 'bg-[#1a1b1d] border-[#3c4043] text-slate-200' : 'bg-white border-slate-300 text-slate-900'
                             }`}
                           />
@@ -914,7 +914,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                               const updated = { ...(candidateInputState[currentCandidate.id] || currentCandidate.defaultInput), [key]: e.target.value };
                               setCandidateInputState(prev => ({ ...prev, [currentCandidate.id]: updated }));
                             }}
-                            className={`w-full p-2 rounded-lg border text-xs ${
+                            className={`w-full p-2  border text-xs ${
                               isDark ? 'bg-[#1a1b1d] border-[#3c4043] text-slate-200' : 'bg-white border-slate-300 text-slate-900'
                             }`}
                           />
@@ -933,7 +933,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                     </span>
                     <button
                       onClick={() => copyToClipboard(JSON.stringify(candidateOutputState[currentCandidate.id] || currentCandidate.sampleOutput, null, 2), 'candidate')}
-                      className={`px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1 border transition ${
+                      className={`px-2.5 py-1  text-xs font-bold flex items-center gap-1 border transition ${
                         isDark ? 'bg-[#323639] border-[#3c4043] hover:bg-[#3c4043]' : 'bg-slate-100 border-slate-300 hover:bg-slate-200'
                       }`}
                     >
@@ -942,7 +942,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                     </button>
                   </div>
 
-                  <div className={`p-4 rounded-xl border font-mono text-xs leading-relaxed max-h-[480px] overflow-y-auto ${
+                  <div className={`p-4  border font-mono text-xs leading-relaxed max-h-[480px] overflow-y-auto ${
                     isDark ? 'bg-[#1a1b1d] border-[#3c4043] text-emerald-400' : 'bg-slate-900 border-slate-800 text-emerald-300'
                   }`}>
                     <pre className="whitespace-pre-wrap font-sans text-xs">
@@ -971,13 +971,13 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
 
             {/* 4 Pillars Detailed Rubric Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className={`p-5 rounded-xl border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
+              <div className={`p-3  border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <Briefcase className="w-5 h-5 text-blue-500" />
                     <h3 className="font-bold text-sm">Pillar 1: Business Value & Impact (25%)</h3>
                   </div>
-                  <span className="text-xs font-bold font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400">25 Pts</span>
+                  <span className="text-xs font-bold font-mono px-2 py-0.5  bg-blue-500/10 text-blue-400">25 Pts</span>
                 </div>
                 <p className={`text-xs mb-3 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
                   Measures quantifiable direct financial return, fraud prevention dollar volume, operational cycle time reduction, and cost savings across bank departments.
@@ -989,13 +989,13 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                 </ul>
               </div>
 
-              <div className={`p-5 rounded-xl border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
+              <div className={`p-3  border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <Users className="w-5 h-5 text-indigo-500" />
                     <h3 className="font-bold text-sm">Pillar 2: Reusability Across the Bank (25%)</h3>
                   </div>
-                  <span className="text-xs font-bold font-mono px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400">25 Pts</span>
+                  <span className="text-xs font-bold font-mono px-2 py-0.5  bg-indigo-500/10 text-indigo-400">25 Pts</span>
                 </div>
                 <p className={`text-xs mb-3 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
                   Measures how seamlessly the solution extends horizontally across multiple departments, retail branches, mobile channels, and back-office clearing desks.
@@ -1007,13 +1007,13 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                 </ul>
               </div>
 
-              <div className={`p-5 rounded-xl border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
+              <div className={`p-3  border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <Layers className="w-5 h-5 text-purple-500" />
                     <h3 className="font-bold text-sm">Pillar 3: Solution Design & Creativity (25%)</h3>
                   </div>
-                  <span className="text-xs font-bold font-mono px-2 py-0.5 rounded bg-purple-500/10 text-purple-400">25 Pts</span>
+                  <span className="text-xs font-bold font-mono px-2 py-0.5  bg-purple-500/10 text-purple-400">25 Pts</span>
                 </div>
                 <p className={`text-xs mb-3 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
                   Evaluates the elegance of the architectural pipeline, multimodal AI reasoning, prompt chaining, and resilience against adversarial edge cases.
@@ -1025,13 +1025,13 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                 </ul>
               </div>
 
-              <div className={`p-5 rounded-xl border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
+              <div className={`p-3  border ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <FileText className="w-5 h-5 text-emerald-500" />
                     <h3 className="font-bold text-sm">Pillar 4: Solution Implementation & Output Quality (25%)</h3>
                   </div>
-                  <span className="text-xs font-bold font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400">25 Pts</span>
+                  <span className="text-xs font-bold font-mono px-2 py-0.5  bg-emerald-500/10 text-emerald-400">25 Pts</span>
                 </div>
                 <p className={`text-xs mb-3 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
                   Evaluates prompt precision, strictness of the JSON schema, repeatability, actionable decision outputs (`APPROVE`, `HOLD_FOR_REVIEW`, `REJECT`), and error handling.
@@ -1045,7 +1045,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
             </div>
 
             {/* Candidate Comparison Matrix */}
-            <div className={`p-5 rounded-xl border overflow-x-auto ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
+            <div className={`p-3  border overflow-x-auto ${isDark ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'}`}>
               <h3 className="font-bold text-sm mb-3">All Candidates Scorecard Comparison Matrix</h3>
               <table className="w-full text-xs text-left">
                 <thead>
@@ -1061,7 +1061,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-inherit font-medium">
-                  <tr className="bg-blue-600/10 font-bold">
+                  <tr className="bg-slate-700/10 font-bold">
                     <td className="py-3 px-3 flex items-center gap-2">
                       <Award className="w-4 h-4 text-amber-400" />
                       <span>Option #4: Check Fraud & Mismatch Parser (Featured)</span>
@@ -1109,7 +1109,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => window.print()}
-                  className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center gap-1.5 shadow"
+                  className="px-4 py-2  bg-slate-700 hover:bg-slate-600 text-white font-bold text-xs flex items-center gap-1.5 shadow"
                 >
                   <Download className="w-4 h-4" />
                   <span>Print / Save as PDF</span>
@@ -1118,7 +1118,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
             </div>
 
             {/* Printable Formatted Submission Dossier */}
-            <div className={`p-8 rounded-2xl border space-y-6 print:border-none print:shadow-none ${
+            <div className={`p-4  border space-y-6 print:border-none print:shadow-none ${
               isDark ? 'bg-[#292a2d] border-[#3c4043] text-slate-200' : 'bg-white border-slate-200 shadow-md text-slate-800'
             }`}>
               
@@ -1136,7 +1136,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                   </div>
                   <div className="text-right">
                     <span className="text-xs font-bold block opacity-75">Event Year: 2026</span>
-                    <span className="text-xs font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                    <span className="text-xs font-bold px-2 py-0.5  bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
                       Evaluated Score: 100/100
                     </span>
                   </div>
@@ -1169,7 +1169,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
                   {OPTION_4_SUBMISSION.reusability.departments.map((dept, idx) => (
-                    <div key={idx} className={`p-3 rounded-lg border ${isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'}`}>
+                    <div key={idx} className={`p-3  border ${isDark ? 'bg-[#202124] border-[#3c4043]' : 'bg-slate-50 border-slate-200'}`}>
                       <h4 className="font-bold text-inherit">{dept.name}</h4>
                       <p className="opacity-80 mt-0.5">{dept.useCase}</p>
                       <p className="text-emerald-500 font-semibold mt-1">{dept.impact}</p>
@@ -1203,7 +1203,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
                 <div className="text-xs space-y-3">
                   <div>
                     <strong className="block mb-1">Core Workflow Prompt (Input to Multimodal AI Tool):</strong>
-                    <div className={`p-3 rounded-lg font-mono text-[11px] whitespace-pre-wrap leading-tight border ${
+                    <div className={`p-3  font-mono text-[11px] whitespace-pre-wrap leading-tight border ${
                       isDark ? 'bg-[#1a1b1d] border-[#3c4043] text-emerald-400' : 'bg-slate-900 border-slate-800 text-emerald-300'
                     }`}>
                       {`SYSTEM ROLE: ${OPTION_4_SUBMISSION.implementation.systemRole}\n\nTASK: ${OPTION_4_SUBMISSION.implementation.task}\n\nINSTRUCTIONS:\n${OPTION_4_SUBMISSION.implementation.instructions.join('\n')}\n\nOUTPUT REQUIREMENTS:\n${OPTION_4_SUBMISSION.implementation.jsonSchema}`}
@@ -1212,7 +1212,7 @@ export const BuildathonSuiteTab: React.FC<BuildathonSuiteTabProps> = ({ currentT
 
                   <div>
                     <strong className="block mb-1">Sample Output Generation (Demonstrating Output Quality):</strong>
-                    <pre className={`p-3 rounded-lg font-mono text-[11px] whitespace-pre-wrap leading-tight border ${
+                    <pre className={`p-3  font-mono text-[11px] whitespace-pre-wrap leading-tight border ${
                       isDark ? 'bg-[#1a1b1d] border-[#3c4043] text-purple-300' : 'bg-slate-900 border-slate-800 text-purple-300'
                     }`}>
                       {JSON.stringify(OPTION_4_SUBMISSION.implementation.sampleOutput, null, 2)}

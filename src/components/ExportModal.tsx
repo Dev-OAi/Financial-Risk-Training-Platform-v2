@@ -62,16 +62,16 @@ export const ExportModal: React.FC<ExportModalProps> = ({ isOpen, onClose, templ
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-      <div className="w-full max-w-lg rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl p-6 relative">
+      <div className="w-full max-w-lg  bg-slate-900 border border-slate-800 shadow-2xl p-6 relative">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
+          className="absolute top-4 right-4 p-2  bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
         >
           <X className="w-4 h-4" />
         </button>
 
         <div className="flex items-center gap-3 mb-4">
-          <div className="p-3 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+          <div className="p-3  bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
             <FileImage className="w-6 h-6" />
           </div>
           <div>
@@ -80,11 +80,11 @@ export const ExportModal: React.FC<ExportModalProps> = ({ isOpen, onClose, templ
           </div>
         </div>
 
-        <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 mb-6">
+        <div className="p-4  bg-slate-950/60 border border-slate-800 mb-6">
           <div className="text-xs font-semibold text-slate-300 mb-1">{template.title}</div>
           <div className="text-[11px] font-mono text-cyan-400">{template.subtitle}</div>
           <div className="mt-3 text-xs text-slate-400 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span className="w-2 h-2 bg-emerald-400"></span>
             <span>Rasterized at 1600x880 true PNG format (compatible with MS Paint, Photoshop, GIMP)</span>
           </div>
         </div>
@@ -93,7 +93,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({ isOpen, onClose, templ
           <button
             onClick={handleGeneratePng}
             disabled={isExporting}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold text-sm shadow-lg shadow-cyan-500/25 flex items-center justify-center gap-2 transition-all"
+            className="w-full py-3  bg-slate-700 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold text-sm shadow-lg shadow-cyan-500/25 flex items-center justify-center gap-2 transition-all"
           >
             {isExporting ? (
               <>
@@ -109,13 +109,13 @@ export const ExportModal: React.FC<ExportModalProps> = ({ isOpen, onClose, templ
           </button>
         ) : (
           <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-2 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-medium">
+            <div className="flex items-center gap-2 p-3  bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-medium">
               <CheckCircle className="w-4 h-4 shrink-0" />
               <span>PNG raster successfully generated and ready for download!</span>
             </div>
             <button
               onClick={handleDownload}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-sm shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 transition-all"
+              className="w-full py-3  bg-slate-700 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-sm shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 transition-all"
             >
               <Download className="w-4 h-4" />
               <span>Download PNG File</span>

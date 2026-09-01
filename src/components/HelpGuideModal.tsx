@@ -22,13 +22,13 @@ export const HelpGuideModal: React.FC<HelpGuideModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-      <div className={`w-full max-w-3xl max-h-[90vh] flex flex-col rounded-2xl shadow-2xl overflow-hidden border transition-colors ${
+      <div className={`w-full max-w-3xl max-h-[90vh] flex flex-col  shadow-2xl overflow-hidden border transition-colors ${
         themeMode === 'dark' ? 'bg-[#2d2e31] border-[#3c4043] text-[#e8eaed]' : 'bg-white border-slate-200 text-slate-900'
       }`}>
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-inherit shrink-0">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-blue-500/10 text-blue-500">
+            <div className="p-2  bg-blue-500/10 text-blue-500">
               <HelpCircle className="w-6 h-6" />
             </div>
             <div>
@@ -36,7 +36,7 @@ export const HelpGuideModal: React.FC<HelpGuideModalProps> = ({
               <p className="text-xs opacity-75">Learn how to inspect financial documents, verify bank standards, and generate compliance reports.</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-2 rounded-lg hover:bg-black/10 transition">
+          <button onClick={onClose} className="p-2  hover:bg-black/10 transition">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -146,7 +146,7 @@ export const HelpGuideModal: React.FC<HelpGuideModalProps> = ({
         <div className="flex items-center justify-end px-6 py-4 border-t border-inherit shrink-0 bg-black/5">
           <button
             onClick={onClose}
-            className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm shadow transition flex items-center gap-2"
+            className="px-6 py-2.5  bg-slate-700 hover:bg-slate-600 text-white font-medium text-sm shadow transition flex items-center gap-2"
           >
             <CheckCircle2 className="w-4 h-4" />
             <span>Got it, Let's Start Investigating</span>

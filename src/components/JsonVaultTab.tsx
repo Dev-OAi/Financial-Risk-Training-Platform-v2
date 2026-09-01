@@ -44,7 +44,7 @@ export const JsonVaultTab: React.FC<JsonVaultTabProps> = ({ themeMode, templates
         themeMode === 'dark' ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-xs'
       }`}>
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-sm">
+          <div className="w-9 h-9  bg-slate-700 text-white flex items-center justify-center shadow-sm">
             <Database className="w-5 h-5" />
           </div>
           <div>
@@ -54,7 +54,7 @@ export const JsonVaultTab: React.FC<JsonVaultTabProps> = ({ themeMode, templates
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-xs px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 font-mono font-bold border border-emerald-500/20">
+          <span className="text-xs px-2.5 py-1  bg-emerald-500/10 text-emerald-400 font-mono font-bold border border-emerald-500/20">
             {templatesList.length} Archived Records
           </span>
         </div>
@@ -90,13 +90,13 @@ export const JsonVaultTab: React.FC<JsonVaultTabProps> = ({ themeMode, templates
                   onClick={() => setSelectedRecordId(tpl.id)}
                   className={`p-3.5 cursor-pointer transition-colors flex flex-col gap-1.5 border-l-4 ${
                     isSelected
-                      ? 'border-l-blue-600 bg-blue-600/10'
+                      ? 'border-l-blue-600 bg-slate-700/10'
                       : 'border-l-transparent hover:bg-black/5 dark:hover:bg-white/5'
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-xs truncate max-w-[200px]">{tpl.title}</span>
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
+                    <span className={`text-[10px] font-bold px-2 py-0.5  ${
                       tpl.isFraudulent ? 'bg-rose-500/20 text-rose-400' : 'bg-emerald-500/20 text-emerald-400'
                     }`}>
                       Risk: {tpl.riskScore}/100
@@ -119,12 +119,12 @@ export const JsonVaultTab: React.FC<JsonVaultTabProps> = ({ themeMode, templates
           {activeTemplate ? (
             <>
               {/* Record Header & Actions */}
-              <div className={`p-4 rounded-xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${
+              <div className={`p-4  border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${
                 themeMode === 'dark' ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200 shadow-sm'
               }`}>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className={`w-2.5 h-2.5 rounded-full ${activeTemplate.isFraudulent ? 'bg-rose-500' : 'bg-emerald-500'}`} />
+                    <span className={`w-2.5 h-2.5 ${activeTemplate.isFraudulent ? 'bg-rose-500' : 'bg-emerald-500'}`} />
                     <h3 className="font-bold text-sm uppercase tracking-wider">{activeTemplate.title}</h3>
                   </div>
                   <p className="text-xs opacity-75 mt-1">{activeTemplate.subtitle}</p>
@@ -133,7 +133,7 @@ export const JsonVaultTab: React.FC<JsonVaultTabProps> = ({ themeMode, templates
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => handleCopyJson(activeTemplate)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs transition shadow"
+                    className="flex items-center gap-1.5 px-3 py-1.5  bg-slate-700 hover:bg-slate-600 text-white font-medium text-xs transition shadow"
                   >
                     {copiedId === activeTemplate.id ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                     <span>{copiedId === activeTemplate.id ? 'Copied JSON!' : 'Copy Raw JSON'}</span>
@@ -141,7 +141,7 @@ export const JsonVaultTab: React.FC<JsonVaultTabProps> = ({ themeMode, templates
 
                   <button
                     onClick={() => onSelectTemplate(activeTemplate)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs transition shadow"
+                    className="flex items-center gap-1.5 px-3 py-1.5  bg-emerald-800 hover:bg-emerald-700 text-white font-medium text-xs transition shadow"
                   >
                     <RefreshCw className="w-3.5 h-3.5" />
                     <span>Load in Inspector</span>
@@ -152,7 +152,7 @@ export const JsonVaultTab: React.FC<JsonVaultTabProps> = ({ themeMode, templates
               {/* JSON & Hotspots Breakdown */}
               <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 flex-1 overflow-hidden">
                 {/* Raw JSON Tree / Structured Payload */}
-                <div className={`flex flex-col rounded-xl border overflow-hidden ${
+                <div className={`flex flex-col  border overflow-hidden ${
                   themeMode === 'dark' ? 'bg-[#18191c] border-[#3c4043]' : 'bg-slate-900 border-slate-800 text-slate-100'
                 }`}>
                   <div className={`px-4 py-2.5 border-b font-mono text-xs flex items-center justify-between ${
@@ -167,7 +167,7 @@ export const JsonVaultTab: React.FC<JsonVaultTabProps> = ({ themeMode, templates
                 </div>
 
                 {/* Hot-Spots & Secondary Compliance Checks */}
-                <div className={`flex flex-col rounded-xl border p-4 overflow-y-auto space-y-4 ${
+                <div className={`flex flex-col  border p-4 overflow-y-auto space-y-4 ${
                   themeMode === 'dark' ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-white border-slate-200'
                 }`}>
                   <h4 className="font-bold text-xs uppercase tracking-wider text-inherit flex items-center gap-2">
@@ -177,12 +177,12 @@ export const JsonVaultTab: React.FC<JsonVaultTabProps> = ({ themeMode, templates
 
                   <div className="space-y-3">
                     {activeTemplate.hotspots.map((spot, idx) => (
-                      <div key={spot.id} className={`p-3 rounded-lg border ${
+                      <div key={spot.id} className={`p-3  border ${
                         themeMode === 'dark' ? 'bg-[#323639] border-[#3c4043]' : 'bg-slate-50 border-slate-200'
                       }`}>
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-bold text-xs">{idx + 1}. {spot.title}</span>
-                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase ${
+                          <span className={`text-[10px] font-bold px-2 py-0.5  uppercase ${
                             spot.riskLevel === 'critical' ? 'bg-rose-500/20 text-rose-400' :
                             spot.riskLevel === 'high' ? 'bg-amber-500/20 text-amber-400' :
                             'bg-emerald-500/20 text-emerald-400'

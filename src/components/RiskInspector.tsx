@@ -21,7 +21,7 @@ export const RiskInspector: React.FC<RiskInspectorProps> = ({ isOpen, onClose, t
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
+            className="p-2  bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
@@ -29,7 +29,7 @@ export const RiskInspector: React.FC<RiskInspectorProps> = ({ isOpen, onClose, t
 
         <div className="mt-6 space-y-6">
           {/* Document Summary Card */}
-          <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+          <div className="p-4  bg-slate-950/60 border border-slate-800">
             <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Active Specimen</div>
             <h3 className="text-sm font-bold text-slate-100 mb-2">{template.title}</h3>
             <p className="text-xs text-slate-300 leading-relaxed">{template.summary}</p>
@@ -37,13 +37,13 @@ export const RiskInspector: React.FC<RiskInspectorProps> = ({ isOpen, onClose, t
 
           {/* Risk Metrics Breakdown */}
           <div className="grid grid-cols-2 gap-3">
-            <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div className="p-3  bg-slate-950/60 border border-slate-800">
               <div className="text-[10px] text-slate-400 uppercase tracking-wider">Fraud Risk Score</div>
               <div className={`text-lg font-bold mt-1 ${template.riskScore > 50 ? 'text-rose-400' : 'text-emerald-400'}`}>
                 {template.riskScore} / 100
               </div>
             </div>
-            <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div className="p-3  bg-slate-950/60 border border-slate-800">
               <div className="text-[10px] text-slate-400 uppercase tracking-wider">Neural Confidence</div>
               <div className="text-lg font-bold text-cyan-400 mt-1">{template.confidence}%</div>
             </div>
@@ -56,8 +56,8 @@ export const RiskInspector: React.FC<RiskInspectorProps> = ({ isOpen, onClose, t
             </h4>
             <div className="space-y-2.5">
               {template.hotspots.map((spot, index) => (
-                <div key={spot.id} className="p-3 rounded-xl bg-slate-950/40 border border-slate-800/80 flex items-start gap-3">
-                  <span className={`flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold shrink-0 mt-0.5 ${
+                <div key={spot.id} className="p-3  bg-slate-950/40 border border-slate-800/80 flex items-start gap-3">
+                  <span className={`flex items-center justify-center w-6 h-6 text-xs font-bold shrink-0 mt-0.5 ${
                     spot.riskLevel === 'critical' ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30' :
                     spot.riskLevel === 'high' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' :
                     'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'

@@ -66,7 +66,7 @@ export const ForgedEndorsementInspectorModal: React.FC<ForgedEndorsementInspecto
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-xs p-4">
-      <div className={`w-full max-w-3xl rounded-2xl border shadow-2xl overflow-hidden flex flex-col max-h-[90vh] ${
+      <div className={`w-full max-w-3xl  border shadow-2xl overflow-hidden flex flex-col max-h-[90vh] ${
         themeMode === 'dark' ? 'bg-[#202124] border-[#3c4043] text-[#e8eaed]' : 'bg-white border-slate-200 text-slate-900'
       }`}>
         {/* Header */}
@@ -80,7 +80,7 @@ export const ForgedEndorsementInspectorModal: React.FC<ForgedEndorsementInspecto
               <p className="text-xs opacity-75">Inspect Rear Endorsement Area for Tracing, Mechanical Forgery, & Missing Signatures</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-lg opacity-75 hover:opacity-100 hover:bg-black/10 transition">
+          <button onClick={onClose} className="p-1.5  opacity-75 hover:opacity-100 hover:bg-black/10 transition">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -95,7 +95,7 @@ export const ForgedEndorsementInspectorModal: React.FC<ForgedEndorsementInspecto
               </label>
 
               {!previewUrl ? (
-                <label className={`border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer transition ${
+                <label className={`border-2 border-dashed  p-8 flex flex-col items-center justify-center cursor-pointer transition ${
                   themeMode === 'dark' ? 'border-[#5f6368] hover:border-amber-400 bg-[#292a2d]' : 'border-slate-300 hover:border-amber-600 bg-slate-50'
                 }`}>
                   <ImageIcon className="w-8 h-8 text-amber-500 mb-2" />
@@ -104,11 +104,11 @@ export const ForgedEndorsementInspectorModal: React.FC<ForgedEndorsementInspecto
                   <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
                 </label>
               ) : (
-                <div className="relative rounded-xl overflow-hidden border border-inherit bg-black/40 p-2 flex flex-col items-center">
-                  <img src={previewUrl} alt="Rear Check Preview" className="max-h-[200px] object-contain rounded" />
+                <div className="relative  overflow-hidden border border-inherit bg-black/40 p-2 flex flex-col items-center">
+                  <img src={previewUrl} alt="Rear Check Preview" className="max-h-[200px] object-contain " />
                   <button
                     onClick={() => { setPreviewUrl(null); setSelectedFile(null); setInspectionResult(null); }}
-                    className="mt-3 px-3 py-1 rounded bg-rose-600/80 hover:bg-rose-600 text-white text-xs font-medium transition"
+                    className="mt-3 px-3 py-1  bg-rose-800/80 hover:bg-rose-800 text-white text-xs font-medium transition"
                   >
                     Remove / Change Rear Image
                   </button>
@@ -119,11 +119,11 @@ export const ForgedEndorsementInspectorModal: React.FC<ForgedEndorsementInspecto
                 <button
                   onClick={handleRunInspection}
                   disabled={isAnalyzing}
-                  className="w-full py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow flex items-center justify-center gap-2 transition disabled:opacity-50"
+                  className="w-full py-2.5  bg-amber-800 hover:bg-amber-700 text-white font-bold text-xs shadow flex items-center justify-center gap-2 transition disabled:opacity-50"
                 >
                   {isAnalyzing ? (
                     <>
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent animate-spin" />
                       <span>Analyzing Endorsement & Stroke Velocity...</span>
                     </>
                   ) : (
@@ -142,7 +142,7 @@ export const ForgedEndorsementInspectorModal: React.FC<ForgedEndorsementInspecto
                 Endorsement Inspection JSON Output
               </label>
 
-              <div className={`flex-1 rounded-xl p-4 font-mono text-xs border overflow-y-auto ${
+              <div className={`flex-1  p-4 font-mono text-xs border overflow-y-auto ${
                 themeMode === 'dark' ? 'bg-[#18191c] border-[#3c4043]' : 'bg-slate-900 text-slate-100 border-slate-800'
               }`}>
                 {inspectionResult ? (
@@ -160,7 +160,7 @@ export const ForgedEndorsementInspectorModal: React.FC<ForgedEndorsementInspecto
           </div>
 
           {inspectionResult && (
-            <div className={`p-4 rounded-xl border flex items-center justify-between ${
+            <div className={`p-4  border flex items-center justify-between ${
               inspectionResult.endorsement_analysis.tracing_or_mechanical_forgery_detected
                 ? 'bg-rose-500/10 border-rose-500/30 text-rose-400'
                 : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
@@ -180,7 +180,7 @@ export const ForgedEndorsementInspectorModal: React.FC<ForgedEndorsementInspecto
                   </div>
                 </div>
               </div>
-              <span className="text-xs font-bold px-2.5 py-1 rounded bg-black/20">
+              <span className="text-xs font-bold px-2.5 py-1  bg-black/20">
                 {inspectionResult.fraud_risk_score}% Risk
               </span>
             </div>
@@ -193,7 +193,7 @@ export const ForgedEndorsementInspectorModal: React.FC<ForgedEndorsementInspecto
         }`}>
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow transition"
+            className="px-4 py-2  bg-slate-700 hover:bg-slate-600 text-white font-medium text-xs shadow transition"
           >
             Close Inspector
           </button>

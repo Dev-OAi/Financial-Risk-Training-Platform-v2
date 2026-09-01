@@ -55,7 +55,7 @@ export const CheckKitingAnalyzerModal: React.FC<CheckKitingAnalyzerModalProps> =
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-xs p-4">
-      <div className={`w-full max-w-3xl rounded-2xl border shadow-2xl overflow-hidden flex flex-col max-h-[90vh] ${
+      <div className={`w-full max-w-3xl  border shadow-2xl overflow-hidden flex flex-col max-h-[90vh] ${
         themeMode === 'dark' ? 'bg-[#202124] border-[#3c4043] text-[#e8eaed]' : 'bg-white border-slate-200 text-slate-900'
       }`}>
         {/* Header */}
@@ -69,7 +69,7 @@ export const CheckKitingAnalyzerModal: React.FC<CheckKitingAnalyzerModalProps> =
               <p className="text-xs opacity-75">Model Multi-Bank Fund Flows & Detect Circular Float Kiting Loops</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-lg opacity-75 hover:opacity-100 hover:bg-black/10 transition">
+          <button onClick={onClose} className="p-1.5  opacity-75 hover:opacity-100 hover:bg-black/10 transition">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -86,7 +86,7 @@ export const CheckKitingAnalyzerModal: React.FC<CheckKitingAnalyzerModalProps> =
                 <select
                   value={targetAccount}
                   onChange={(e) => setTargetAccount(e.target.value)}
-                  className={`w-full px-3 py-2.5 rounded-xl border text-xs font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 ${
+                  className={`w-full px-3 py-2.5  border text-xs font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 ${
                     themeMode === 'dark' ? 'bg-[#292a2d] border-[#5f6368] text-white' : 'bg-slate-50 border-slate-300 text-slate-900'
                   }`}
                 >
@@ -96,7 +96,7 @@ export const CheckKitingAnalyzerModal: React.FC<CheckKitingAnalyzerModalProps> =
                 </select>
               </div>
 
-              <div className={`p-4 rounded-xl border space-y-2 ${
+              <div className={`p-4  border space-y-2 ${
                 themeMode === 'dark' ? 'bg-[#292a2d] border-[#3c4043]' : 'bg-slate-50 border-slate-200'
               }`}>
                 <div className="text-xs font-semibold uppercase tracking-wider flex items-center gap-2 text-teal-400">
@@ -112,11 +112,11 @@ export const CheckKitingAnalyzerModal: React.FC<CheckKitingAnalyzerModalProps> =
                 <button
                   onClick={handleRunKitingAnalysis}
                   disabled={isAnalyzing}
-                  className="w-full py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs shadow flex items-center justify-center gap-2 transition disabled:opacity-50"
+                  className="w-full py-2.5  bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs shadow flex items-center justify-center gap-2 transition disabled:opacity-50"
                 >
                   {isAnalyzing ? (
                     <>
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent animate-spin" />
                       <span>Running Graph GNN Float Analysis...</span>
                     </>
                   ) : (
@@ -129,7 +129,7 @@ export const CheckKitingAnalyzerModal: React.FC<CheckKitingAnalyzerModalProps> =
               ) : (
                 <button
                   onClick={() => setAnalysisResult(null)}
-                  className="w-full py-2.5 rounded-xl bg-slate-600 hover:bg-slate-700 text-white font-bold text-xs shadow transition"
+                  className="w-full py-2.5  bg-slate-600 hover:bg-slate-700 text-white font-bold text-xs shadow transition"
                 >
                   Reset Analysis
                 </button>
@@ -142,7 +142,7 @@ export const CheckKitingAnalyzerModal: React.FC<CheckKitingAnalyzerModalProps> =
                 GNN Network Analysis JSON
               </label>
 
-              <div className={`flex-1 rounded-xl p-4 font-mono text-xs border overflow-y-auto ${
+              <div className={`flex-1  p-4 font-mono text-xs border overflow-y-auto ${
                 themeMode === 'dark' ? 'bg-[#18191c] border-[#3c4043]' : 'bg-slate-900 text-slate-100 border-slate-800'
               }`}>
                 {analysisResult ? (
@@ -160,7 +160,7 @@ export const CheckKitingAnalyzerModal: React.FC<CheckKitingAnalyzerModalProps> =
           </div>
 
           {analysisResult && (
-            <div className="p-4 rounded-xl border bg-rose-500/10 border-rose-500/30 text-rose-400 flex items-center justify-between">
+            <div className="p-4  border bg-rose-500/10 border-rose-500/30 text-rose-400 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <ShieldAlert className="w-5 h-5 shrink-0" />
                 <div>
@@ -172,7 +172,7 @@ export const CheckKitingAnalyzerModal: React.FC<CheckKitingAnalyzerModalProps> =
                   </div>
                 </div>
               </div>
-              <span className="text-xs font-bold px-2.5 py-1 rounded bg-black/20">
+              <span className="text-xs font-bold px-2.5 py-1  bg-black/20">
                 {analysisResult.gnn_risk_score}% GNN Risk
               </span>
             </div>
@@ -185,7 +185,7 @@ export const CheckKitingAnalyzerModal: React.FC<CheckKitingAnalyzerModalProps> =
         }`}>
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow transition"
+            className="px-4 py-2  bg-slate-700 hover:bg-slate-600 text-white font-medium text-xs shadow transition"
           >
             Close Analyzer
           </button>

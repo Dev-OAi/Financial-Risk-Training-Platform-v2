@@ -140,7 +140,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
   });
 
   return (
-    <div className={`flex flex-col h-full rounded-xl border overflow-hidden shadow-xs ${
+    <div className={`flex flex-col h-full  border overflow-hidden shadow-xs ${
       themeMode === 'dark' ? 'bg-[#252629] border-[#3c4043] text-[#e8eaed]' : 'bg-white border-slate-200 text-slate-800'
     }`}>
       {/* Header Bar */}
@@ -148,13 +148,13 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
         themeMode === 'dark' ? 'bg-[#2d2e31] border-[#3c4043]' : 'bg-slate-50 border-slate-200'
       }`}>
         <div className="flex items-center gap-2.5">
-          <div className="p-2 rounded-lg bg-amber-500/10 text-amber-500">
+          <div className="p-2  bg-amber-500/10 text-amber-500">
             <ShieldAlert className="w-5 h-5" />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <h3 className="font-bold text-sm uppercase tracking-wider">OFAC SDN & FinCEN 314(a) Automated Watchlist Screening</h3>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 font-bold">
+              <span className="text-[10px] font-mono px-2 py-0.5  bg-amber-500/10 text-amber-400 border border-amber-500/20 font-bold">
                 {records.length} Monitored Targets
               </span>
             </div>
@@ -167,7 +167,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
         <div className="flex items-center gap-2 text-xs">
           <button
             onClick={() => setIsAddModalOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs shadow-xs transition"
+            className="flex items-center gap-1.5 px-3 py-1.5  bg-slate-700 hover:bg-slate-600 text-white font-semibold text-xs shadow-xs transition"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Add Watchlist Record</span>
@@ -198,24 +198,24 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
         <div className="flex items-center gap-1.5">
           <button
             onClick={() => setSelectedList('all')}
-            className={`px-3 py-1 rounded font-medium text-xs transition ${
-              selectedList === 'all' ? 'bg-blue-600 text-white' : 'opacity-75 hover:opacity-100'
+            className={`px-3 py-1  font-medium text-xs transition ${
+              selectedList === 'all' ? 'bg-slate-700 text-white' : 'opacity-75 hover:opacity-100'
             }`}
           >
             All Lists ({records.length})
           </button>
           <button
             onClick={() => setSelectedList('ofac')}
-            className={`px-3 py-1 rounded font-medium text-xs transition ${
-              selectedList === 'ofac' ? 'bg-blue-600 text-white' : 'opacity-75 hover:opacity-100'
+            className={`px-3 py-1  font-medium text-xs transition ${
+              selectedList === 'ofac' ? 'bg-slate-700 text-white' : 'opacity-75 hover:opacity-100'
             }`}
           >
             OFAC SDN
           </button>
           <button
             onClick={() => setSelectedList('fincen')}
-            className={`px-3 py-1 rounded font-medium text-xs transition ${
-              selectedList === 'fincen' ? 'bg-blue-600 text-white' : 'opacity-75 hover:opacity-100'
+            className={`px-3 py-1  font-medium text-xs transition ${
+              selectedList === 'fincen' ? 'bg-slate-700 text-white' : 'opacity-75 hover:opacity-100'
             }`}
           >
             FinCEN 314(a)
@@ -267,7 +267,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                           type="text"
                           value={editForm.name}
                           onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
-                          className={`w-full px-2 py-1 rounded border text-xs outline-none font-bold ${
+                          className={`w-full px-2 py-1  border text-xs outline-none font-bold ${
                             themeMode === 'dark' ? 'bg-[#202124] border-blue-500 text-white' : 'bg-white border-blue-500 text-slate-900'
                           }`}
                         />
@@ -277,7 +277,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                           type="text"
                           value={editForm.program}
                           onChange={(e) => setEditForm({ ...editForm, program: e.target.value })}
-                          className={`w-full px-2 py-1 rounded border text-xs outline-none ${
+                          className={`w-full px-2 py-1  border text-xs outline-none ${
                             themeMode === 'dark' ? 'bg-[#202124] border-blue-500 text-white' : 'bg-white border-blue-500 text-slate-900'
                           }`}
                         />
@@ -288,7 +288,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                           maxLength={3}
                           value={editForm.country}
                           onChange={(e) => setEditForm({ ...editForm, country: e.target.value.toUpperCase() })}
-                          className={`w-12 text-center px-1.5 py-1 rounded border text-xs outline-none font-mono ${
+                          className={`w-12 text-center px-1.5 py-1  border text-xs outline-none font-mono ${
                             themeMode === 'dark' ? 'bg-[#202124] border-blue-500 text-white' : 'bg-white border-blue-500 text-slate-900'
                           }`}
                         />
@@ -300,7 +300,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                           max={100}
                           value={editForm.matchScore}
                           onChange={(e) => setEditForm({ ...editForm, matchScore: Number(e.target.value) })}
-                          className={`w-16 text-center px-1.5 py-1 rounded border text-xs outline-none font-mono ${
+                          className={`w-16 text-center px-1.5 py-1  border text-xs outline-none font-mono ${
                             themeMode === 'dark' ? 'bg-[#202124] border-blue-500 text-white' : 'bg-white border-blue-500 text-slate-900'
                           }`}
                         />
@@ -309,7 +309,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                         <select
                           value={editForm.status}
                           onChange={(e) => setEditForm({ ...editForm, status: e.target.value as any })}
-                          className={`w-full px-2 py-1 rounded border text-xs outline-none font-bold ${
+                          className={`w-full px-2 py-1  border text-xs outline-none font-bold ${
                             themeMode === 'dark' ? 'bg-[#202124] border-blue-500 text-white' : 'bg-white border-blue-500 text-slate-900'
                           }`}
                         >
@@ -322,14 +322,14 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                         <div className="flex items-center justify-center gap-1.5">
                           <button
                             onClick={() => handleSaveEdit(record.id)}
-                            className="p-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded shadow-xs"
+                            className="p-1.5 bg-emerald-800 hover:bg-emerald-700 text-white  shadow-xs"
                             title="Save Changes"
                           >
                             <Check className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={handleCancelEdit}
-                            className="p-1.5 bg-slate-600 hover:bg-slate-700 text-white rounded shadow-xs"
+                            className="p-1.5 bg-slate-600 hover:bg-slate-700 text-white  shadow-xs"
                             title="Cancel"
                           >
                             <X className="w-3.5 h-3.5" />
@@ -371,7 +371,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                     </td>
 
                     <td className="px-3 py-2.5 text-center font-mono font-bold border-r border-inherit">
-                      <span className="px-1.5 py-0.5 rounded bg-black/10 dark:bg-white/10 text-[10px]">
+                      <span className="px-1.5 py-0.5  bg-black/10 dark:bg-white/10 text-[10px]">
                         {record.country}
                       </span>
                     </td>
@@ -381,7 +381,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                         <span className={`text-xs ${isHit ? 'text-rose-500 font-extrabold' : isPotential ? 'text-amber-500' : 'text-emerald-500'}`}>
                           {record.matchScore}%
                         </span>
-                        <div className="w-12 h-1.5 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                        <div className="w-12 h-1.5 bg-slate-200 dark:bg-slate-700 overflow-hidden">
                           <div 
                             className={`h-full ${isHit ? 'bg-rose-500' : isPotential ? 'bg-amber-500' : 'bg-emerald-500'}`} 
                             style={{ width: `${record.matchScore}%` }}
@@ -391,7 +391,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                     </td>
 
                     <td className="px-3 py-2.5 border-r border-inherit">
-                      <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                      <span className={`inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold ${
                         isHit 
                           ? 'bg-rose-500/10 text-rose-500 border border-rose-500/30' 
                           : isPotential 
@@ -410,10 +410,10 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                       <div className="flex items-center justify-center gap-1">
                         <button
                           onClick={() => handleStartEdit(record)}
-                          className={`p-1.5 rounded transition ${
+                          className={`p-1.5  transition ${
                             themeMode === 'dark' 
-                              ? 'bg-[#3c4043] hover:bg-blue-600 text-blue-400 hover:text-white' 
-                              : 'bg-slate-100 hover:bg-blue-600 text-blue-600 hover:text-white'
+                              ? 'bg-[#3c4043] hover:bg-slate-700 text-blue-400 hover:text-white' 
+                              : 'bg-slate-100 hover:bg-slate-700 text-blue-600 hover:text-white'
                           }`}
                           title="Edit Watchlist Record"
                         >
@@ -422,10 +422,10 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
 
                         <button
                           onClick={() => handleInsertRow(index)}
-                          className={`p-1.5 rounded transition ${
+                          className={`p-1.5  transition ${
                             themeMode === 'dark' 
-                              ? 'bg-[#3c4043] hover:bg-emerald-600 text-emerald-400 hover:text-white' 
-                              : 'bg-slate-100 hover:bg-emerald-600 text-emerald-600 hover:text-white'
+                              ? 'bg-[#3c4043] hover:bg-emerald-800 text-emerald-400 hover:text-white' 
+                              : 'bg-slate-100 hover:bg-emerald-800 text-emerald-600 hover:text-white'
                           }`}
                           title="Insert New Row Below"
                         >
@@ -434,10 +434,10 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
 
                         <button
                           onClick={() => handleDuplicateRecord(record)}
-                          className={`p-1.5 rounded transition ${
+                          className={`p-1.5  transition ${
                             themeMode === 'dark' 
-                              ? 'bg-[#3c4043] hover:bg-purple-600 text-purple-400 hover:text-white' 
-                              : 'bg-slate-100 hover:bg-purple-600 text-purple-600 hover:text-white'
+                              ? 'bg-[#3c4043] hover:bg-purple-800 text-purple-400 hover:text-white' 
+                              : 'bg-slate-100 hover:bg-purple-800 text-purple-600 hover:text-white'
                           }`}
                           title="Duplicate Record"
                         >
@@ -446,10 +446,10 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
 
                         <button
                           onClick={() => handleDeleteRecord(record.id)}
-                          className={`p-1.5 rounded transition ${
+                          className={`p-1.5  transition ${
                             themeMode === 'dark' 
-                              ? 'bg-[#3c4043] hover:bg-rose-600 text-rose-400 hover:text-white' 
-                              : 'bg-slate-100 hover:bg-rose-600 text-rose-600 hover:text-white'
+                              ? 'bg-[#3c4043] hover:bg-rose-800 text-rose-400 hover:text-white' 
+                              : 'bg-slate-100 hover:bg-rose-800 text-rose-600 hover:text-white'
                           }`}
                           title="Delete Watchlist Record"
                         >
@@ -468,7 +468,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
       {/* Add Record Modal */}
       {isAddModalOpen && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-xs">
-          <div className={`w-full max-w-lg rounded-2xl border p-6 shadow-2xl space-y-4 ${
+          <div className={`w-full max-w-lg  border p-6 shadow-2xl space-y-4 ${
             themeMode === 'dark' ? 'bg-[#292a2d] border-[#3c4043] text-white' : 'bg-white border-slate-200 text-slate-800'
           }`}>
             <div className="flex items-center justify-between border-b border-inherit pb-3">
@@ -476,7 +476,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                 <Plus className="w-5 h-5 text-blue-500" />
                 <h3 className="font-bold text-base">Add Watchlist Screening Record</h3>
               </div>
-              <button onClick={() => setIsAddModalOpen(false)} className="p-1 rounded hover:bg-black/10">
+              <button onClick={() => setIsAddModalOpen(false)} className="p-1  hover:bg-black/10">
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -492,7 +492,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                   value={newRecord.name}
                   onChange={(e) => setNewRecord({ ...newRecord, name: e.target.value })}
                   placeholder="e.g. BARRINGTON OVERSEAS CORP"
-                  className={`w-full px-3 py-2 rounded-lg border text-xs outline-none ${
+                  className={`w-full px-3 py-2  border text-xs outline-none ${
                     themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                   }`}
                 />
@@ -506,7 +506,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                   <select
                     value={newRecord.entityType}
                     onChange={(e) => setNewRecord({ ...newRecord, entityType: e.target.value as any })}
-                    className={`w-full px-3 py-2 rounded-lg border text-xs outline-none ${
+                    className={`w-full px-3 py-2  border text-xs outline-none ${
                       themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                     }`}
                   >
@@ -526,7 +526,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                     value={newRecord.country}
                     onChange={(e) => setNewRecord({ ...newRecord, country: e.target.value.toUpperCase() })}
                     placeholder="US, KY, PA..."
-                    className={`w-full px-3 py-2 rounded-lg border text-xs outline-none font-mono uppercase ${
+                    className={`w-full px-3 py-2  border text-xs outline-none font-mono uppercase ${
                       themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                     }`}
                   />
@@ -542,7 +542,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                   value={newRecord.program}
                   onChange={(e) => setNewRecord({ ...newRecord, program: e.target.value })}
                   placeholder="e.g. SDN List / FinCEN 314(a)"
-                  className={`w-full px-3 py-2 rounded-lg border text-xs outline-none ${
+                  className={`w-full px-3 py-2  border text-xs outline-none ${
                     themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                   }`}
                 />
@@ -559,7 +559,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                     max={100}
                     value={newRecord.matchScore}
                     onChange={(e) => setNewRecord({ ...newRecord, matchScore: Number(e.target.value) })}
-                    className={`w-full px-3 py-2 rounded-lg border text-xs outline-none font-mono ${
+                    className={`w-full px-3 py-2  border text-xs outline-none font-mono ${
                       themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                     }`}
                   />
@@ -572,7 +572,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                   <select
                     value={newRecord.status}
                     onChange={(e) => setNewRecord({ ...newRecord, status: e.target.value as any })}
-                    className={`w-full px-3 py-2 rounded-lg border text-xs outline-none font-bold ${
+                    className={`w-full px-3 py-2  border text-xs outline-none font-bold ${
                       themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368]' : 'bg-slate-50 border-slate-300'
                     }`}
                   >
@@ -587,7 +587,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                 <button
                   type="button"
                   onClick={() => setIsAddModalOpen(false)}
-                  className={`px-4 py-2 rounded-lg text-xs font-medium border ${
+                  className={`px-4 py-2  text-xs font-medium border ${
                     themeMode === 'dark' ? 'bg-[#202124] border-[#5f6368] text-slate-300' : 'bg-white border-slate-300 text-slate-700'
                   }`}
                 >
@@ -595,7 +595,7 @@ export const WatchlistTab: React.FC<WatchlistTabProps> = ({ template, themeMode,
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs transition"
+                  className="px-5 py-2  bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold shadow-xs transition"
                 >
                   Add Record
                 </button>
